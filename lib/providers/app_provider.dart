@@ -180,9 +180,9 @@ class AppProvider extends ChangeNotifier {
 
   // ─── Compare Components ───
 
-  /// Возвращает true если добавлено, false если уже 3 товара
+  /// Возвращает true если добавлено, false если уже 40 товаров
   bool addToCompare(Component component) {
-    if (_compareComponents.length >= 3) return false;
+    if (_compareComponents.length >= 40) return false;
     if (_compareComponents.any((c) => c.id == component.id)) return false;
     _compareComponents = [..._compareComponents, component];
     notifyListeners();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../data/components.dart';
 import '../models/component.dart';
 import '../theme.dart';
 
@@ -101,7 +102,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          '32 комплектующих в каталоге',
+                          '${allComponents.length} комплектующих в каталоге',
                           style: TextStyle(
                             color: Colors.white.withOpacity(0.9),
                             fontSize: 13,
@@ -180,8 +181,24 @@ class _CategoryCard extends StatelessWidget {
   final ComponentCategory category;
   const _CategoryCard({required this.category});
 
+  String _countLabel(int n) {
+    if (n % 100 >= 11 && n % 100 <= 19) return '$n товаров';
+    switch (n % 10) {
+      case 1:
+        return '$n товар';
+      case 2:
+      case 3:
+      case 4:
+        return '$n товара';
+      default:
+        return '$n товаров';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final count = getByCategory(category).length;
+
     return GestureDetector(
       onTap: () => context.push('/category/${category.key}'),
       child: Container(
@@ -237,7 +254,7 @@ class _CategoryCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      '4 товара',
+                      _countLabel(count),
                       style: TextStyle(
                         fontSize: 11,
                         color: AppTheme.textSecondary,

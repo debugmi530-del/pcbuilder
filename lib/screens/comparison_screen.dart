@@ -5,29 +5,76 @@ import '../models/component.dart';
 import '../providers/app_provider.dart';
 import '../theme.dart';
 
-class ComparisonScreen extends StatelessWidget {
+class ComparisonScreen extends StatefulWidget {
   const ComparisonScreen({super.key});
+
+  @override
+  State<ComparisonScreen> createState() => _ComparisonScreenState();
+}
+
+class _ComparisonScreenState extends State<ComparisonScreen> {
+  int _selectedCatIdx = 0;
+  int _slot1Idx = 0;
+  int _slot2Idx = 1;
+
+  Map<ComponentCategory, List<Component>> _groupByCategory(
+      List<Component> items) {
+    final map = <ComponentCategory, List<Component>>{};
+    for (final c in items) {
+      map.putIfAbsent(c.category, () => []).add(c);
+    }
+    return map;
+  }
+
+  void _selectCategory(int idx) {
+    setState(() {
+      _selectedCatIdx = idx;
+      _slot1Idx = 0;
+      _slot2Idx = 1;
+    });
+  }
+
+  /// Листает слот [slot] на [direction] (+1 или -1), пропуская индекс другого слота.
+  void _navigate(int slot, int direction, int total) {
+    // При 2 товарах нет куда переключаться — слоты заняты оба
+    if (total <= 2) return;
+
+    final other = slot == 1 ? _slot2Idx : _slot1Idx;
+    final current = slot == 1 ? _slot1Idx : _slot2Idx;
+
+    int next = (current + direction + total) % total;
+    if (next == other) {
+      next = (next + direction + total) % total;
+    }
+
+    setState(() {
+      if (slot == 1) {
+        _slot1Idx = next;
+      } else {
+        _slot2Idx = next;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<AppProvider>();
-    final items = provider.compareComponents;
+    final allItems = provider.compareComponents;
 
-    if (items.isEmpty) {
+    if (allItems.isEmpty) {
       return Scaffold(
         appBar: AppBar(title: const Text('Сравнение')),
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.compare_arrows, size: 80,
-                  color: AppTheme.textSecondary),
+              const Icon(Icons.compare_arrows,
+                  size: 80, color: AppTheme.textSecondary),
               const SizedBox(height: 16),
               const Text('Нет товаров для сравнения',
-                  style: TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w600)),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
               const SizedBox(height: 8),
-              const Text('Добавьте до 3 компонентов\nодного типа',
+              const Text('Добавьте до 40 компонентов для сравнения',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: AppTheme.textSecondary)),
               const SizedBox(height: 24),
@@ -41,176 +88,162 @@ class ComparisonScreen extends StatelessWidget {
       );
     }
 
-    // Collect all spec keys
-    final allKeys = <String>{};
-    for (final c in items) {
-      allKeys.addAll(c.specs.keys);
-    }
+    final grouped = _groupByCategory(allItems);
+    final categories = grouped.keys.toList();
 
-    // Find differing keys
-    final differingKeys = allKeys.where((key) {
-      final values = items.map((c) => c.specs[key]).toSet();
-      return values.length > 1 || values.contains(null);
-    }).toSet();
+    // Защита от выхода за пределы при удалении категории
+    final catIdx = _selectedCatIdx.clamp(0, categories.length - 1);
+    final selectedCat = categories[catIdx];
+    final catItems = grouped[selectedCat]!;
+
+    // Защита индексов слотов
+    final s1 = _slot1Idx.clamp(0, catItems.length - 1);
+    final s2 = catItems.length > 1 ? _slot2Idx.clamp(0, catItems.length - 1) : -1;
+
+    final item1 = catItems[s1];
+    final item2 = s2 >= 0 ? catItems[s2] : null;
+
+    // Ключи характеристик и отличия
+    final allKeys = <String>{...item1.specs.keys};
+    if (item2 != null) allKeys.addAll(item2.specs.keys);
+
+    final differingKeys = item2 == null
+        ? <String>{}
+        : allKeys.where((k) => item1.specs[k] != item2.specs[k]).toSet();
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Сравнение'),
         actions: [
           TextButton(
-            onPressed: () {
-              provider.clearCompare();
-            },
-            child: const Text('Очистить', style: TextStyle(color: Colors.white)),
+            onPressed: () => provider.clearCompare(),
+            child: const Text('Очистить',
+                style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
       body: Column(
         children: [
-          // Header row with component names
+          // ── Вкладки категорий ──
           Container(
             color: Colors.white,
-            child: Row(
-              children: [
-                const SizedBox(width: 120),
-                ...items.asMap().entries.map((entry) {
-                  final i = entry.key;
-                  final c = entry.value;
-                  return Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              child: Row(
+                children: categories.asMap().entries.map((e) {
+                  final isSelected = e.key == catIdx;
+                  final cat = e.value;
+                  final count = grouped[cat]!.length;
+                  return GestureDetector(
+                    onTap: () => _selectCategory(e.key),
                     child: Container(
-                      padding: const EdgeInsets.all(10),
-                      child: Column(
+                      margin: const EdgeInsets.only(right: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 7),
+                      decoration: BoxDecoration(
+                        color: isSelected ? AppTheme.primary : AppTheme.chip,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
-                            width: 48,
-                            height: 48,
-                            decoration: BoxDecoration(
-                              color: c.category.color.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Icon(c.category.icon,
-                                color: c.category.color),
-                          ),
-                          const SizedBox(height: 6),
                           Text(
-                            c.brand,
-                            style: const TextStyle(
-                              fontSize: 10,
-                              color: AppTheme.primary,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Text(
-                            c.model,
-                            style: const TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            '${_fmt(c.price)} ₽',
-                            style: const TextStyle(
+                            '${cat.displayName} $count',
+                            style: TextStyle(
                               fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: AppTheme.accent,
+                              fontWeight: FontWeight.w600,
+                              color: isSelected
+                                  ? Colors.white
+                                  : AppTheme.textPrimary,
                             ),
                           ),
-                          // Swap button — показывает только те, что уже в сравнении
-                          if (items.length > 1)
-                            GestureDetector(
-                              onTap: () =>
-                                  _showSwapDialog(context, provider, i),
-                              child: Container(
-                                margin: const EdgeInsets.only(top: 6),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 3),
-                                decoration: BoxDecoration(
-                                  color: AppTheme.chip,
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: const Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(Icons.swap_horiz,
-                                        size: 12, color: AppTheme.primary),
-                                    SizedBox(width: 3),
-                                    Text('Заменить',
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            color: AppTheme.primary)),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          // Remove button
+                          const SizedBox(width: 6),
                           GestureDetector(
-                            onTap: () => provider.removeFromCompare(c.id),
-                            child: Container(
-                              margin: const EdgeInsets.only(top: 4),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 3),
-                              decoration: BoxDecoration(
-                                color: AppTheme.error.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: const Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(Icons.close,
-                                      size: 10, color: AppTheme.error),
-                                  SizedBox(width: 3),
-                                  Text('Убрать',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: AppTheme.error)),
-                                ],
-                              ),
-                            ),
+                            onTap: () {
+                              for (final item in grouped[cat]!) {
+                                provider.removeFromCompare(item.id);
+                              }
+                            },
+                            child: Icon(Icons.close,
+                                size: 14,
+                                color: isSelected
+                                    ? Colors.white70
+                                    : AppTheme.textSecondary),
                           ),
                         ],
                       ),
                     ),
                   );
-                }),
-              ],
+                }).toList(),
+              ),
             ),
           ),
 
-          // Legend
+          const Divider(height: 1),
+
+          // ── Два слота сравнения ──
           Container(
-            color: const Color(0xFFFFF3CD),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            child: Row(
-              children: [
-                Container(
-                  width: 14,
-                  height: 14,
-                  decoration: BoxDecoration(
-                    color: AppTheme.accent.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(3),
-                    border: Border.all(color: AppTheme.accent),
+            color: Colors.white,
+            child: IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: _buildSlot(
+                        context, provider, item1, 1, s1, catItems.length),
                   ),
-                ),
-                const SizedBox(width: 8),
-                const Text(
-                  'Подсвечены отличающиеся характеристики',
-                  style: TextStyle(fontSize: 11, color: AppTheme.textSecondary),
-                ),
-              ],
+                  VerticalDivider(
+                      width: 1, color: AppTheme.divider, thickness: 1),
+                  Expanded(
+                    child: item2 != null
+                        ? _buildSlot(context, provider, item2, 2, s2,
+                            catItems.length)
+                        : _buildEmptySlot(context, selectedCat),
+                  ),
+                ],
+              ),
             ),
           ),
 
-          // Specs comparison table
+          const Divider(height: 1),
+
+          // ── Легенда ──
+          if (item2 != null)
+            Container(
+              color: const Color(0xFFFFF3CD),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              child: Row(
+                children: [
+                  Container(
+                    width: 14,
+                    height: 14,
+                    decoration: BoxDecoration(
+                      color: AppTheme.accent.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(3),
+                      border: Border.all(color: AppTheme.accent),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'Подсвечены отличающиеся характеристики',
+                    style: TextStyle(
+                        fontSize: 11, color: AppTheme.textSecondary),
+                  ),
+                ],
+              ),
+            ),
+
+          // ── Таблица характеристик ──
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: allKeys.map((key) {
                   final isDiff = differingKeys.contains(key);
-                  final values = items.map((c) => c.specs[key] ?? '—').toList();
+                  final v1 = item1.specs[key] ?? '—';
+                  final v2 = item2?.specs[key] ?? '—';
 
                   return Container(
                     decoration: BoxDecoration(
@@ -229,7 +262,7 @@ class ComparisonScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: 120,
+                          width: 110,
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Text(
@@ -242,24 +275,43 @@ class ComparisonScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        ...values.map((v) => Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                child: Text(
-                                  v,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: isDiff
-                                        ? FontWeight.w700
-                                        : FontWeight.w400,
-                                    color: isDiff
-                                        ? AppTheme.textPrimary
-                                        : AppTheme.textSecondary,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              v1,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: isDiff
+                                    ? FontWeight.w700
+                                    : FontWeight.w400,
+                                color: isDiff
+                                    ? AppTheme.textPrimary
+                                    : AppTheme.textSecondary,
                               ),
-                            )),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                        if (item2 != null)
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              child: Text(
+                                v2,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: isDiff
+                                      ? FontWeight.w700
+                                      : FontWeight.w400,
+                                  color: isDiff
+                                      ? AppTheme.textPrimary
+                                      : AppTheme.textSecondary,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
                       ],
                     ),
                   );
@@ -272,70 +324,150 @@ class ComparisonScreen extends StatelessWidget {
     );
   }
 
-  /// Показывает только те комплектующие, которые уже добавлены в сравнение
-  void _showSwapDialog(
-      BuildContext context, AppProvider provider, int index) {
-    final others = provider.compareComponents
-        .asMap()
-        .entries
-        .where((e) => e.key != index)
-        .toList();
-
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+  Widget _buildSlot(BuildContext context, AppProvider provider,
+      Component item, int slot, int currentIdx, int total) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 8),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Кнопка удаления
+          Align(
+            alignment: Alignment.centerRight,
+            child: GestureDetector(
+              onTap: () => provider.removeFromCompare(item.id),
+              child: Container(
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: AppTheme.error.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Icon(Icons.close,
+                    size: 14, color: AppTheme.error),
+              ),
+            ),
+          ),
+          const SizedBox(height: 4),
+          // Иконка категории
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: item.category.color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(item.category.icon, color: item.category.color),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            item.brand,
+            style: const TextStyle(
+              fontSize: 10,
+              color: AppTheme.primary,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          Text(
+            item.model,
+            style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            '${_fmt(item.price)} ₽',
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: AppTheme.accent,
+            ),
+          ),
+          const SizedBox(height: 8),
+          // Стрелки навигации
+          if (total > 1)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () => _navigate(slot, -1, total),
+                  child: Container(
+                    width: 28,
+                    height: 28,
+                    decoration: BoxDecoration(
+                      color: AppTheme.chip,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Icon(Icons.chevron_left, size: 18),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  '${currentIdx + 1} из $total',
+                  style: const TextStyle(
+                      fontSize: 12, color: AppTheme.textSecondary),
+                ),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: () => _navigate(slot, 1, total),
+                  child: Container(
+                    width: 28,
+                    height: 28,
+                    decoration: BoxDecoration(
+                      color: AppTheme.chip,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Icon(Icons.chevron_right, size: 18),
+                  ),
+                ),
+              ],
+            ),
+        ],
       ),
-      builder: (_) => Column(
+    );
+  }
+
+  Widget _buildEmptySlot(BuildContext context, ComponentCategory category) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 10),
-            width: 36,
-            height: 4,
+            width: 48,
+            height: 48,
             decoration: BoxDecoration(
-              color: AppTheme.divider,
-              borderRadius: BorderRadius.circular(2),
+              color: AppTheme.chip,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child:
+                Icon(category.icon, color: AppTheme.textSecondary, size: 24),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Добавьте ещё\nтовар для\nсравнения',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 11, color: AppTheme.textSecondary),
+          ),
+          const SizedBox(height: 8),
+          GestureDetector(
+            onTap: () => context.push('/category/${category.key}'),
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                color: AppTheme.primary.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Text(
+                '+ Добавить',
+                style: TextStyle(
+                    fontSize: 11,
+                    color: AppTheme.primary,
+                    fontWeight: FontWeight.w600),
+              ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              'Поменять местами с:',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-            ),
-          ),
-          ...others.map(
-            (entry) {
-              final otherIndex = entry.key;
-              final c = entry.value;
-              return ListTile(
-                leading: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: c.category.color.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Icon(c.category.icon, color: c.category.color, size: 20),
-                ),
-                title: Text(
-                  c.name,
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                ),
-                subtitle: Text(
-                  '${_fmt(c.price)} ₽',
-                  style: const TextStyle(color: AppTheme.accent),
-                ),
-                trailing: const Icon(Icons.swap_horiz, color: AppTheme.primary),
-                onTap: () {
-                  provider.swapComparePositions(index, otherIndex);
-                  Navigator.pop(context);
-                },
-              );
-            },
-          ),
-          const SizedBox(height: 16),
         ],
       ),
     );

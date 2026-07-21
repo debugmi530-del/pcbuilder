@@ -95,7 +95,7 @@ class ComponentCard extends StatelessWidget {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             margin: const EdgeInsets.fromLTRB(12, 0, 12, 16),
             content: const Text(
-              'В сравнении уже 3 товара',
+              'В сравнении уже 40 товаров',
               style: TextStyle(color: Colors.white, fontSize: 13),
             ),
           ),
