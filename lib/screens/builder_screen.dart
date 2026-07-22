@@ -243,7 +243,7 @@ class _BuilderScreenState extends State<BuilderScreen> {
     final ctrl = TextEditingController(text: provider.currentBuild.name);
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
+      builder: (dialogCtx) => AlertDialog(
         title: const Text('Название сборки'),
         content: TextField(
           controller: ctrl,
@@ -252,13 +252,14 @@ class _BuilderScreenState extends State<BuilderScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(dialogCtx),
             child: const Text('Отмена'),
           ),
           ElevatedButton(
             onPressed: () {
-              provider.setBuildName(ctrl.text);
-              Navigator.pop(context);
+              final name = ctrl.text.trim();
+              Navigator.pop(dialogCtx);
+              if (name.isNotEmpty) provider.setBuildName(name);
             },
             child: const Text('Сохранить'),
           ),

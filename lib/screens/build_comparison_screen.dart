@@ -335,6 +335,34 @@ class _ComponentCell extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
+                  if (component!.keySpecs.isNotEmpty) ...[
+                    const SizedBox(height: 5),
+                    Wrap(
+                      spacing: 4,
+                      runSpacing: 3,
+                      children: component!.keySpecs
+                          .map(
+                            (spec) => Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 4, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: AppTheme.background,
+                                borderRadius: BorderRadius.circular(4),
+                                border:
+                                    Border.all(color: AppTheme.divider),
+                              ),
+                              child: Text(
+                                spec,
+                                style: const TextStyle(
+                                  fontSize: 9,
+                                  color: AppTheme.textSecondary,
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ],
                 ],
               ),
       ),
