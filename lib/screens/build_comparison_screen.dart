@@ -93,8 +93,7 @@ class _BuildComparisonView extends StatelessWidget {
           // Legend
           Container(
             color: const Color(0xFFFFF3CD),
-            padding:
-                const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             child: Row(
               children: [
                 Container(
@@ -108,9 +107,8 @@ class _BuildComparisonView extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 const Text(
-                  'Подсвечены отличающиеся позиции',
-                  style: TextStyle(
-                      fontSize: 11, color: AppTheme.textSecondary),
+                  'Подсвечены отличающиеся характеристики',
+                  style: TextStyle(fontSize: 11, color: AppTheme.textSecondary),
                 ),
               ],
             ),
@@ -123,56 +121,123 @@ class _BuildComparisonView extends StatelessWidget {
                 children: ComponentCategory.values.map((cat) {
                   final c1 = build1.components[cat];
                   final c2 = build2.components[cat];
-                  final isDiff = c1?.id != c2?.id;
                   final bothMissing = c1 == null && c2 == null;
                   if (bothMissing) return const SizedBox.shrink();
 
+                  // Collect all spec keys from both components
+                  final allSpecKeys = <String>{};
+                  if (c1 != null) allSpecKeys.addAll(c1.specs.keys);
+                  if (c2 != null) allSpecKeys.addAll(c2.specs.keys);
+
+                  // Check if components differ by id
+                  final componentsDiffer = c1?.id != c2?.id;
+
                   return Container(
                     decoration: BoxDecoration(
-                      color: isDiff
-                          ? AppTheme.accent.withOpacity(0.05)
-                          : Colors.white,
                       border: Border(
-                        bottom:
-                            BorderSide(color: AppTheme.divider),
-                        left: isDiff
-                            ? const BorderSide(
-                                color: AppTheme.accent, width: 3)
+                        bottom: BorderSide(color: AppTheme.divider, width: 2),
+                        left: componentsDiffer
+                            ? const BorderSide(color: AppTheme.accent, width: 3)
                             : BorderSide.none,
                       ),
                     ),
-                    child: Row(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Category label
-                        SizedBox(
-                          width: 100,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Icon(cat.icon,
-                                    size: 16, color: cat.color),
-                                const SizedBox(height: 4),
-                                Text(
-                                  cat.shortName,
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    color: cat.color,
-                                    fontWeight: FontWeight.w600,
+                        // ── Category header: icon + component name/price ──
+                        Container(
+                          color: componentsDiffer
+                              ? AppTheme.accent.withOpacity(0.06)
+                              : Colors.white,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Category label
+                              SizedBox(
+                                width: 100,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Icon(cat.icon,
+                                          size: 16, color: cat.color),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        cat.shortName,
+                                        style: TextStyle(
+                                          fontSize: 11,
+                                          color: cat.color,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              // Build 1 component header
+                              _ComponentNameCell(
+                                  component: c1, isDiff: componentsDiffer),
+                              // Build 2 component header
+                              _ComponentNameCell(
+                                  component: c2, isDiff: componentsDiffer),
+                            ],
                           ),
                         ),
-                        // Build 1 component
-                        _ComponentCell(
-                            component: c1, isDiff: isDiff),
-                        // Build 2 component
-                        _ComponentCell(
-                            component: c2, isDiff: isDiff),
+
+                        // ── Full spec rows ──
+                        if (allSpecKeys.isNotEmpty)
+                          ...allSpecKeys.map((key) {
+                            final val1 = c1?.specs[key];
+                            final val2 = c2?.specs[key];
+                            final specDiffers = val1 != val2;
+
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: specDiffers
+                                    ? AppTheme.accent.withOpacity(0.08)
+                                    : (allSpecKeys.toList().indexOf(key).isEven
+                                        ? AppTheme.background
+                                        : Colors.white),
+                                border: Border(
+                                  top: BorderSide(
+                                      color: AppTheme.divider, width: 0.5),
+                                ),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  // Spec name
+                                  SizedBox(
+                                    width: 100,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 8),
+                                      child: Text(
+                                        key,
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: specDiffers
+                                              ? AppTheme.accent
+                                              : AppTheme.textSecondary,
+                                          fontWeight: specDiffers
+                                              ? FontWeight.w700
+                                              : FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  // Build 1 spec value
+                                  _SpecValueCell(
+                                      value: val1, isDiff: specDiffers),
+                                  // Build 2 spec value
+                                  _SpecValueCell(
+                                      value: val2, isDiff: specDiffers),
+                                ],
+                              ),
+                            );
+                          }).toList(),
                       ],
                     ),
                   );
@@ -214,6 +279,94 @@ class _BuildComparisonView extends StatelessWidget {
         RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
         (m) => '${m[1]} ',
       );
+}
+
+// ── Component name/price header cell (replaces old _ComponentCell) ──
+class _ComponentNameCell extends StatelessWidget {
+  final Component? component;
+  final bool isDiff;
+
+  const _ComponentNameCell({this.component, required this.isDiff});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+        child: component == null
+            ? const Center(
+                child: Text(
+                  '—',
+                  style: TextStyle(
+                      fontSize: 14, color: AppTheme.textSecondary),
+                ),
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    component!.brand,
+                    style: TextStyle(
+                      fontSize: 10,
+                      color:
+                          isDiff ? AppTheme.accent : AppTheme.textSecondary,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    component!.model,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight:
+                          isDiff ? FontWeight.w700 : FontWeight.w500,
+                      color: AppTheme.textPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '${_fmt(component!.price)} ₽',
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: AppTheme.accent,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+      ),
+    );
+  }
+
+  static String _fmt(double p) =>
+      p.toInt().toString().replaceAllMapped(
+        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+        (m) => '${m[1]} ',
+      );
+}
+
+// ── Single spec value cell ──
+class _SpecValueCell extends StatelessWidget {
+  final String? value;
+  final bool isDiff;
+
+  const _SpecValueCell({this.value, required this.isDiff});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        child: Text(
+          value ?? '—',
+          style: TextStyle(
+            fontSize: 11,
+            color: isDiff ? AppTheme.textPrimary : AppTheme.textSecondary,
+            fontWeight: isDiff ? FontWeight.w700 : FontWeight.w400,
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class _BuildHeader extends StatelessWidget {
@@ -260,8 +413,8 @@ class _BuildHeader extends StatelessWidget {
             if (isCheaper)
               Container(
                 margin: const EdgeInsets.only(top: 4),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 8, vertical: 2),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
                   color: AppTheme.success.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(6),
@@ -282,100 +435,6 @@ class _BuildHeader extends StatelessWidget {
   }
 }
 
-class _ComponentCell extends StatelessWidget {
-  final Component? component;
-  final bool isDiff;
-
-  const _ComponentCell({this.component, required this.isDiff});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-        child: component == null
-            ? const Center(
-                child: Text(
-                  '—',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: AppTheme.textSecondary,
-                  ),
-                ),
-              )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    component!.brand,
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: isDiff
-                          ? AppTheme.accent
-                          : AppTheme.textSecondary,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    component!.model,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: isDiff
-                          ? FontWeight.w700
-                          : FontWeight.w500,
-                      color: AppTheme.textPrimary,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    '${_fmt(component!.price)} ₽',
-                    style: const TextStyle(
-                      fontSize: 11,
-                      color: AppTheme.accent,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  if (component!.keySpecs.isNotEmpty) ...[
-                    const SizedBox(height: 5),
-                    Wrap(
-                      spacing: 4,
-                      runSpacing: 3,
-                      children: component!.keySpecs
-                          .map(
-                            (spec) => Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 4, vertical: 2),
-                              decoration: BoxDecoration(
-                                color: AppTheme.background,
-                                borderRadius: BorderRadius.circular(4),
-                                border:
-                                    Border.all(color: AppTheme.divider),
-                              ),
-                              child: Text(
-                                spec,
-                                style: const TextStyle(
-                                  fontSize: 9,
-                                  color: AppTheme.textSecondary,
-                                ),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ],
-                ],
-              ),
-      ),
-    );
-  }
-
-  static String _fmt(double p) =>
-      p.toInt().toString().replaceAllMapped(
-        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-        (m) => '${m[1]} ',
-      );
-}
-
 class _PriceTotal extends StatelessWidget {
   final PcBuild pcBuild;
   final bool isCheaper;
@@ -386,10 +445,9 @@ class _PriceTotal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
+        const Text(
           'Итого',
-          style: const TextStyle(
-              fontSize: 11, color: AppTheme.textSecondary),
+          style: TextStyle(fontSize: 11, color: AppTheme.textSecondary),
         ),
         const SizedBox(height: 2),
         Text(
