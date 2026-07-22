@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:app_links/app_links.dart';
 import 'providers/app_provider.dart';
 import 'screens/home_screen.dart';
 import 'screens/category_screen.dart';
@@ -108,10 +109,35 @@ class _MainShell extends StatefulWidget {
 }
 
 class _MainShellState extends State<_MainShell> with WidgetsBindingObserver {
+  final _appLinks = AppLinks();
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _initDeepLinks();
+  }
+
+  void _initDeepLinks() {
+    // Ссылка, по которой приложение было открыто «холодным» стартом
+    _appLinks.getInitialLink().then((uri) {
+      if (uri != null) _handleLink(uri);
+    });
+    // Ссылки, пока приложение уже работает
+    _appLinks.uriLinkStream.listen(_handleLink);
+  }
+
+  void _handleLink(Uri uri) {
+    if (uri.scheme != 'pcbuilder') return;
+    final code = uri.queryParameters['code'];
+    if (code == null || code.isEmpty) return;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final provider = context.read<AppProvider>();
+      provider.setPendingImportCode(code);
+      context.go('/builds');
+    });
   }
 
   @override

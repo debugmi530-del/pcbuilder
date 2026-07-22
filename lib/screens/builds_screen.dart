@@ -15,6 +15,15 @@ class BuildsScreen extends StatelessWidget {
     final provider = context.watch<AppProvider>();
     final builds = provider.savedBuilds;
 
+    // Если пришла ссылка — автоматически запускаем импорт
+    final pending = provider.pendingImportCode;
+    if (pending != null) {
+      provider.clearPendingImportCode();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) _doImport(context, pending);
+      });
+    }
+
     return Scaffold(
       backgroundColor: AppTheme.background,
       appBar: AppBar(
@@ -90,7 +99,8 @@ class BuildsScreen extends StatelessWidget {
   // ── Поделиться: копирует код в буфер и показывает SnackBar ──
   void _shareBuild(BuildContext context, PcBuild build) {
     final code = build.toShareCode();
-    Clipboard.setData(ClipboardData(text: code));
+    final link = 'pcbuilder://import?code=$code';
+    Clipboard.setData(ClipboardData(text: link));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
@@ -100,7 +110,7 @@ class BuildsScreen extends StatelessWidget {
             const SizedBox(width: 8),
             Expanded(
               child: Text(
-                'Код сборки «${build.name}» скопирован',
+                'Ссылка на «${build.name}» скопирована',
                 style: const TextStyle(fontSize: 13),
               ),
             ),
@@ -125,7 +135,7 @@ class BuildsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Вставьте код сборки, который вам прислали:',
+              'Вставьте ссылку или код сборки:',
               style: TextStyle(fontSize: 13, color: AppTheme.textSecondary),
             ),
             const SizedBox(height: 12),
@@ -133,7 +143,7 @@ class BuildsScreen extends StatelessWidget {
               controller: controller,
               maxLines: 3,
               decoration: const InputDecoration(
-                hintText: 'eyJ2IjoxLCJuIjoi...',
+                hintText: 'pcbuilder://import?code=... или eyJ2...',
                 border: OutlineInputBorder(),
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -162,7 +172,14 @@ class BuildsScreen extends StatelessWidget {
   }
 
   // ── Выполняет импорт и показывает результат ──
-  void _doImport(BuildContext context, String code) {
+  void _doImport(BuildContext context, String raw) {
+    // Принимаем как полную ссылку pcbuilder://import?code=..., так и голый код
+    String code = raw.trim();
+    if (code.startsWith('pcbuilder://')) {
+      final uri = Uri.tryParse(code);
+      code = uri?.queryParameters['code'] ?? code;
+    }
+
     final provider = context.read<AppProvider>();
     final result = provider.importBuildFromCode(code);
 

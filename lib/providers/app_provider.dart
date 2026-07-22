@@ -29,6 +29,18 @@ class AppProvider extends ChangeNotifier {
   );
   List<PcBuild> _savedBuilds = [];
 
+  // ── Deep link pending import ──
+  String? _pendingImportCode;
+  String? get pendingImportCode => _pendingImportCode;
+  void setPendingImportCode(String code) {
+    _pendingImportCode = code;
+    notifyListeners();
+  }
+  void clearPendingImportCode() {
+    _pendingImportCode = null;
+    // не notifyListeners — чтобы не зациклить rebuild
+  }
+
   // ── Comparison ──
   List<Component> _compareComponents = [];
 
