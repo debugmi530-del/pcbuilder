@@ -271,19 +271,19 @@ class _BuilderScreenState extends State<BuilderScreen> {
   void _confirmClear(BuildContext context, AppProvider provider) {
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         title: const Text('Очистить сборку?'),
         content: const Text('Все компоненты будут удалены из текущей сборки.'),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(dialogContext),
             child: const Text('Отмена'),
           ),
           TextButton(
             style: TextButton.styleFrom(foregroundColor: AppTheme.error),
             onPressed: () {
+              Navigator.pop(dialogContext);
               provider.clearBuild();
-              Navigator.pop(context);
             },
             child: const Text('Очистить'),
           ),
