@@ -8,7 +8,7 @@ final List<Component> caseComponents = [
     brand: 'Lian Li',
     model: 'PC-O11 Dynamic EVO',
     category: ComponentCategory.pcCase,
-    price: 14990,
+    price: 19990,
     description: 'Культовый корпус с двумя камерами, отлично подходит для кастомных систем охлаждения. Максимальная вентиляция и видимость компонентов.',
     specs: {
       'Типоразмер': 'Mid-Tower',
@@ -55,7 +55,7 @@ final List<Component> caseComponents = [
     brand: 'Fractal Design',
     model: 'Meshify 2',
     category: ComponentCategory.pcCase,
-    price: 12990,
+    price: 16990,
     description: 'Высокопроизводительный корпус с сетчатой панелью для отличного воздушного потока. Поддержка E-ATX, 3 предустановленных вентилятора 140 мм.',
     specs: {
       'Типоразмер': 'Mid-Tower',
@@ -101,7 +101,7 @@ final List<Component> caseComponents = [
     brand: 'NZXT',
     model: 'H510 Flow',
     category: ComponentCategory.pcCase,
-    price: 9990,
+    price: 12990,
     description: 'Стильный корпус с перфорированной фронтальной панелью для хорошего воздушного потока. Чистый дизайн, кабель-менеджмент, 2 вентилятора в комплекте.',
     specs: {
       'Типоразмер': 'Mid-Tower',
@@ -146,7 +146,7 @@ final List<Component> caseComponents = [
     brand: 'be quiet!',
     model: 'Pure Base 500DX',
     category: ComponentCategory.pcCase,
-    price: 9990,
+    price: 12990,
     description: 'Тихий и функциональный корпус с 3 вентиляторами Pure Wings 2 и светодиодной подсветкой. Хорошая звукоизоляция и воздушный поток.',
     specs: {
       'Типоразмер': 'Mid-Tower',
@@ -196,7 +196,7 @@ final List<Component> caseComponents = [
     brand: 'Corsair',
     model: '5000D Airflow CC-9011210-WW',
     category: ComponentCategory.pcCase,
-    price: 12990,
+    price: 17990,
     description: 'Максимальный воздушный поток через перфорированную стальную переднюю панель. 3× 120 мм в комплекте, поддержка 360 мм СЖО.',
     specs: {
       'Типоразмер': 'Mid-Tower',
@@ -240,7 +240,7 @@ final List<Component> caseComponents = [
     brand: 'Phanteks',
     model: 'Eclipse P500A PH-EC500ATG_DBK01',
     category: ComponentCategory.pcCase,
-    price: 10990,
+    price: 14990,
     description: 'Просторный Full-Tower с великолепным airflow. Двойная перфорированная передняя панель, 3× 140 мм D-RGB в комплекте.',
     specs: {
       'Типоразмер': 'Full-Tower',
@@ -286,7 +286,7 @@ final List<Component> caseComponents = [
     brand: 'NZXT',
     model: 'H7 Flow CM-H71FW-01',
     category: ComponentCategory.pcCase,
-    price: 11990,
+    price: 15990,
     description: 'Современный минималистичный дизайн с отличным воздушным потоком. Перфорированная передняя панель, 2× 120 мм в комплекте.',
     specs: {
       'Типоразмер': 'Mid-Tower',
@@ -329,7 +329,7 @@ final List<Component> caseComponents = [
     brand: 'Fractal Design',
     model: 'Define 7 FD-C-DEF7A-02',
     category: ComponentCategory.pcCase,
-    price: 13990,
+    price: 17990,
     description: 'Тихий Full-Tower с звукоизоляционными панелями. Модульная внутренняя конструкция, 3× 140 мм в комплекте.',
     specs: {
       'Типоразмер': 'Full-Tower',
@@ -374,7 +374,7 @@ final List<Component> caseComponents = [
     brand: 'Lian Li',
     model: 'Lancool III G99.OL3B.00',
     category: ComponentCategory.pcCase,
-    price: 13490,
+    price: 17990,
     description: 'Просторный Mid-Tower с двойной стеклянной боковой стенкой. 4× 140 мм PWM-вентилятора в комплекте, поддержка E-ATX.',
     specs: {
       'Типоразмер': 'Mid-Tower',
@@ -418,7 +418,7 @@ final List<Component> caseComponents = [
     brand: 'Deepcool',
     model: 'CH510 R-CH510-BKGAA4-G-1',
     category: ComponentCategory.pcCase,
-    price: 5990,
+    price: 7990,
     description: 'Доступный Mid-Tower с закалённым стеклом. 1× 120 мм вентилятор и поддержка ATX-плат — лучший старт для бюджетной сборки.',
     specs: {
       'Типоразмер': 'Mid-Tower',
@@ -461,7 +461,7 @@ final List<Component> caseComponents = [
     brand: 'Cooler Master',
     model: 'HAF 700 EVO MCC-H700E-IGNN-S00',
     category: ComponentCategory.pcCase,
-    price: 34990,
+    price: 44990,
     description: 'Флагманский Full-Tower с 200 мм ARGB-вентилятором спереди. Встроенный 7" LCD Hub, поддержка E-ATX систем и тройного 360 мм СЖО.',
     specs: {
       'Типоразмер': 'Full-Tower XL',
@@ -508,7 +508,7 @@ final List<Component> caseComponents = [
     brand: 'Silverstone',
     model: 'FARA R1 SST-FAR1B-PRO',
     category: ComponentCategory.pcCase,
-    price: 6490,
+    price: 8490,
     description: 'Компактный Mid-Tower с перфорированной передней панелью. 2× 120 мм вентилятора, поддержка 240 мм СЖО — хороший airflow за мало денег.',
     specs: {
       'Типоразмер': 'Mid-Tower',
@@ -551,7 +551,7 @@ final List<Component> caseComponents = [
     brand: 'Thermaltake',
     model: 'Core V21 CA-1D5-00S1WN-00',
     category: ComponentCategory.pcCase,
-    price: 7990,
+    price: 9990,
     description: 'Кубический mATX-корпус с поддержкой вертикальной установки. Место для 3× 120 мм по всем 6 сторонам, поддержка 360 мм СЖО.',
     specs: {
       'Типоразмер': 'Cube Case (Micro-Tower)',
@@ -595,7 +595,7 @@ final List<Component> caseComponents = [
     brand: 'Antec',
     model: 'P120 Crystal 0-761345-81302-7',
     category: ComponentCategory.pcCase,
-    price: 11490,
+    price: 14990,
     description: 'Full-Tower с четырьмя стеклянными панелями (360°). 3× 120 мм ARGB-вентилятора, обзор сборки со всех сторон.',
     specs: {
       'Типоразмер': 'Full-Tower',
@@ -642,7 +642,7 @@ final List<Component> caseComponents = [
     brand: 'InWin',
     model: '303 IW-CS-303B',
     category: ComponentCategory.pcCase,
-    price: 8990,
+    price: 11990,
     description: 'Стильный алюминиевый Mid-Tower с двумя стеклянными боками. Без вентиляторов в комплекте, зато чистый дизайн без фильтров.',
     specs: {
       'Типоразмер': 'Mid-Tower',

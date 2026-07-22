@@ -8,7 +8,7 @@ final List<Component> motherboardComponents = [
     brand: 'ASUS',
     model: 'ROG Maximus Z790 Hero',
     category: ComponentCategory.motherboard,
-    price: 44990,
+    price: 54990,
     description: 'Флагманская материнская плата на чипсете Z790 для процессоров Intel 12-13 поколения. Мощная подсистема питания, PCIe 5.0, DDR5.',
     specs: {
       'Год релиза': '2022',
@@ -74,7 +74,7 @@ final List<Component> motherboardComponents = [
     brand: 'MSI',
     model: 'MEG X670E ACE',
     category: ComponentCategory.motherboard,
-    price: 39990,
+    price: 49990,
     description: 'Топовая материнская плата для процессоров AMD Ryzen 7000 (AM5) с чипсетом X670E. PCIe 5.0, DDR5, 5x M.2 до PCIe 5.0.',
     specs: {
       'Год релиза': '2022',
@@ -139,7 +139,7 @@ final List<Component> motherboardComponents = [
     brand: 'Gigabyte',
     model: 'B650 AORUS Elite AX',
     category: ComponentCategory.motherboard,
-    price: 19990,
+    price: 23990,
     description: 'Отличная материнская плата на чипсете B650 для Ryzen 7000 с встроенным Wi-Fi 6E и тремя слотами M.2. Оптимальная цена/функциональность.',
     specs: {
       'Год релиза': '2022',
@@ -204,7 +204,7 @@ final List<Component> motherboardComponents = [
     brand: 'ASUS',
     model: 'PRIME Z790-P',
     category: ComponentCategory.motherboard,
-    price: 19990,
+    price: 22990,
     description: 'Материнская плата на Z790 для Intel 12-13-го поколений с поддержкой DDR5 и PCIe 5.0. Надёжная основа для игровой системы.',
     specs: {
       'Год релиза': '2022',
@@ -270,7 +270,7 @@ final List<Component> motherboardComponents = [
     brand: 'Gigabyte',
     model: 'Z790 AORUS Master',
     category: ComponentCategory.motherboard,
-    price: 39990,
+    price: 47990,
     description: 'Высокопроизводительная Z790 с 20-фазным VRM и DDR5. PCIe 5.0 x16, 4× M.2, WiFi 6E — для топовых сборок на i9/i7.',
     specs: {
       'Год релиза': '2022',
@@ -334,7 +334,7 @@ final List<Component> motherboardComponents = [
     brand: 'ASRock',
     model: 'X670E Taichi',
     category: ComponentCategory.motherboard,
-    price: 49990,
+    price: 59990,
     description: 'Флагманская AM5-плата с двумя PCIe 5.0 x16. 24+2-фазный VRM для разгона Ryzen 9, 4× M.2 PCIe 5.0.',
     specs: {
       'Год релиза': '2022',
@@ -398,7 +398,7 @@ final List<Component> motherboardComponents = [
     brand: 'MSI',
     model: 'MAG B650 Tomahawk WiFi',
     category: ComponentCategory.motherboard,
-    price: 19990,
+    price: 23990,
     description: 'Лучший mid-range для AM5: 14+2 VRM, PCIe 5.0 x16, 3× M.2. Честная цена за надёжную платформу Ryzen 7000.',
     specs: {
       'Год релиза': '2022',
@@ -462,7 +462,7 @@ final List<Component> motherboardComponents = [
     brand: 'ASUS',
     model: 'TUF Gaming B760-Plus WiFi',
     category: ComponentCategory.motherboard,
-    price: 16990,
+    price: 19990,
     description: 'Надёжная LGA1700-плата с военными стандартами качества. PCIe 4.0, DDR5, WiFi 6 — для сборок на i5/i7 13-14 поколения.',
     specs: {
       'Год релиза': '2022',
@@ -526,7 +526,7 @@ final List<Component> motherboardComponents = [
     brand: 'MSI',
     model: 'MAG Z790 Tomahawk WiFi',
     category: ComponentCategory.motherboard,
-    price: 27990,
+    price: 33990,
     description: 'Оптимальная Z790 для i5/i7/i9 с хорошим VRM и всеми актуальными функциями. PCIe 5.0, 5× M.2, WiFi 6E.',
     specs: {
       'Год релиза': '2022',
@@ -590,7 +590,7 @@ final List<Component> motherboardComponents = [
     brand: 'ASRock',
     model: 'B550 Taichi',
     category: ComponentCategory.motherboard,
-    price: 17990,
+    price: 19990,
     description: 'Флагман B550 для AM4 с 14-фазным VRM. Отличный выбор для Ryzen 5000 серии с PCIe 4.0 и 2.5G сетью.',
     specs: {
       'Год релиза': '2020',
@@ -654,7 +654,7 @@ final List<Component> motherboardComponents = [
     brand: 'Gigabyte',
     model: 'B760M DS3H DDR4',
     category: ComponentCategory.motherboard,
-    price: 8990,
+    price: 10990,
     description: 'Самая бюджетная LGA1700 плата с DDR4. Честные 6+2 VRM-фаз для i3/i5 без разгона — минимум для игровой сборки.',
     specs: {
       'Год релиза': '2022',
@@ -718,7 +718,7 @@ final List<Component> motherboardComponents = [
     brand: 'MSI',
     model: 'MPG X570S Carbon Max WiFi',
     category: ComponentCategory.motherboard,
-    price: 22990,
+    price: 26990,
     description: 'Топовая X570 для AM4 с безвентиляторным чипсетным радиатором. PCIe 4.0 на всех слотах, WiFi 6E, 14-фазный VRM.',
     specs: {
       'Год релиза': '2021',
@@ -782,7 +782,7 @@ final List<Component> motherboardComponents = [
     brand: 'ASUS',
     model: 'ROG Strix B650E-F Gaming WiFi',
     category: ComponentCategory.motherboard,
-    price: 29990,
+    price: 35990,
     description: '16+2 VRM на B650E с PCIe 5.0 x16. Отличный баланс для Ryzen 7/9 без переплаты за X670E.',
     specs: {
       'Год релиза': '2022',
@@ -846,7 +846,7 @@ final List<Component> motherboardComponents = [
     brand: 'Gigabyte',
     model: 'Z790 Gaming X AX',
     category: ComponentCategory.motherboard,
-    price: 21990,
+    price: 25990,
     description: 'Доступная Z790 с полным набором функций: PCIe 5.0, DDR5, WiFi 6E. 12-фазный VRM для i5/i7 13-14 поколения.',
     specs: {
       'Год релиза': '2022',
@@ -910,7 +910,7 @@ final List<Component> motherboardComponents = [
     brand: 'ASRock',
     model: 'B450M Pro4',
     category: ComponentCategory.motherboard,
-    price: 6990,
+    price: 8990,
     description: 'Самый доступный вариант для AM4 с поддержкой Ryzen 5000. 4 слота DDR4, 2× M.2 — минимальная платформа для бюджетной сборки.',
     specs: {
       'Год релиза': '2018',
