@@ -8,7 +8,7 @@ final List<Component> ramComponents = [
     brand: 'G.Skill',
     model: 'Trident Z5 RGB DDR5-6000 32GB',
     category: ComponentCategory.ram,
-    price: 24990,
+    price: 28990,
     description: 'Флагманский комплект DDR5-памяти с RGB-подсветкой, частотой 6000 МГц и таймингами CL30. Оверклокерская память высшего уровня.',
     specs: {
       'Тип': 'DDR5',
@@ -44,7 +44,7 @@ final List<Component> ramComponents = [
     brand: 'Corsair',
     model: 'Vengeance DDR5-5600 32GB',
     category: ComponentCategory.ram,
-    price: 17990,
+    price: 21990,
     description: 'Надёжная DDR5-память с частотой 5600 МГц и совместимостью с платформами Intel и AMD. Отличный выбор для системы на DDR5.',
     specs: {
       'Тип': 'DDR5',
@@ -80,7 +80,7 @@ final List<Component> ramComponents = [
     brand: 'Kingston',
     model: 'FURY Beast DDR4-3600 16GB',
     category: ComponentCategory.ram,
-    price: 8490,
+    price: 9990,
     description: 'Популярная DDR4-память с частотой 3600 МГц для Intel и AMD. Идеальный вариант для игровой системы на платформе DDR4.',
     specs: {
       'Тип': 'DDR4',
@@ -116,7 +116,7 @@ final List<Component> ramComponents = [
     brand: 'G.Skill',
     model: 'Ripjaws V DDR4-3200 32GB',
     category: ComponentCategory.ram,
-    price: 10990,
+    price: 12990,
     description: 'Проверенная временем DDR4-память с частотой 3200 МГц и объёмом 32 ГБ. Надёжный выбор для профессиональных задач и многозадачности.',
     specs: {
       'Тип': 'DDR4',
@@ -154,7 +154,7 @@ final List<Component> ramComponents = [
     brand: 'Corsair',
     model: 'Dominator Platinum RGB DDR5-6200 32GB',
     category: ComponentCategory.ram,
-    price: 31990,
+    price: 37990,
     description: 'Премиальная DDR5 с алюминиевым рассеивателем и CAPELLIX RGB. 6200 МГц с таймингами CL36 — для энтузиастов разгона.',
     specs: {
       'Тип': 'DDR5',
@@ -189,7 +189,7 @@ final List<Component> ramComponents = [
     brand: 'Kingston',
     model: 'FURY Renegade DDR5-6000 64GB',
     category: ComponentCategory.ram,
-    price: 44990,
+    price: 52990,
     description: '64 ГБ DDR5-6000 — максимальный объём для рабочей станции. Профиль XMP 3.0 для мгновенной настройки без разгона вручную.',
     specs: {
       'Тип': 'DDR5',
@@ -224,7 +224,7 @@ final List<Component> ramComponents = [
     brand: 'TeamGroup',
     model: 'T-Force Delta RGB DDR5-5600 32GB',
     category: ComponentCategory.ram,
-    price: 21990,
+    price: 25990,
     description: 'Яркая RGB-память DDR5-5600 по доступной цене. Широкий зеркальный рассеиватель с 120 RGB-светодиодами для красивой сборки.',
     specs: {
       'Тип': 'DDR5',
@@ -259,7 +259,7 @@ final List<Component> ramComponents = [
     brand: 'Crucial',
     model: 'Pro DDR5-5600 32GB',
     category: ComponentCategory.ram,
-    price: 16490,
+    price: 19990,
     description: 'Надёжная DDR5 без излишеств от Micron. XMP 5.0 и EXPO для автоматической настройки на Intel и AMD-платформах.',
     specs: {
       'Тип': 'DDR5',
@@ -294,7 +294,7 @@ final List<Component> ramComponents = [
     brand: 'G.Skill',
     model: 'Trident Z Neo DDR4-3600 32GB',
     category: ComponentCategory.ram,
-    price: 14990,
+    price: 17990,
     description: 'Специально оптимизирована для платформы AMD Ryzen. DDR4-3600 CL16 — идеальная частота для Zen 3 по соотношению цена/производительность.',
     specs: {
       'Тип': 'DDR4',
@@ -329,7 +329,7 @@ final List<Component> ramComponents = [
     brand: 'Corsair',
     model: 'Vengeance LPX DDR4-3200 16GB',
     category: ComponentCategory.ram,
-    price: 5990,
+    price: 7490,
     description: 'Низкопрофильная (34 мм) DDR4 для систем с большим кулером. Самый популярный выбор для бюджетных сборок — надёжно и без переплат.',
     specs: {
       'Тип': 'DDR4',
@@ -364,7 +364,7 @@ final List<Component> ramComponents = [
     brand: 'Kingston',
     model: 'FURY Beast DDR4-3200 32GB',
     category: ComponentCategory.ram,
-    price: 9990,
+    price: 11990,
     description: '32 ГБ DDR4 по минимальной цене. Без RGB, без переплат — чистая производительность для рабочих и игровых систем.',
     specs: {
       'Тип': 'DDR4',
@@ -399,7 +399,7 @@ final List<Component> ramComponents = [
     brand: 'ADATA',
     model: 'XPG Gammix D10 DDR4-3200 16GB',
     category: ComponentCategory.ram,
-    price: 5490,
+    price: 6490,
     description: 'Агрессивный дизайн радиатора и стабильная работа на частоте 3200 МГц. Бюджетное решение с поддержкой XMP 2.0.',
     specs: {
       'Тип': 'DDR4',
@@ -434,7 +434,7 @@ final List<Component> ramComponents = [
     brand: 'G.Skill',
     model: 'Ripjaws V DDR4-3600 16GB',
     category: ComponentCategory.ram,
-    price: 7490,
+    price: 8990,
     description: 'Классика DDR4 от G.Skill: DDR4-3600 CL18 в лаконичном низкопрофильном корпусе. Отличный выбор для разгона на Intel.',
     specs: {
       'Тип': 'DDR4',
@@ -469,7 +469,7 @@ final List<Component> ramComponents = [
     brand: 'Corsair',
     model: 'Vengeance RGB Pro DDR4-3200 32GB',
     category: ComponentCategory.ram,
-    price: 12990,
+    price: 14990,
     description: '32 ГБ с красивой RGB-подсветкой iCUE. Синхронизация со всей экосистемой Corsair через программное обеспечение iCUE.',
     specs: {
       'Тип': 'DDR4',
@@ -504,7 +504,7 @@ final List<Component> ramComponents = [
     brand: 'TeamGroup',
     model: 'Elite DDR4-3200 8GB',
     category: ComponentCategory.ram,
-    price: 2990,
+    price: 3490,
     description: 'Самый дешёвый вариант для апгрейда — одна планка DDR4-3200 8 ГБ. Подойдёт для офисного ПК или добавки к существующей памяти.',
     specs: {
       'Тип': 'DDR4',

@@ -8,7 +8,7 @@ final List<Component> coolingComponents = [
     brand: 'Noctua',
     model: 'NH-D15',
     category: ComponentCategory.cooling,
-    price: 12990,
+    price: 14990,
     description: 'Легендарный воздушный кулер с двумя башнями и двумя вентиляторами 140 мм. Тихая и эффективная охлаждение до 250 Вт TDP.',
     specs: {
       'Тип конструкции': 'Воздушный (двойная башня)',
@@ -48,7 +48,7 @@ final List<Component> coolingComponents = [
     brand: 'Corsair',
     model: 'iCUE H150i ELITE LCD',
     category: ComponentCategory.cooling,
-    price: 27990,
+    price: 34990,
     description: 'Премиальная СЖО с 360 мм радиатором, тремя вентиляторами LL120 RGB и LCD-дисплеем 2.1" с мониторингом температуры.',
     specs: {
       'Тип конструкции': 'AIO (необслуживаемая СЖО)',
@@ -95,7 +95,7 @@ final List<Component> coolingComponents = [
     brand: 'DeepCool',
     model: 'LT720',
     category: ComponentCategory.cooling,
-    price: 19990,
+    price: 24990,
     description: 'Высокопроизводительная 360 мм СЖО с мощной помпой, тремя вентиляторами и монохромной подсветкой. Отличная альтернатива флагманам.',
     specs: {
       'Тип конструкции': 'AIO (необслуживаемая СЖО)',
@@ -143,7 +143,7 @@ final List<Component> coolingComponents = [
     brand: 'EKWB',
     model: 'EK-Quantum Custom Loop Kit',
     category: ComponentCategory.cooling,
-    price: 49990,
+    price: 62990,
     description: 'Кастомная система водяного охлаждения EKWB с 360 мм медным радиатором, помпой D5 и 10 фитингами. Максимальная производительность охлаждения.',
     specs: {
       'Тип конструкции': 'Кастомный контур СЖО',
@@ -184,7 +184,7 @@ final List<Component> coolingComponents = [
     brand: 'be quiet!',
     model: 'Dark Rock Pro 4 BK022',
     category: ComponentCategory.cooling,
-    price: 11990,
+    price: 14490,
     description: 'Двухвентиляторный воздушный кулер с рейтингом 250 Вт TDP. 7 тепловых трубок и два Silent Wings вентилятора — тихо и эффективно.',
     specs: {
       'Тип конструкции': 'Воздушный (двойная башня)',
@@ -222,7 +222,7 @@ final List<Component> coolingComponents = [
     brand: 'ARCTIC',
     model: 'Liquid Freezer II 360 ACFRE00094A',
     category: ComponentCategory.cooling,
-    price: 12990,
+    price: 15990,
     description: 'Лучшая СЖО по цене/качеству: 360 мм радиатор с VRM-вентилятором. Медный микроканальный водоблок, бесшумная помпа.',
     specs: {
       'Тип конструкции': 'AIO (необслуживаемая СЖО)',
@@ -270,7 +270,7 @@ final List<Component> coolingComponents = [
     brand: 'Cooler Master',
     model: 'Hyper 212 Black Edition RR-212S-20PK-R2',
     category: ComponentCategory.cooling,
-    price: 3990,
+    price: 4990,
     description: 'Легендарный кулер для бюджетных сборок: 4 тепловые трубки, 120 мм PWM-вентилятор, рейтинг 150 Вт TDP. Классика жанра.',
     specs: {
       'Тип конструкции': 'Воздушный (одиночная башня)',
@@ -308,7 +308,7 @@ final List<Component> coolingComponents = [
     brand: 'Thermalright',
     model: 'Peerless Assassin 120 SE',
     category: ComponentCategory.cooling,
-    price: 5490,
+    price: 6490,
     description: 'Феноменальный кулер за небольшие деньги: Dual Tower, 2× 120 мм, рейтинг 250 Вт. Бьёт кулеры в 2–3 раза дороже.',
     specs: {
       'Тип конструкции': 'Воздушный (двойная башня)',
@@ -346,7 +346,7 @@ final List<Component> coolingComponents = [
     brand: 'Corsair',
     model: 'iCUE H100i RGB Elite CW-9060058-WW',
     category: ComponentCategory.cooling,
-    price: 15990,
+    price: 19990,
     description: '240 мм СЖО с 2× 120 мм QL RGB-вентиляторами. Управление через iCUE, Zero RPM режим при низкой нагрузке.',
     specs: {
       'Тип конструкции': 'AIO (необслуживаемая СЖО)',
@@ -394,7 +394,7 @@ final List<Component> coolingComponents = [
     brand: 'DeepCool',
     model: 'AK620 R-AK620-BKNNMT-G',
     category: ComponentCategory.cooling,
-    price: 7990,
+    price: 9490,
     description: 'Двухбашенный кулер с 6 тепловыми трубками и рейтингом 260 Вт. Конкурент NH-D15 по трети цены — лучшая воздушка до 6000 руб.',
     specs: {
       'Тип конструкции': 'Воздушный (двойная башня)',
@@ -432,7 +432,7 @@ final List<Component> coolingComponents = [
     brand: 'Noctua',
     model: 'NH-U12A',
     category: ComponentCategory.cooling,
-    price: 10990,
+    price: 13490,
     description: 'Компактный 120 мм-башенный кулер Noctua с 2× NF-A12x25. Тоньше NH-D15, лучше совместим с оперативной памятью.',
     specs: {
       'Тип конструкции': 'Воздушный (одиночная башня)',
@@ -470,7 +470,7 @@ final List<Component> coolingComponents = [
     brand: 'Scythe',
     model: 'Fuma 3 SCFM-3000',
     category: ComponentCategory.cooling,
-    price: 8990,
+    price: 10990,
     description: 'Асимметричный Dual-Tower для максимальной совместимости с ОЗУ. 2× 120 мм Kaze Flex PWM, 240 Вт рейтинг.',
     specs: {
       'Тип конструкции': 'Воздушный (двойная башня асимметричная)',
@@ -508,7 +508,7 @@ final List<Component> coolingComponents = [
     brand: 'NZXT',
     model: 'Kraken X73 RL-KRX73-01',
     category: ComponentCategory.cooling,
-    price: 24990,
+    price: 29990,
     description: '360 мм СЖО с инфинити-зеркальным кольцом на помпе. 3× 120 мм Aer RGB 2.0, управление через NZXT CAM.',
     specs: {
       'Тип конструкции': 'AIO (необслуживаемая СЖО)',
@@ -556,7 +556,7 @@ final List<Component> coolingComponents = [
     brand: 'ID-COOLING',
     model: 'SE-224-XT ARGB',
     category: ComponentCategory.cooling,
-    price: 2990,
+    price: 3490,
     description: 'Самый дешёвый ARGB-кулер с 4 тепловыми трубками. 150 Вт TDP, поддержка AM5 и LGA1700 — минимальный вариант для бюджетных сборок.',
     specs: {
       'Тип конструкции': 'Воздушный (одиночная башня)',
@@ -594,7 +594,7 @@ final List<Component> coolingComponents = [
     brand: 'Zalman',
     model: 'CNPS10X Performa Black',
     category: ComponentCategory.cooling,
-    price: 4990,
+    price: 5990,
     description: '5 тепловых трубок и 135 мм PWM вентилятор за небольшие деньги. 180 Вт TDP, поддержка всех актуальных платформ.',
     specs: {
       'Тип конструкции': 'Воздушный (одиночная башня)',

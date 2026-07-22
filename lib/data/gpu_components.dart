@@ -8,7 +8,7 @@ final List<Component> gpuComponents = [
     brand: 'NVIDIA',
     model: 'GeForce RTX 4090',
     category: ComponentCategory.gpu,
-    price: 179990,
+    price: 239990,
     description: 'Самая мощная потребительская видеокарта в мире. 24 ГБ GDDR6X, 16384 CUDA-ядра, поддержка 4K/8K и трассировки лучей.',
     specs: {
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD102)',
@@ -55,7 +55,7 @@ final List<Component> gpuComponents = [
     brand: 'AMD',
     model: 'Radeon RX 7900 XTX',
     category: ComponentCategory.gpu,
-    price: 109990,
+    price: 134990,
     description: 'Флагман AMD с 24 ГБ GDDR6 и архитектурой RDNA 3. Отличный выбор для 4K-гейминга без переплаты за бренд.',
     specs: {
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 31)',
@@ -102,7 +102,7 @@ final List<Component> gpuComponents = [
     brand: 'NVIDIA',
     model: 'GeForce RTX 4070 Ti',
     category: ComponentCategory.gpu,
-    price: 85990,
+    price: 99990,
     description: 'Мощная видеокарта для 1440p и 4K-гейминга с поддержкой DLSS 3 и Frame Generation. Оптимальный выбор для требовательных игр.',
     specs: {
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD104)',
@@ -149,7 +149,7 @@ final List<Component> gpuComponents = [
     brand: 'AMD',
     model: 'Radeon RX 7800 XT',
     category: ComponentCategory.gpu,
-    price: 54990,
+    price: 64990,
     description: 'Отличная видеокарта для 1440p-гейминга с 16 ГБ GDDR6. Лучший выбор в среднем ценовом сегменте для требовательных игр.',
     specs: {
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 32)',
@@ -197,7 +197,7 @@ final List<Component> gpuComponents = [
     brand: 'NVIDIA',
     model: 'GeForce RTX 4080 Super',
     category: ComponentCategory.gpu,
-    price: 112990,
+    price: 149990,
     description: 'Обновлённый флагман второго эшелона NVIDIA. 16 ГБ GDDR6X, 320 Вт TDP — почти как RTX 4090, но на 30% дешевле.',
     specs: {
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD103)',
@@ -244,7 +244,7 @@ final List<Component> gpuComponents = [
     brand: 'NVIDIA',
     model: 'GeForce RTX 4070 Super',
     category: ComponentCategory.gpu,
-    price: 67990,
+    price: 84990,
     description: 'Отличная карта для 1440p-гейминга. 12 ГБ GDDR6X и 220 Вт TDP — эффективнее оригинального RTX 4070 за ту же цену.',
     specs: {
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD104)',
@@ -291,7 +291,7 @@ final List<Component> gpuComponents = [
     brand: 'NVIDIA',
     model: 'GeForce RTX 4070',
     category: ComponentCategory.gpu,
-    price: 62990,
+    price: 76990,
     description: 'RTX 4070 — золотой стандарт для 1440p. 12 ГБ GDDR6X и всего 200 Вт потребления делают её невероятно эффективной.',
     specs: {
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD104)',
@@ -338,7 +338,7 @@ final List<Component> gpuComponents = [
     brand: 'AMD',
     model: 'Radeon RX 7700 XT',
     category: ComponentCategory.gpu,
-    price: 49990,
+    price: 56990,
     description: '12 ГБ GDDR6 и 245 Вт TDP — добротная альтернатива RTX 4060 Ti для 1440p-гейминга. Больше VRAM за те же деньги.',
     specs: {
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 32)',
@@ -385,7 +385,7 @@ final List<Component> gpuComponents = [
     brand: 'NVIDIA',
     model: 'GeForce RTX 4060 Ti',
     category: ComponentCategory.gpu,
-    price: 44990,
+    price: 54990,
     description: 'Быстрая карта для 1080p/1440p с DLSS 3 и Frame Generation. 8 ГБ GDDR6 и 165 Вт TDP при высокой производительности.',
     specs: {
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD106)',
@@ -432,7 +432,7 @@ final List<Component> gpuComponents = [
     brand: 'NVIDIA',
     model: 'GeForce RTX 4060',
     category: ComponentCategory.gpu,
-    price: 34990,
+    price: 43990,
     description: 'Доступная карта для 1080p с DLSS 3 и Frame Generation. 8 ГБ GDDR6 и рекордно низкие 115 Вт потребления.',
     specs: {
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD107)',
@@ -479,7 +479,7 @@ final List<Component> gpuComponents = [
     brand: 'AMD',
     model: 'Radeon RX 7600',
     category: ComponentCategory.gpu,
-    price: 29990,
+    price: 34990,
     description: 'Бюджетная RDNA 3 с 8 ГБ GDDR6 для 1080p-гейминга. Поддерживает FSR 3 и показывает отличные результаты в eSports-играх.',
     specs: {
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 33)',
@@ -526,7 +526,7 @@ final List<Component> gpuComponents = [
     brand: 'NVIDIA',
     model: 'GeForce RTX 3080 10GB',
     category: ComponentCategory.gpu,
-    price: 49990,
+    price: 56990,
     description: 'Проверенный флагман прошлого поколения Ampere. 10 ГБ GDDR6X и 320 Вт — мощный вариант для 4K-гейминга с хорошим б/у рынком.',
     specs: {
       'Архитектура (микроархитектура)': 'Ampere (GA102)',
@@ -573,7 +573,7 @@ final List<Component> gpuComponents = [
     brand: 'AMD',
     model: 'Radeon RX 6800 XT',
     category: ComponentCategory.gpu,
-    price: 44990,
+    price: 49990,
     description: '16 ГБ GDDR6 — огромный буфер для 4K и будущих игр. RDNA 2 остаётся конкурентоспособной картой для 1440p/4K.',
     specs: {
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 21)',
@@ -620,7 +620,7 @@ final List<Component> gpuComponents = [
     brand: 'NVIDIA',
     model: 'GeForce RTX 3060 Ti',
     category: ComponentCategory.gpu,
-    price: 37990,
+    price: 43990,
     description: 'Лучшая карта Ampere в своём классе: 8 ГБ GDDR6 и 200 Вт TDP. Стабильный 1440p в большинстве игр по минимальной цене.',
     specs: {
       'Архитектура (микроархитектура)': 'Ampere (GA104)',
@@ -667,7 +667,7 @@ final List<Component> gpuComponents = [
     brand: 'AMD',
     model: 'Radeon RX 6700 XT',
     category: ComponentCategory.gpu,
-    price: 36990,
+    price: 42990,
     description: '12 ГБ GDDR6 при 230 Вт TDP — отличный вариант для 1440p по выгодной цене. Большой кэш Infinity Cache повышает эффективность.',
     specs: {
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 22)',

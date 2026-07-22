@@ -8,7 +8,7 @@ final List<Component> psuComponents = [
     brand: 'Corsair',
     model: 'RM1000x',
     category: ComponentCategory.psu,
-    price: 22990,
+    price: 27990,
     description: 'Флагманский полностью модульный блок питания мощностью 1000 Вт с сертификатом 80+ Gold. Бесшумная работа при нагрузке до 40%.',
     specs: {
       'Мощность': '1000 Вт',
@@ -42,7 +42,7 @@ final List<Component> psuComponents = [
     brand: 'EVGA',
     model: 'SuperNOVA 850 G6',
     category: ComponentCategory.psu,
-    price: 18990,
+    price: 23990,
     description: 'Высококачественный блок питания 850 Вт с сертификатом 80+ Gold и полностью модульной конструкцией. Японские конденсаторы.',
     specs: {
       'Мощность': '850 Вт',
@@ -76,7 +76,7 @@ final List<Component> psuComponents = [
     brand: 'Seasonic',
     model: 'Focus GX-650',
     category: ComponentCategory.psu,
-    price: 13990,
+    price: 17990,
     description: 'Надёжный блок питания 650 Вт от Seasonic с 10-летней гарантией. Полностью модульный, тихий вентилятор, 80+ Gold.',
     specs: {
       'Мощность': '650 Вт',
@@ -110,7 +110,7 @@ final List<Component> psuComponents = [
     brand: 'be quiet!',
     model: 'Straight Power 11 750W',
     category: ComponentCategory.psu,
-    price: 16990,
+    price: 20990,
     description: 'Тихий и надёжный блок питания 750 Вт с сертификатом 80+ Platinum. Профессиональный выбор для бесшумных систем.',
     specs: {
       'Мощность': '750 Вт',
@@ -146,7 +146,7 @@ final List<Component> psuComponents = [
     brand: 'Seasonic',
     model: 'Prime TX-1000 SSR-1000TR',
     category: ComponentCategory.psu,
-    price: 34990,
+    price: 41990,
     description: 'Эталон надёжности — сертификат 80 PLUS Titanium, КПД до 94%. Полностью модульный, 12 лет гарантии от Seasonic.',
     specs: {
       'Мощность': '1000 Вт',
@@ -177,7 +177,7 @@ final List<Component> psuComponents = [
     brand: 'ASUS',
     model: 'ROG Thor 850P ROG-THOR-850P',
     category: ComponentCategory.psu,
-    price: 28990,
+    price: 35990,
     description: '850 Вт Platinum с OLED-дисплеем потребляемой мощности в реальном времени. Собственный вентилятор ROG Wing-Blade 135 мм.',
     specs: {
       'Мощность': '850 Вт',
@@ -207,7 +207,7 @@ final List<Component> psuComponents = [
     brand: 'Thermaltake',
     model: 'Toughpower GF3 850W PS-TPD-0850FNFAGE-4',
     category: ComponentCategory.psu,
-    price: 19990,
+    price: 23990,
     description: 'Gold-сертифицированный БП с поддержкой PCIe 5.0 16-pin (12VHPWR). Полностью модульный, 10 лет гарантии от Thermaltake.',
     specs: {
       'Мощность': '850 Вт',
@@ -237,7 +237,7 @@ final List<Component> psuComponents = [
     brand: 'be quiet!',
     model: 'Pure Power 12 M 750W BN343',
     category: ComponentCategory.psu,
-    price: 14990,
+    price: 17990,
     description: 'Gold + полностью модульный за разумные деньги. Тихий вентилятор и 10-летняя гарантия от be quiet! — надёжность без переплат.',
     specs: {
       'Мощность': '750 Вт',
@@ -266,7 +266,7 @@ final List<Component> psuComponents = [
     brand: 'Corsair',
     model: 'HX1200 CP-9020140-EU',
     category: ComponentCategory.psu,
-    price: 39990,
+    price: 49990,
     description: 'Топовая серия HX с сертификатом Platinum. 1200 Вт с запасом для RTX 4090 + i9 и любой будущей системы.',
     specs: {
       'Мощность': '1200 Вт',
@@ -295,7 +295,7 @@ final List<Component> psuComponents = [
     brand: 'Fractal Design',
     model: 'Ion+ 2 Platinum 660W FD-P-IA2P-660-EU',
     category: ComponentCategory.psu,
-    price: 16990,
+    price: 20990,
     description: 'Компактный 660 Вт Platinum — идеален для mATX и Mid-Tower сборок. Скандинавское качество и 10-летняя гарантия.',
     specs: {
       'Мощность': '660 Вт',
@@ -324,7 +324,7 @@ final List<Component> psuComponents = [
     brand: 'MSI',
     model: 'MAG A750GL PCIE5 306-7ZP0A11-CE0',
     category: ComponentCategory.psu,
-    price: 12990,
+    price: 15990,
     description: '750 Вт Gold с нативным коннектором PCIe 5.0 12VHPWR. Хороший выбор для систем с RTX 4070/4070 Ti.',
     specs: {
       'Мощность': '750 Вт',
@@ -354,7 +354,7 @@ final List<Component> psuComponents = [
     brand: 'Cooler Master',
     model: 'V850 SFX Gold MPY-8501-SFHAGV-EU',
     category: ComponentCategory.psu,
-    price: 21990,
+    price: 27990,
     description: '850 Вт в форм-факторе SFX — для компактных ITX-сборок. Полностью модульный с адаптером на ATX, 80 PLUS Gold.',
     specs: {
       'Мощность': '850 Вт',
@@ -385,7 +385,7 @@ final List<Component> psuComponents = [
     brand: 'Chieftec',
     model: 'Polaris 3.0 650W PPS-650FC-A3',
     category: ComponentCategory.psu,
-    price: 8990,
+    price: 10990,
     description: 'Недорогой Gold-БП с полностью модульными кабелями. Оптимален для бюджетных сборок с RTX 4060 и аналогами.',
     specs: {
       'Мощность': '650 Вт',
@@ -414,7 +414,7 @@ final List<Component> psuComponents = [
     brand: 'Deepcool',
     model: 'PQ750M R-PQ750M-FA0B-EU',
     category: ComponentCategory.psu,
-    price: 10990,
+    price: 13490,
     description: '750 Вт Platinum по бюджетной цене. Полностью модульный, тихий вентилятор с режимом нулевых оборотов.',
     specs: {
       'Мощность': '750 Вт',
@@ -443,7 +443,7 @@ final List<Component> psuComponents = [
     brand: 'Zalman',
     model: 'ZM700-TXII',
     category: ComponentCategory.psu,
-    price: 7990,
+    price: 9490,
     description: 'Бюджетный Gold-БП от Zalman с гарантией 5 лет. Частично модульный, подойдёт для сборок начального уровня.',
     specs: {
       'Мощность': '700 Вт',

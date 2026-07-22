@@ -8,7 +8,7 @@ final List<Component> cpuComponents = [
     brand: 'Intel',
     model: 'Core i9-13900K',
     category: ComponentCategory.cpu,
-    price: 54990,
+    price: 62990,
     description: 'Флагманский процессор Intel 13-го поколения с 24 ядрами (8P+16E) и частотой до 5.8 ГГц. Лучший выбор для игр и профессиональных задач.',
     specs: {
       'Год релиза': '2022',
@@ -56,7 +56,7 @@ final List<Component> cpuComponents = [
     brand: 'AMD',
     model: 'Ryzen 9 7950X',
     category: ComponentCategory.cpu,
-    price: 67990,
+    price: 79990,
     description: 'Топовый 16-ядерный процессор AMD на архитектуре Zen 4 с частотой до 5.7 ГГц. Лучший в классе для рабочих станций и стриминга.',
     specs: {
       'Год релиза': '2022',
@@ -103,7 +103,7 @@ final List<Component> cpuComponents = [
     brand: 'Intel',
     model: 'Core i5-13600K',
     category: ComponentCategory.cpu,
-    price: 31990,
+    price: 34990,
     description: 'Лучший игровой процессор среднего ценового диапазона. 14 ядер и частота до 5.1 ГГц обеспечивают максимальный FPS в играх.',
     specs: {
       'Год релиза': '2022',
@@ -151,7 +151,7 @@ final List<Component> cpuComponents = [
     brand: 'AMD',
     model: 'Ryzen 5 7600X',
     category: ComponentCategory.cpu,
-    price: 26990,
+    price: 28990,
     description: 'Отличный игровой процессор на AM5 с 6 ядрами и частотой до 5.3 ГГц. Оптимальное соотношение цена/производительность.',
     specs: {
       'Год релиза': '2022',
@@ -199,7 +199,7 @@ final List<Component> cpuComponents = [
     brand: 'Intel',
     model: 'Core i7-13700K',
     category: ComponentCategory.cpu,
-    price: 42990,
+    price: 47990,
     description: '16-ядерный процессор Intel 13-го поколения (8P+8E) с частотой до 5.4 ГГц. Отличный выбор для игр и стриминга по цене ниже флагмана.',
     specs: {
       'Год релиза': '2022',
@@ -247,7 +247,7 @@ final List<Component> cpuComponents = [
     brand: 'AMD',
     model: 'Ryzen 7 7700X',
     category: ComponentCategory.cpu,
-    price: 38990,
+    price: 43990,
     description: '8-ядерный процессор Zen 4 с частотой до 5.4 ГГц. Высокая однопоточная производительность для игр и лёгких рабочих задач.',
     specs: {
       'Год релиза': '2022',
@@ -294,7 +294,7 @@ final List<Component> cpuComponents = [
     brand: 'Intel',
     model: 'Core i5-13400F',
     category: ComponentCategory.cpu,
-    price: 19990,
+    price: 22990,
     description: '10-ядерный процессор без встроенной графики. Лучший бюджетный вариант для игрового ПК на LGA1700 — отличная производительность за минимум денег.',
     specs: {
       'Год релиза': '2023',
@@ -342,7 +342,7 @@ final List<Component> cpuComponents = [
     brand: 'AMD',
     model: 'Ryzen 5 5600X',
     category: ComponentCategory.cpu,
-    price: 15990,
+    price: 17990,
     description: '6-ядерный Zen 3 — классика бюджетного гейминга на AM4. Отличная совместимость с огромным выбором бюджетных плат.',
     specs: {
       'Год релиза': '2020',
@@ -389,7 +389,7 @@ final List<Component> cpuComponents = [
     brand: 'Intel',
     model: 'Core i9-13900KS',
     category: ComponentCategory.cpu,
-    price: 69990,
+    price: 74990,
     description: 'Особая версия i9-13900K с заводской частотой до 6.0 ГГц. Первый серийный процессор в мире с частотой 6 ГГц из коробки.',
     specs: {
       'Год релиза': '2023',
@@ -437,7 +437,7 @@ final List<Component> cpuComponents = [
     brand: 'AMD',
     model: 'Ryzen 9 7900X',
     category: ComponentCategory.cpu,
-    price: 52990,
+    price: 58990,
     description: '12-ядерный Zen 4 с частотой до 5.6 ГГц. Прекрасный выбор для контент-креаторов, которым нужно больше ядер без переплаты за 7950X.',
     specs: {
       'Год релиза': '2022',
@@ -484,7 +484,7 @@ final List<Component> cpuComponents = [
     brand: 'Intel',
     model: 'Core i3-13100F',
     category: ComponentCategory.cpu,
-    price: 12990,
+    price: 14990,
     description: '4-ядерный процессор без iGPU — самый дешёвый вариант для бюджетной игровой сборки. Отличный FPS в 1080p с дискретной видеокартой.',
     specs: {
       'Год релиза': '2023',
@@ -531,7 +531,7 @@ final List<Component> cpuComponents = [
     brand: 'AMD',
     model: 'Ryzen 7 5800X3D',
     category: ComponentCategory.cpu,
-    price: 31990,
+    price: 34990,
     description: '8-ядерный Zen 3 с технологией 3D V-Cache — лучший игровой процессор на AM4. Огромный L3-кэш 96 МБ даёт феноменальный FPS в играх.',
     specs: {
       'Год релиза': '2022',
@@ -578,7 +578,7 @@ final List<Component> cpuComponents = [
     brand: 'Intel',
     model: 'Core i7-14700K',
     category: ComponentCategory.cpu,
-    price: 43990,
+    price: 52990,
     description: '20-ядерный процессор 14-го поколения Intel. Добавленные 4 E-ядра по сравнению с i7-13700K делают его заметно быстрее в многопоточных задачах.',
     specs: {
       'Год релиза': '2023',
@@ -626,7 +626,7 @@ final List<Component> cpuComponents = [
     brand: 'AMD',
     model: 'Ryzen 9 7950X3D',
     category: ComponentCategory.cpu,
-    price: 79990,
+    price: 94990,
     description: '16-ядерный Zen 4 с 3D V-Cache на AM5. Непревзойдённое сочетание игровой и профессиональной производительности в одном процессоре.',
     specs: {
       'Год релиза': '2023',
@@ -673,7 +673,7 @@ final List<Component> cpuComponents = [
     brand: 'Intel',
     model: 'Core i5-14600K',
     category: ComponentCategory.cpu,
-    price: 33990,
+    price: 38990,
     description: '14-ядерный процессор 14-го поколения — лучший середнячок Intel. Слегка быстрее i5-13600K при той же цене и полной совместимостью с платами Z690/Z790.',
     specs: {
       'Год релиза': '2023',

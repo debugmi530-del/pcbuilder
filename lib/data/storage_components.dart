@@ -8,7 +8,7 @@ final List<Component> storageComponents = [
     brand: 'Samsung',
     model: '990 Pro 2TB',
     category: ComponentCategory.storage,
-    price: 19990,
+    price: 23990,
     description: 'Топовый NVMe SSD от Samsung с интерфейсом PCIe 4.0 x4 и скоростью чтения до 7450 МБ/с. Лучший вариант для системных дисков.',
     specs: {
       'Форм-фактор': 'M.2 2280',
@@ -41,7 +41,7 @@ final List<Component> storageComponents = [
     brand: 'Western Digital',
     model: 'Black SN850X 1TB',
     category: ComponentCategory.storage,
-    price: 12990,
+    price: 15990,
     description: 'Высокопроизводительный NVMe SSD с PCIe 4.0 и скоростью чтения 7300 МБ/с. Оптимизирован для игр с технологией Game Mode 2.0.',
     specs: {
       'Форм-фактор': 'M.2 2280',
@@ -73,7 +73,7 @@ final List<Component> storageComponents = [
     brand: 'Seagate',
     model: 'Barracuda 4TB ST4000DM004',
     category: ComponentCategory.storage,
-    price: 9990,
+    price: 11990,
     description: 'Надёжный жёсткий диск объёмом 4 ТБ со скоростью вращения 5400 rpm. Отличное хранилище для файлов, игр и медиаконтента.',
     specs: {
       'Форм-фактор': '3.5"',
@@ -108,7 +108,7 @@ final List<Component> storageComponents = [
     brand: 'Crucial',
     model: 'MX500 2TB CT2000MX500SSD1',
     category: ComponentCategory.storage,
-    price: 12990,
+    price: 14990,
     description: 'Надёжный SATA SSD с Micron 3D TLC NAND и скоростью чтения 560 МБ/с. Идеальная замена HDD или дополнительный накопитель для игр.',
     specs: {
       'Форм-фактор': '2.5"',
@@ -142,7 +142,7 @@ final List<Component> storageComponents = [
     brand: 'Samsung',
     model: '980 Pro 1TB MZ-V8P1T0BW',
     category: ComponentCategory.storage,
-    price: 10990,
+    price: 12990,
     description: 'PCIe 4.0 NVMe от Samsung: 7000/5000 МБ/с чтение/запись. Надёжный выбор для системного диска с 5-летней гарантией.',
     specs: {
       'Интерфейс': 'PCIe 4.0 x4, NVMe 1.3c',
@@ -173,7 +173,7 @@ final List<Component> storageComponents = [
     brand: 'Seagate',
     model: 'FireCuda 530 2TB ZP2000GM3A013',
     category: ComponentCategory.storage,
-    price: 21990,
+    price: 26990,
     description: 'Один из быстрейших PCIe 4.0 накопителей: 7300/6900 МБ/с. Рассчитан на интенсивную запись — 2550 TBW за 5 лет.',
     specs: {
       'Интерфейс': 'PCIe 4.0 x4, NVMe 1.4',
@@ -204,7 +204,7 @@ final List<Component> storageComponents = [
     brand: 'Kingston',
     model: 'KC3000 2TB SKC3000D/2048G',
     category: ComponentCategory.storage,
-    price: 17990,
+    price: 21990,
     description: 'PCIe 4.0 накопитель с контроллером Phison E18. Стабильная производительность 7000/7000 МБ/с при чтении и записи.',
     specs: {
       'Интерфейс': 'PCIe 4.0 x4, NVMe 1.4',
@@ -236,7 +236,7 @@ final List<Component> storageComponents = [
     brand: 'Western Digital',
     model: 'Blue SN580 1TB WDS100T3B0E',
     category: ComponentCategory.storage,
-    price: 7990,
+    price: 9490,
     description: 'Доступный PCIe 4.0 накопитель для повседневного использования. 4150/4150 МБ/с — заметно быстрее SATA SSD при скромной цене.',
     specs: {
       'Интерфейс': 'PCIe 4.0 x4, NVMe 1.4',
@@ -267,7 +267,7 @@ final List<Component> storageComponents = [
     brand: 'Crucial',
     model: 'P5 Plus 1TB CT1000P5PSSD8',
     category: ComponentCategory.storage,
-    price: 8990,
+    price: 10490,
     description: 'PCIe 4.0 от Micron с шифрованием AES-256. Хорошая защита данных и скорость 6600/5000 МБ/с для системного диска.',
     specs: {
       'Интерфейс': 'PCIe 4.0 x4, NVMe 1.4',
@@ -299,7 +299,7 @@ final List<Component> storageComponents = [
     brand: 'Sabrent',
     model: 'Rocket 4 Plus 2TB SB-RKT4P-2TB',
     category: ComponentCategory.storage,
-    price: 19990,
+    price: 24990,
     description: 'Американский бренд, контроллер Phison E18. 7100/6600 МБ/с с 2 ТБ ёмкости — отличная альтернатива Samsung 990 Pro.',
     specs: {
       'Интерфейс': 'PCIe 4.0 x4, NVMe 1.4',
@@ -331,7 +331,7 @@ final List<Component> storageComponents = [
     brand: 'Seagate',
     model: 'IronWolf 8TB ST8000VN004',
     category: ComponentCategory.storage,
-    price: 22990,
+    price: 27990,
     description: 'NAS-оптимизированный жёсткий диск с датчиком вибрации. 8 ТБ, 7200 rpm, ресурс 300 TB/год — для домашних серверов и медиатек.',
     specs: {
       'Интерфейс': 'SATA 6 Гбит/с',
@@ -366,7 +366,7 @@ final List<Component> storageComponents = [
     brand: 'Western Digital',
     model: 'Red Plus 6TB WD60EFPX',
     category: ComponentCategory.storage,
-    price: 17990,
+    price: 21990,
     description: 'NAS-диск WD для домашних хранилищ: 6 ТБ, 5640 rpm, поддержка RAID 0/1/5/6. Нагрузка до 180 ТБ в год.',
     specs: {
       'Интерфейс': 'SATA 6 Гбит/с',
@@ -400,7 +400,7 @@ final List<Component> storageComponents = [
     brand: 'Samsung',
     model: '870 EVO 1TB MZ-77E1T0BW',
     category: ComponentCategory.storage,
-    price: 11490,
+    price: 13990,
     description: 'Лучший SATA SSD по надёжности: Samsung V-NAND, 560/530 МБ/с и 600 TBW. Подходит для апгрейда старых ПК и ноутбуков.',
     specs: {
       'Интерфейс': 'SATA 6 Гбит/с',
@@ -431,7 +431,7 @@ final List<Component> storageComponents = [
     brand: 'Crucial',
     model: 'BX500 480GB CT480BX500SSD1',
     category: ComponentCategory.storage,
-    price: 4990,
+    price: 5990,
     description: 'Самый дешёвый SSD для замены HDD в ноутбуках и офисных ПК. 3D NAND, 540/500 МБ/с — система запускается в разы быстрее.',
     specs: {
       'Интерфейс': 'SATA 6 Гбит/с',
@@ -460,7 +460,7 @@ final List<Component> storageComponents = [
     brand: 'Western Digital',
     model: 'Blue 2TB WD20EZBX',
     category: ComponentCategory.storage,
-    price: 6990,
+    price: 8490,
     description: 'Стандартный настольный HDD для вторичного хранения данных. 7200 rpm, 256 МБ кэш — лучшая цена за гигабайт для медиатеки.',
     specs: {
       'Интерфейс': 'SATA 6 Гбит/с',
