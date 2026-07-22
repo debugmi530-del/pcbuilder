@@ -100,7 +100,11 @@ class BuildsScreen extends StatelessWidget {
   void _shareBuild(BuildContext context, PcBuild build) {
     final code = build.toShareCode();
     final link = 'pcbuilder://import?code=$code';
-    Clipboard.setData(ClipboardData(text: link));
+    final text =
+        'Смотри мою сборку «${build.name}» в PC Builder!\n\n'
+        '$link\n\n'
+        'Для открытия ссылки необходимо приложение PC Builder.';
+    Clipboard.setData(ClipboardData(text: text));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
