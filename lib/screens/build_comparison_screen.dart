@@ -5,6 +5,12 @@ import '../models/pc_build.dart';
 import '../providers/app_provider.dart';
 import '../theme.dart';
 
+// Pre-computed colors to avoid withOpacity() on every frame
+const _kAccentFaint = Color(0x0FFF6B35);   // AppTheme.accent @ 6%
+const _kAccentLight = Color(0x14FF6B35);   // AppTheme.accent @ 8%
+const _kPrimaryFaint = Color(0x12006FFF); // AppTheme.primary @ 7%
+const _kRowAlt = Color(0xFFF7F8FA);        // alternating row
+
 class BuildComparisonScreen extends StatelessWidget {
   final String buildId1;
   final String buildId2;
@@ -43,6 +49,19 @@ class _BuildComparisonView extends StatelessWidget {
     final cheaper = build1.totalPrice <= build2.totalPrice ? 0 : 1;
     final priceDiff = (build1.totalPrice - build2.totalPrice).abs();
 
+    // Pre-build all category sections once; Column.children is a fixed list.
+    final categorySections = <Widget>[];
+    for (final cat in ComponentCategory.values) {
+      final c1 = build1.components[cat];
+      final c2 = build2.components[cat];
+      if (c1 == null && c2 == null) continue;
+      categorySections.add(_CategorySection(
+        cat: cat,
+        component1: c1,
+        component2: c2,
+      ));
+    }
+
     return Scaffold(
       backgroundColor: AppTheme.background,
       appBar: AppBar(
@@ -55,7 +74,7 @@ class _BuildComparisonView extends StatelessWidget {
       body: Column(
         children: [
           // Header — two build names + prices
-          Container(
+          ColoredBox(
             color: Colors.white,
             child: Row(
               children: [
@@ -68,205 +87,78 @@ class _BuildComparisonView extends StatelessWidget {
 
           // Price diff banner
           if (priceDiff > 0)
-            Container(
-              color: AppTheme.primary.withOpacity(0.07),
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.savings_outlined,
-                      size: 14, color: AppTheme.primary),
-                  const SizedBox(width: 6),
-                  Text(
-                    '${cheaper == 0 ? build1.name : build2.name} дешевле на ${_fmt(priceDiff)} ₽',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: AppTheme.primary,
-                      fontWeight: FontWeight.w600,
-                    ),
+            ColoredBox(
+              color: _kPrimaryFaint,
+              child: SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.savings_outlined,
+                          size: 14, color: AppTheme.primary),
+                      const SizedBox(width: 6),
+                      Text(
+                        '${cheaper == 0 ? build1.name : build2.name} дешевле на ${_fmt(priceDiff)} ₽',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: AppTheme.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
 
           // Legend
-          Container(
-            color: const Color(0xFFFFF3CD),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            child: Row(
-              children: [
-                Container(
-                  width: 12,
-                  height: 12,
-                  decoration: BoxDecoration(
-                    color: AppTheme.accent.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(3),
-                    border: Border.all(color: AppTheme.accent),
+          const ColoredBox(
+            color: Color(0xFFFFF3CD),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              child: Row(
+                children: [
+                  _LegendDot(),
+                  SizedBox(width: 8),
+                  Text(
+                    'Подсвечены отличающиеся характеристики',
+                    style: TextStyle(
+                        fontSize: 11, color: AppTheme.textSecondary),
                   ),
-                ),
-                const SizedBox(width: 8),
-                const Text(
-                  'Подсвечены отличающиеся характеристики',
-                  style: TextStyle(fontSize: 11, color: AppTheme.textSecondary),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 
           // Category rows
           Expanded(
             child: SingleChildScrollView(
-              child: Column(
-                children: ComponentCategory.values.map((cat) {
-                  final c1 = build1.components[cat];
-                  final c2 = build2.components[cat];
-                  final bothMissing = c1 == null && c2 == null;
-                  if (bothMissing) return const SizedBox.shrink();
-
-                  // Collect all spec keys from both components
-                  final allSpecKeys = <String>{};
-                  if (c1 != null) allSpecKeys.addAll(c1.specs.keys);
-                  if (c2 != null) allSpecKeys.addAll(c2.specs.keys);
-
-                  // Check if components differ by id
-                  final componentsDiffer = c1?.id != c2?.id;
-
-                  return Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(color: AppTheme.divider, width: 2),
-                        left: componentsDiffer
-                            ? const BorderSide(color: AppTheme.accent, width: 3)
-                            : BorderSide.none,
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // ── Category header: icon + component name/price ──
-                        Container(
-                          color: componentsDiffer
-                              ? AppTheme.accent.withOpacity(0.06)
-                              : Colors.white,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Category label
-                              SizedBox(
-                                width: 100,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Icon(cat.icon,
-                                          size: 16, color: cat.color),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        cat.shortName,
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                          color: cat.color,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              // Build 1 component header
-                              _ComponentNameCell(
-                                  component: c1, isDiff: componentsDiffer),
-                              // Build 2 component header
-                              _ComponentNameCell(
-                                  component: c2, isDiff: componentsDiffer),
-                            ],
-                          ),
-                        ),
-
-                        // ── Full spec rows ──
-                        if (allSpecKeys.isNotEmpty)
-                          ...allSpecKeys.map((key) {
-                            final val1 = c1?.specs[key];
-                            final val2 = c2?.specs[key];
-                            final specDiffers = val1 != val2;
-
-                            return Container(
-                              decoration: BoxDecoration(
-                                color: specDiffers
-                                    ? AppTheme.accent.withOpacity(0.08)
-                                    : (allSpecKeys.toList().indexOf(key).isEven
-                                        ? AppTheme.background
-                                        : Colors.white),
-                                border: Border(
-                                  top: BorderSide(
-                                      color: AppTheme.divider, width: 0.5),
-                                ),
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  // Spec name
-                                  SizedBox(
-                                    width: 100,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 8),
-                                      child: Text(
-                                        key,
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: specDiffers
-                                              ? AppTheme.accent
-                                              : AppTheme.textSecondary,
-                                          fontWeight: specDiffers
-                                              ? FontWeight.w700
-                                              : FontWeight.w500,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  // Build 1 spec value
-                                  _SpecValueCell(
-                                      value: val1, isDiff: specDiffers),
-                                  // Build 2 spec value
-                                  _SpecValueCell(
-                                      value: val2, isDiff: specDiffers),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),
+              child: Column(children: categorySections),
             ),
           ),
 
           // Bottom totals
-          Container(
+          ColoredBox(
             color: Colors.white,
-            padding: EdgeInsets.fromLTRB(
-                0, 12, 0, 12 + MediaQuery.of(context).padding.bottom),
-            child: Row(
-              children: [
-                const SizedBox(width: 100),
-                Expanded(
-                  child: _PriceTotal(
-                    pcBuild: build1,
-                    isCheaper: cheaper == 0,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(
+                  0, 12, 0, 12 + MediaQuery.of(context).padding.bottom),
+              child: Row(
+                children: [
+                  const SizedBox(width: 100),
+                  Expanded(
+                    child: _PriceTotal(
+                        pcBuild: build1, isCheaper: cheaper == 0),
                   ),
-                ),
-                Expanded(
-                  child: _PriceTotal(
-                    pcBuild: build2,
-                    isCheaper: cheaper == 1,
+                  Expanded(
+                    child: _PriceTotal(
+                        pcBuild: build2, isCheaper: cheaper == 1),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
@@ -281,75 +173,154 @@ class _BuildComparisonView extends StatelessWidget {
       );
 }
 
-// ── Component name/price header cell (replaces old _ComponentCell) ──
-class _ComponentNameCell extends StatelessWidget {
-  final Component? component;
-  final bool isDiff;
+// ── Category section — one per component type ──
+// Kept as a separate StatelessWidget so Flutter can skip rebuilding
+// individual sections when unrelated state changes.
+class _CategorySection extends StatelessWidget {
+  final ComponentCategory cat;
+  final Component? component1;
+  final Component? component2;
 
-  const _ComponentNameCell({this.component, required this.isDiff});
+  const _CategorySection({
+    required this.cat,
+    required this.component1,
+    required this.component2,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-        child: component == null
-            ? const Center(
-                child: Text(
-                  '—',
-                  style: TextStyle(
-                      fontSize: 14, color: AppTheme.textSecondary),
+    final c1 = component1;
+    final c2 = component2;
+    final componentsDiffer = c1?.id != c2?.id;
+
+    // Collect spec keys once — O(n) total, not per-row
+    final allSpecKeys = <String>[
+      ...?c1?.specs.keys,
+      if (c2 != null)
+        for (final k in c2.specs.keys)
+          if (c1 == null || !c1.specs.containsKey(k)) k,
+    ];
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: AppTheme.divider, width: 2),
+          left: componentsDiffer
+              ? const BorderSide(color: AppTheme.accent, width: 3)
+              : BorderSide.none,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // ── Component name / price header ──
+          ColoredBox(
+            color: componentsDiffer ? _kAccentFaint : Colors.white,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 100,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(cat.icon, size: 16, color: cat.color),
+                        const SizedBox(height: 4),
+                        Text(
+                          cat.shortName,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: cat.color,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    component!.brand,
-                    style: TextStyle(
-                      fontSize: 10,
-                      color:
-                          isDiff ? AppTheme.accent : AppTheme.textSecondary,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    component!.model,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight:
-                          isDiff ? FontWeight.w700 : FontWeight.w500,
-                      color: AppTheme.textPrimary,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    '${_fmt(component!.price)} ₽',
-                    style: const TextStyle(
-                      fontSize: 11,
-                      color: AppTheme.accent,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
+                _ComponentNameCell(component: c1, isDiff: componentsDiffer),
+                _ComponentNameCell(component: c2, isDiff: componentsDiffer),
+              ],
+            ),
+          ),
+
+          // ── Spec rows — index already known, no indexOf() ──
+          for (var i = 0; i < allSpecKeys.length; i++)
+            _SpecRow(
+              specKey: allSpecKeys[i],
+              val1: c1?.specs[allSpecKeys[i]],
+              val2: c2?.specs[allSpecKeys[i]],
+              isEvenRow: i.isEven,
+            ),
+        ],
       ),
     );
   }
-
-  static String _fmt(double p) =>
-      p.toInt().toString().replaceAllMapped(
-        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-        (m) => '${m[1]} ',
-      );
 }
 
-// ── Single spec value cell ──
+// ── Single spec row — const-friendly, cheap to build ──
+class _SpecRow extends StatelessWidget {
+  final String specKey;
+  final String? val1;
+  final String? val2;
+  final bool isEvenRow;
+
+  const _SpecRow({
+    required this.specKey,
+    required this.val1,
+    required this.val2,
+    required this.isEvenRow,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final differs = val1 != val2;
+    final bg = differs
+        ? _kAccentLight
+        : (isEvenRow ? _kRowAlt : Colors.white);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: bg,
+        border: const Border(
+          top: BorderSide(color: AppTheme.divider, width: 0.5),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 100,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              child: Text(
+                specKey,
+                style: TextStyle(
+                  fontSize: 10,
+                  color: differs ? AppTheme.accent : AppTheme.textSecondary,
+                  fontWeight:
+                      differs ? FontWeight.w700 : FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+          _SpecValueCell(value: val1, isDiff: differs),
+          _SpecValueCell(value: val2, isDiff: differs),
+        ],
+      ),
+    );
+  }
+}
+
+// ── Spec value cell ──
 class _SpecValueCell extends StatelessWidget {
   final String? value;
   final bool isDiff;
 
-  const _SpecValueCell({this.value, required this.isDiff});
+  const _SpecValueCell({required this.value, required this.isDiff});
 
   @override
   Widget build(BuildContext context) {
@@ -369,6 +340,70 @@ class _SpecValueCell extends StatelessWidget {
   }
 }
 
+// ── Component name / price header cell ──
+class _ComponentNameCell extends StatelessWidget {
+  final Component? component;
+  final bool isDiff;
+
+  const _ComponentNameCell({this.component, required this.isDiff});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = component;
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+        child: c == null
+            ? const Center(
+                child: Text('—',
+                    style: TextStyle(
+                        fontSize: 14, color: AppTheme.textSecondary)),
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    c.brand,
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: isDiff
+                          ? AppTheme.accent
+                          : AppTheme.textSecondary,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    c.model,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight:
+                          isDiff ? FontWeight.w700 : FontWeight.w500,
+                      color: AppTheme.textPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '${_fmt(c.price)} ₽',
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: AppTheme.accent,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+      ),
+    );
+  }
+
+  static String _fmt(double p) =>
+      p.toInt().toString().replaceAllMapped(
+        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+        (m) => '${m[1]} ',
+      );
+}
+
+// ── Build name/price header ──
 class _BuildHeader extends StatelessWidget {
   final PcBuild pcBuild;
   final bool isCheaper;
@@ -378,19 +413,21 @@ class _BuildHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.all(8),
+            DecoratedBox(
               decoration: BoxDecoration(
-                color: AppTheme.primary.withOpacity(0.1),
+                color: _kPrimaryFaint,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Icon(Icons.computer,
-                  color: AppTheme.primary, size: 24),
+              child: const Padding(
+                padding: EdgeInsets.all(8),
+                child: Icon(Icons.computer,
+                    color: AppTheme.primary, size: 24),
+              ),
             ),
             const SizedBox(height: 6),
             Text(
@@ -411,20 +448,21 @@ class _BuildHeader extends StatelessWidget {
                   fontSize: 11, color: AppTheme.textSecondary),
             ),
             if (isCheaper)
-              Container(
-                margin: const EdgeInsets.only(top: 4),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              DecoratedBox(
                 decoration: BoxDecoration(
                   color: AppTheme.success.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: const Text(
-                  'Дешевле',
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: AppTheme.success,
-                    fontWeight: FontWeight.w600,
+                child: const Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  child: Text(
+                    'Дешевле',
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: AppTheme.success,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
@@ -435,6 +473,7 @@ class _BuildHeader extends StatelessWidget {
   }
 }
 
+// ── Price totals footer ──
 class _PriceTotal extends StatelessWidget {
   final PcBuild pcBuild;
   final bool isCheaper;
@@ -447,7 +486,8 @@ class _PriceTotal extends StatelessWidget {
       children: [
         const Text(
           'Итого',
-          style: TextStyle(fontSize: 11, color: AppTheme.textSecondary),
+          style:
+              TextStyle(fontSize: 11, color: AppTheme.textSecondary),
         ),
         const SizedBox(height: 2),
         Text(
@@ -467,4 +507,21 @@ class _PriceTotal extends StatelessWidget {
         RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
         (m) => '${m[1]} ',
       );
+}
+
+// ── Legend dot — const widget ──
+class _LegendDot extends StatelessWidget {
+  const _LegendDot();
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: _kAccentLight,
+        borderRadius: BorderRadius.circular(3),
+        border: Border.all(color: AppTheme.accent),
+      ),
+      child: const SizedBox(width: 12, height: 12),
+    );
+  }
 }
