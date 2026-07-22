@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'component.dart';
 
 class PcBuild {
@@ -64,5 +65,16 @@ class PcBuild {
         (k, v) => MapEntry(k.key, v.id),
       ),
     };
+  }
+
+  /// Кодирует сборку в текстовый код для шаринга.
+  /// Формат: base64url({ v:1, n:"name", c:{ "cpu":"cpu_001", ... } })
+  String toShareCode() {
+    final data = <String, dynamic>{
+      'v': 1,
+      'n': name,
+      'c': components.map((k, v) => MapEntry(k.key, v.id)),
+    };
+    return base64Url.encode(utf8.encode(jsonEncode(data)));
   }
 }

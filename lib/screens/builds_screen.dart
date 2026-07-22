@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../models/component.dart';
@@ -19,6 +20,12 @@ class BuildsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Мои сборки'),
         actions: [
+          // ── Кнопка импорта ──
+          IconButton(
+            icon: const Icon(Icons.download_rounded),
+            tooltip: 'Импортировать сборку',
+            onPressed: () => _showImportDialog(context),
+          ),
           if (builds.length >= 2)
             TextButton.icon(
               icon: const Icon(Icons.compare_arrows, color: Colors.white, size: 18),
@@ -32,8 +39,8 @@ class BuildsScreen extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.bookmark_border, size: 80,
-                      color: AppTheme.textSecondary),
+                  const Icon(Icons.bookmark_border,
+                      size: 80, color: AppTheme.textSecondary),
                   const SizedBox(height: 16),
                   const Text('Нет сохранённых сборок',
                       style: TextStyle(
@@ -44,7 +51,13 @@ class BuildsScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(color: AppTheme.textSecondary),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 12),
+                  OutlinedButton.icon(
+                    icon: const Icon(Icons.download_rounded),
+                    label: const Text('Импортировать сборку'),
+                    onPressed: () => _showImportDialog(context),
+                  ),
+                  const SizedBox(height: 8),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.add),
                     label: const Text('Создать сборку'),
@@ -58,6 +71,7 @@ class BuildsScreen extends StatelessWidget {
               itemCount: builds.length,
               itemBuilder: (ctx, i) => _BuildCard(
                 pcBuild: builds[i],
+                onShare: () => _shareBuild(ctx, builds[i]),
                 onLoad: () {
                   context.read<AppProvider>().loadSavedBuild(builds[i]);
                   context.go('/builder');
@@ -71,6 +85,160 @@ class BuildsScreen extends StatelessWidget {
               ),
             ),
     );
+  }
+
+  // ── Поделиться: копирует код в буфер и показывает SnackBar ──
+  void _shareBuild(BuildContext context, PcBuild build) {
+    final code = build.toShareCode();
+    Clipboard.setData(ClipboardData(text: code));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(Icons.check_circle_outline,
+                color: Colors.white, size: 18),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                'Код сборки «${build.name}» скопирован',
+                style: const TextStyle(fontSize: 13),
+              ),
+            ),
+          ],
+        ),
+        duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  // ── Диалог импорта ──
+  void _showImportDialog(BuildContext context) {
+    final controller = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Импорт сборки'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Вставьте код сборки, который вам прислали:',
+              style: TextStyle(fontSize: 13, color: AppTheme.textSecondary),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: controller,
+              maxLines: 3,
+              decoration: const InputDecoration(
+                hintText: 'eyJ2IjoxLCJuIjoi...',
+                border: OutlineInputBorder(),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              ),
+              style: const TextStyle(fontSize: 12, fontFamily: 'monospace'),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Отмена'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              final code = controller.text.trim();
+              if (code.isEmpty) return;
+              Navigator.pop(ctx);
+              _doImport(context, code);
+            },
+            child: const Text('Импортировать'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ── Выполняет импорт и показывает результат ──
+  void _doImport(BuildContext context, String code) {
+    final provider = context.read<AppProvider>();
+    final result = provider.importBuildFromCode(code);
+
+    if (!result.success) {
+      // Код невалиден
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              const Icon(Icons.error_outline, color: Colors.white, size: 18),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  result.missingCategories.first,
+                  style: const TextStyle(fontSize: 13),
+                ),
+              ),
+            ],
+          ),
+          backgroundColor: AppTheme.error,
+          duration: const Duration(seconds: 4),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+      return;
+    }
+
+    // Сохраняем импортированную сборку
+    provider.saveImportedBuild(result.build!);
+
+    if (result.hasWarnings) {
+      // Импорт прошёл, но часть компонентов не перенеслась
+      final missing = result.missingCategories.join(', ');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Icon(Icons.warning_amber_rounded,
+                  color: Colors.white, size: 18),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  '$missing не перенеслись — компоненты незнакомы этой версии приложения. Обновите приложение.',
+                  style: const TextStyle(fontSize: 13),
+                ),
+              ),
+            ],
+          ),
+          backgroundColor: AppTheme.warning,
+          duration: const Duration(seconds: 6),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    } else {
+      // Всё перенеслось без потерь
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              const Icon(Icons.check_circle_outline,
+                  color: Colors.white, size: 18),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  'Сборка «${result.build!.name}» импортирована',
+                  style: const TextStyle(fontSize: 13),
+                ),
+              ),
+            ],
+          ),
+          duration: const Duration(seconds: 3),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
   }
 
   void _showCompareBuildPicker(BuildContext context, List<PcBuild> builds) {
@@ -89,7 +257,8 @@ class BuildsScreen extends StatelessWidget {
               children: [
                 const Text(
                   'Выберите ровно 2 сборки для сравнения',
-                  style: TextStyle(fontSize: 13, color: AppTheme.textSecondary),
+                  style:
+                      TextStyle(fontSize: 13, color: AppTheme.textSecondary),
                 ),
                 const SizedBox(height: 8),
                 ConstrainedBox(
@@ -173,11 +342,16 @@ class BuildsScreen extends StatelessWidget {
 
 class _BuildCard extends StatelessWidget {
   final PcBuild pcBuild;
+  final VoidCallback onShare;
   final VoidCallback onLoad;
   final VoidCallback onDelete;
 
-  const _BuildCard(
-      {required this.pcBuild, required this.onLoad, required this.onDelete});
+  const _BuildCard({
+    required this.pcBuild,
+    required this.onShare,
+    required this.onLoad,
+    required this.onDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -236,8 +410,8 @@ class _BuildCard extends StatelessWidget {
               children: categories.map((cat) {
                 final comp = pcBuild.components[cat]!;
                 return Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: cat.color.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(6),
@@ -291,6 +465,21 @@ class _BuildCard extends StatelessWidget {
                       fontSize: 12, color: AppTheme.textSecondary),
                 ),
                 const Spacer(),
+                // ── Кнопка «Поделиться» ──
+                OutlinedButton.icon(
+                  onPressed: onShare,
+                  icon: const Icon(Icons.share_outlined, size: 14),
+                  label: const Text('Поделиться', style: TextStyle(fontSize: 12)),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppTheme.primary,
+                    side: const BorderSide(color: AppTheme.primary),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 6),
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                ),
+                const SizedBox(width: 6),
                 OutlinedButton(
                   onPressed: onDelete,
                   style: OutlinedButton.styleFrom(
@@ -301,9 +490,10 @@ class _BuildCard extends StatelessWidget {
                     minimumSize: Size.zero,
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
-                  child: const Text('Удалить', style: TextStyle(fontSize: 12)),
+                  child:
+                      const Text('Удалить', style: TextStyle(fontSize: 12)),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 6),
                 ElevatedButton(
                   onPressed: onLoad,
                   style: ElevatedButton.styleFrom(
@@ -312,7 +502,8 @@ class _BuildCard extends StatelessWidget {
                     minimumSize: Size.zero,
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
-                  child: const Text('Загрузить', style: TextStyle(fontSize: 12)),
+                  child: const Text('Загрузить',
+                      style: TextStyle(fontSize: 12)),
                 ),
               ],
             ),

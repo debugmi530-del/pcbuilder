@@ -5,6 +5,20 @@ import '../models/component.dart';
 import '../models/pc_build.dart';
 import '../data/components.dart';
 
+/// Результат импорта сборки из шер-кода.
+class ImportResult {
+  /// Готовая сборка (null если код невалиден).
+  final PcBuild? build;
+
+  /// Короткие названия категорий, чьи компоненты не нашлись в каталоге.
+  final List<String> missingCategories;
+
+  const ImportResult({this.build, required this.missingCategories});
+
+  bool get success => build != null;
+  bool get hasWarnings => missingCategories.isNotEmpty;
+}
+
 class AppProvider extends ChangeNotifier {
   // ── Build state ──
   PcBuild _currentBuild = PcBuild(
@@ -98,6 +112,70 @@ class AppProvider extends ChangeNotifier {
     _save();
   }
 
+  // ─── Sharing ───
+
+  /// Декодирует шер-код и возвращает [ImportResult].
+  ///
+  /// Если компонент с таким ID не найден в текущем каталоге —
+  /// он пропускается, а его категория попадает в [ImportResult.missingCategories].
+  /// Пользователь увидит предупреждение с именами пропавших категорий.
+  ImportResult importBuildFromCode(String rawCode) {
+    try {
+      final trimmed = rawCode.trim();
+      final jsonStr = utf8.decode(base64Url.decode(base64Url.normalize(trimmed)));
+      final data = jsonDecode(jsonStr) as Map<String, dynamic>;
+
+      // Проверяем версию формата
+      if (data['v'] != 1) {
+        return const ImportResult(missingCategories: ['Неизвестный формат кода']);
+      }
+
+      final name = (data['n'] as String?)?.trim();
+      if (name == null || name.isEmpty) {
+        return const ImportResult(missingCategories: ['Повреждённый код: нет названия']);
+      }
+
+      final rawComponents = data['c'] as Map<String, dynamic>?;
+      if (rawComponents == null || rawComponents.isEmpty) {
+        return const ImportResult(missingCategories: ['В коде нет компонентов']);
+      }
+
+      final components = <ComponentCategory, Component>{};
+      final missingCategories = <String>[];
+
+      for (final entry in rawComponents.entries) {
+        final cat = _categoryFromKey(entry.key);
+        if (cat == null) continue; // неизвестная категория — молча пропускаем
+
+        final comp = findComponentById(entry.value as String);
+        if (comp != null) {
+          components[cat] = comp;
+        } else {
+          // Компонент не найден — фиксируем для предупреждения
+          missingCategories.add(cat.shortName);
+        }
+      }
+
+      final build = PcBuild(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        name: name,
+        createdAt: DateTime.now(),
+        components: components,
+      );
+
+      return ImportResult(build: build, missingCategories: missingCategories);
+    } catch (_) {
+      return const ImportResult(missingCategories: ['Неверный код — проверьте и попробуйте снова']);
+    }
+  }
+
+  /// Сохраняет уже готовую сборку (например, импортированную) в список.
+  void saveImportedBuild(PcBuild build) {
+    _savedBuilds = [build, ..._savedBuilds];
+    notifyListeners();
+    _save();
+  }
+
   // ─── Compatibility Check ───
 
   CompatibilityResult checkCompatibility() {
@@ -180,7 +258,6 @@ class AppProvider extends ChangeNotifier {
 
   // ─── Compare Components ───
 
-  /// Возвращает true если добавлено, false если уже 40 товаров
   bool addToCompare(Component component) {
     if (_compareComponents.length >= 40) return false;
     if (_compareComponents.any((c) => c.id == component.id)) return false;
@@ -194,7 +271,6 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Меняет местами два слота в списке сравнения
   void swapComparePositions(int index1, int index2) {
     if (index1 >= _compareComponents.length ||
         index2 >= _compareComponents.length) return;
@@ -329,10 +405,8 @@ class AppProvider extends ChangeNotifier {
         final map = jsonDecode(buildJson) as Map<String, dynamic>;
         final components = <ComponentCategory, Component>{};
         for (final entry in map.entries) {
-          final cat = ComponentCategory.values.firstWhere(
-            (c) => c.key == entry.key,
-            orElse: () => ComponentCategory.cpu,
-          );
+          final cat = _categoryFromKey(entry.key);
+          if (cat == null) continue;
           final comp = findComponentById(entry.value as String);
           if (comp != null) components[cat] = comp;
         }
@@ -350,10 +424,8 @@ class AppProvider extends ChangeNotifier {
         final compIds = (data['componentIds'] as Map<String, dynamic>?) ?? {};
         final components = <ComponentCategory, Component>{};
         for (final entry in compIds.entries) {
-          final cat = ComponentCategory.values.firstWhere(
-            (c) => c.key == entry.key,
-            orElse: () => ComponentCategory.cpu,
-          );
+          final cat = _categoryFromKey(entry.key);
+          if (cat == null) continue;
           final comp = findComponentById(entry.value as String);
           if (comp != null) components[cat] = comp;
         }
@@ -373,5 +445,15 @@ class AppProvider extends ChangeNotifier {
 
   bool isInCurrentBuild(String componentId) {
     return _currentBuild.components.values.any((c) => c.id == componentId);
+  }
+
+  // ─── Helpers ───
+
+  /// Безопасный поиск категории по ключу. Возвращает null если ключ неизвестен.
+  static ComponentCategory? _categoryFromKey(String key) {
+    for (final c in ComponentCategory.values) {
+      if (c.key == key) return c;
+    }
+    return null;
   }
 }
