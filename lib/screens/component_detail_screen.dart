@@ -29,8 +29,9 @@ class _ComponentDetailView extends StatelessWidget {
   const _ComponentDetailView({required this.component});
 
   void _showAddedToCompareSnackbar(BuildContext context) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
+    ScaffoldMessenger.of(context)
+      ..clearSnackBars()
+      ..showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
         backgroundColor: const Color(0xFF0D2137),
@@ -86,8 +87,9 @@ class _ComponentDetailView extends StatelessWidget {
   }
 
   void _showRemovedFromCompareSnackbar(BuildContext context) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
+    ScaffoldMessenger.of(context)
+      ..clearSnackBars()
+      ..showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
         backgroundColor: const Color(0xFF2D2D2D),
@@ -128,6 +130,7 @@ class _ComponentDetailView extends StatelessWidget {
                 ),
                 tooltip: 'Сравнить',
                 onPressed: () {
+                  final messenger = ScaffoldMessenger.of(context);
                   if (inCompare) {
                     provider.removeFromCompare(component.id);
                     _showRemovedFromCompareSnackbar(context);
@@ -136,19 +139,22 @@ class _ComponentDetailView extends StatelessWidget {
                     if (added) {
                       _showAddedToCompareSnackbar(context);
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          behavior: SnackBarBehavior.floating,
-                          backgroundColor: const Color(0xFF0D2137),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          margin: const EdgeInsets.fromLTRB(12, 0, 12, 16),
-                          content: const Text(
-                            'В сравнении уже 3 товара',
-                            style: TextStyle(color: Colors.white),
+                      messenger
+                        ..clearSnackBars()
+                        ..showSnackBar(
+                          SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            backgroundColor: const Color(0xFF0D2137),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            margin: const EdgeInsets.fromLTRB(12, 0, 12, 16),
+                            duration: const Duration(seconds: 2),
+                            content: const Text(
+                              'В сравнении уже 3 товара',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
-                        ),
-                      );
+                        );
                     }
                   }
                 },
@@ -447,6 +453,7 @@ class _ComponentDetailView extends StatelessWidget {
                 ),
                 label: Text(inCompare ? 'В сравнении' : 'Сравнить'),
                 onPressed: () {
+                  final messenger = ScaffoldMessenger.of(context);
                   if (inCompare) {
                     provider.removeFromCompare(component.id);
                     _showRemovedFromCompareSnackbar(context);
@@ -455,19 +462,22 @@ class _ComponentDetailView extends StatelessWidget {
                     if (added) {
                       _showAddedToCompareSnackbar(context);
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          behavior: SnackBarBehavior.floating,
-                          backgroundColor: const Color(0xFF0D2137),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          margin: const EdgeInsets.fromLTRB(12, 0, 12, 16),
-                          content: const Text(
-                            'В сравнении уже 3 товара',
-                            style: TextStyle(color: Colors.white),
+                      messenger
+                        ..clearSnackBars()
+                        ..showSnackBar(
+                          SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            backgroundColor: const Color(0xFF0D2137),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            margin: const EdgeInsets.fromLTRB(12, 0, 12, 16),
+                            duration: const Duration(seconds: 2),
+                            content: const Text(
+                              'В сравнении уже 3 товара',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
-                        ),
-                      );
+                        );
                     }
                   }
                 },
@@ -483,22 +493,27 @@ class _ComponentDetailView extends StatelessWidget {
                 ),
                 label: Text(inBuild ? 'В сборке' : 'В сборку'),
                 onPressed: () {
+                  final messenger = ScaffoldMessenger.of(context);
                   if (inBuild) {
                     provider.removeFromBuild(component.category);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Удалено из сборки')),
-                    );
+                    messenger
+                      ..clearSnackBars()
+                      ..showSnackBar(
+                        const SnackBar(content: Text('Удалено из сборки')),
+                      );
                   } else {
                     provider.addToBuild(component);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('${component.model} добавлен в сборку'),
-                        action: SnackBarAction(
-                          label: 'Сборка',
-                          onPressed: () => context.push('/builder'),
+                    messenger
+                      ..clearSnackBars()
+                      ..showSnackBar(
+                        SnackBar(
+                          content: Text('${component.model} добавлен в сборку'),
+                          action: SnackBarAction(
+                            label: 'Сборка',
+                            onPressed: () => context.push('/builder'),
+                          ),
                         ),
-                      ),
-                    );
+                      );
                   }
                 },
                 style: ElevatedButton.styleFrom(
