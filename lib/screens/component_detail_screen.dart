@@ -503,7 +503,10 @@ class _ComponentDetailView extends StatelessWidget {
                     messenger
                       ..clearSnackBars()
                       ..showSnackBar(
-                        const SnackBar(content: Text('Удалено из сборки')),
+                        const SnackBar(
+                          content: Text('Удалено из сборки'),
+                          duration: Duration(seconds: 2),
+                        ),
                       );
                   } else {
                     final limitErr = component.category == ComponentCategory.storage
@@ -512,7 +515,10 @@ class _ComponentDetailView extends StatelessWidget {
                     if (limitErr != null) {
                       messenger
                         ..clearSnackBars()
-                        ..showSnackBar(SnackBar(content: Text(limitErr)));
+                        ..showSnackBar(SnackBar(
+                          content: Text(limitErr),
+                          duration: const Duration(seconds: 2),
+                        ));
                     } else {
                       provider.addToBuild(component);
                       messenger
@@ -520,9 +526,13 @@ class _ComponentDetailView extends StatelessWidget {
                         ..showSnackBar(
                           SnackBar(
                             content: Text('${component.model} добавлен в сборку'),
+                            duration: const Duration(seconds: 2),
                             action: SnackBarAction(
                               label: 'Сборка',
-                              onPressed: () => context.push('/builder'),
+                              onPressed: () {
+                                messenger.clearSnackBars();
+                                context.push('/builder');
+                              },
                             ),
                           ),
                         );
