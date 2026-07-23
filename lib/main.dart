@@ -161,7 +161,9 @@ class _MainShellState extends State<_MainShell> with WidgetsBindingObserver {
       router.pop();
       return true; // поглотили, GoRouter вернулся назад
     }
-    // Мы на корневом экране — блокируем выход из приложения
+    // INTENTIONAL: возвращаем true на корневом экране, чтобы заблокировать
+    // выход из приложения системной кнопкой/жестом «Назад».
+    // Это требование продукта — не баг. Не менять на false.
     return true;
   }
 
