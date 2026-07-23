@@ -5,7 +5,7 @@ import '../models/component.dart';
 import '../providers/app_provider.dart';
 import '../theme.dart';
 import '../widgets/component_card.dart';
-import '../widgets/filter_panel.dart';
+import '../widgets/filter_panel.dart'; // exports FilterScreen
 
 class CategoryScreen extends StatefulWidget {
   final String categoryKey;
@@ -199,11 +199,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   void _showFilterPanel(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (_) => FilterPanel(category: _category),
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => FilterScreen(category: _category),
+        fullscreenDialog: true,
+      ),
     );
   }
 }

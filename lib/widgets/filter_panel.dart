@@ -5,9 +5,16 @@ import '../data/components.dart';
 import '../providers/app_provider.dart';
 import '../theme.dart';
 
-class FilterPanel extends StatelessWidget {
+class FilterScreen extends StatefulWidget {
   final ComponentCategory category;
-  const FilterPanel({super.key, required this.category});
+  const FilterScreen({super.key, required this.category});
+
+  @override
+  State<FilterScreen> createState() => _FilterScreenState();
+}
+
+class _FilterScreenState extends State<FilterScreen> {
+  int _selectedSectionIndex = 0;
 
   // Get unique values for a spec key across all components in this category
   List<String> _uniqueValues(List<Component> components, String key) {
@@ -21,7 +28,7 @@ class FilterPanel extends StatelessWidget {
 
   // Get relevant filter keys per category
   List<String> _filterKeys() {
-    switch (category) {
+    switch (widget.category) {
       case ComponentCategory.cpu:
         return ['Сокет', 'Техпроцесс', 'TDP'];
       case ComponentCategory.gpu:
@@ -41,147 +48,239 @@ class FilterPanel extends StatelessWidget {
     }
   }
 
+  int _totalActiveCount(Map<String, Set<String>> activeFilters) {
+    return activeFilters.values.fold<int>(0, (s, v) => s + v.length);
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<AppProvider>();
-    final components = getByCategory(category);
+    final components = getByCategory(widget.category);
     final filterKeys = _filterKeys();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Handle
-          Container(
-            margin: const EdgeInsets.only(top: 10),
-            width: 40,
-            height: 4,
-            decoration: BoxDecoration(
-              color: AppTheme.divider,
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
+    // Clamp selected index in case keys changed
+    if (_selectedSectionIndex >= filterKeys.length) {
+      _selectedSectionIndex = 0;
+    }
 
-          // Header
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-            child: Row(
-              children: [
-                const Text('Фильтры',
-                    style: TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w700)),
-                const Spacer(),
-                if (provider.activeFilters.isNotEmpty)
-                  TextButton(
-                    onPressed: () =>
-                        provider.clearFiltersForCategory(category.key),
-                    child: const Text('Сбросить всё',
-                        style: TextStyle(color: AppTheme.error, fontSize: 13)),
-                  ),
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Готово',
-                      style: TextStyle(
-                          color: AppTheme.primary,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600)),
-                ),
-              ],
-            ),
-          ),
+    final currentKey = filterKeys[_selectedSectionIndex];
+    final currentValues = _uniqueValues(components, currentKey);
+    final activeSet = provider.activeFilters[currentKey] ?? {};
+    final totalActive = _totalActiveCount(provider.activeFilters);
 
-          const Divider(height: 1),
+    final Color leftBg = isDark ? const Color(0xFF1A1A1A) : const Color(0xFFF0F1F3);
+    final Color rightBg = isDark ? const Color(0xFF121212) : Colors.white;
+    final Color sectionActiveBg = isDark ? const Color(0xFF2A2A2A) : Colors.white;
+    final Color sectionActiveBorder = AppTheme.primary;
+    final Color sectionTextActive = isDark ? Colors.white : AppTheme.textPrimary;
+    final Color sectionTextInactive = isDark ? const Color(0xFF9CA3AF) : AppTheme.textSecondary;
 
-          // Filter sections
-          Flexible(
-            child: ListView(
-              shrinkWrap: true,
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              children: filterKeys.map((key) {
-                final values = _uniqueValues(components, key);
-                if (values.isEmpty) return const SizedBox.shrink();
-
-                final activeSet = provider.activeFilters[key] ?? {};
-
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-                      child: Text(
-                        key,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: AppTheme.textPrimary,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: values.map((v) {
-                          final isActive = activeSet.contains(v);
-                          return FilterChip(
-                            label: Text(v),
-                            selected: isActive,
-                            onSelected: (_) =>
-                                provider.toggleFilter(key, v),
-                            backgroundColor: Colors.white,
-                            selectedColor: AppTheme.chip,
-                            checkmarkColor: AppTheme.primary,
-                            side: BorderSide(
-                              color: isActive
-                                  ? AppTheme.primary
-                                  : AppTheme.divider,
-                            ),
-                            labelStyle: TextStyle(
-                              fontSize: 12,
-                              color: isActive
-                                  ? AppTheme.primary
-                                  : AppTheme.textPrimary,
-                              fontWeight: isActive
-                                  ? FontWeight.w600
-                                  : FontWeight.w400,
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 4),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    const Divider(height: 1, indent: 16, endIndent: 16),
-                  ],
-                );
-              }).toList(),
-            ),
-          ),
-
-          // Apply button
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text(
-                    provider.activeFilters.isEmpty
-                        ? 'Применить'
-                        : 'Применить (${provider.activeFilters.values.fold<int>(0, (s, v) => s + v.length)} активных)',
-                  ),
+    return Scaffold(
+      backgroundColor: rightBg,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          'Фильтры',
+          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+        ),
+        centerTitle: true,
+        actions: [
+          if (provider.activeFilters.isNotEmpty)
+            TextButton(
+              onPressed: () =>
+                  provider.clearFiltersForCategory(widget.category.key),
+              child: Text(
+                'Сбросить всё',
+                style: TextStyle(
+                  color: AppTheme.primary,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1),
+          child: Divider(
+            height: 1,
+            thickness: 1,
+            color: isDark ? const Color(0xFF2A2A2A) : AppTheme.divider,
+          ),
+        ),
+      ),
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // ── Left: Section list ──
+          Container(
+            width: 150,
+            color: leftBg,
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              itemCount: filterKeys.length,
+              itemBuilder: (context, index) {
+                final key = filterKeys[index];
+                final isSelected = index == _selectedSectionIndex;
+                final sectionActive = provider.activeFilters[key]?.isNotEmpty ?? false;
+
+                return GestureDetector(
+                  onTap: () => setState(() => _selectedSectionIndex = index),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 150),
+                    decoration: BoxDecoration(
+                      color: isSelected ? sectionActiveBg : Colors.transparent,
+                      border: isSelected
+                          ? Border(
+                              left: BorderSide(
+                                color: sectionActiveBorder,
+                                width: 3,
+                              ),
+                            )
+                          : null,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 14, vertical: 14),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            key,
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: isSelected
+                                  ? FontWeight.w600
+                                  : FontWeight.w400,
+                              color: isSelected
+                                  ? sectionTextActive
+                                  : sectionTextInactive,
+                            ),
+                          ),
+                        ),
+                        if (sectionActive)
+                          Container(
+                            width: 6,
+                            height: 6,
+                            decoration: BoxDecoration(
+                              color: AppTheme.primary,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+
+          // Vertical divider
+          Container(
+            width: 1,
+            color: isDark ? const Color(0xFF2A2A2A) : AppTheme.divider,
+          ),
+
+          // ── Right: Values for selected section ──
+          Expanded(
+            child: currentValues.isEmpty
+                ? Center(
+                    child: Text(
+                      'Нет вариантов',
+                      style: TextStyle(
+                        color: sectionTextInactive,
+                        fontSize: 13,
+                      ),
+                    ),
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.only(top: 4, bottom: 16),
+                    itemCount: currentValues.length,
+                    itemBuilder: (context, index) {
+                      final value = currentValues[index];
+                      final isChecked = activeSet.contains(value);
+
+                      return InkWell(
+                        onTap: () => provider.toggleFilter(currentKey, value),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 2),
+                          child: Row(
+                            children: [
+                              Checkbox(
+                                value: isChecked,
+                                onChanged: (_) =>
+                                    provider.toggleFilter(currentKey, value),
+                                activeColor: AppTheme.primary,
+                                side: BorderSide(
+                                  color: isDark
+                                      ? const Color(0xFF6B7280)
+                                      : const Color(0xFFD1D5DB),
+                                  width: 1.5,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap,
+                              ),
+                              const SizedBox(width: 4),
+                              Expanded(
+                                child: Text(
+                                  value,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: isChecked
+                                        ? (isDark ? Colors.white : AppTheme.textPrimary)
+                                        : (isDark
+                                            ? const Color(0xFFD1D5DB)
+                                            : AppTheme.textPrimary),
+                                    fontWeight: isChecked
+                                        ? FontWeight.w500
+                                        : FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
           ),
         ],
+      ),
+
+      // ── Bottom: Apply button ──
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(16, 10, 16, 12),
+          decoration: BoxDecoration(
+            color: rightBg,
+            border: Border(
+              top: BorderSide(
+                color: isDark ? const Color(0xFF2A2A2A) : AppTheme.divider,
+                width: 1,
+              ),
+            ),
+          ),
+          child: SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                totalActive == 0
+                    ? 'Показать результаты'
+                    : 'Показать результаты ($totalActive)',
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
