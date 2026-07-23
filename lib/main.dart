@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -110,6 +111,7 @@ class _MainShell extends StatefulWidget {
 
 class _MainShellState extends State<_MainShell> with WidgetsBindingObserver {
   final _appLinks = AppLinks();
+  StreamSubscription<Uri>? _linkSub;
 
   @override
   void initState() {
@@ -125,7 +127,7 @@ class _MainShellState extends State<_MainShell> with WidgetsBindingObserver {
       if (uri != null && mounted) _handleLink(uri);
     });
     // Ссылки, пока приложение уже работает
-    _appLinks.uriLinkStream.listen(_handleLink);
+    _linkSub = _appLinks.uriLinkStream.listen(_handleLink);
   }
 
   void _handleLink(Uri uri) {
@@ -143,6 +145,7 @@ class _MainShellState extends State<_MainShell> with WidgetsBindingObserver {
 
   @override
   void dispose() {
+    _linkSub?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
