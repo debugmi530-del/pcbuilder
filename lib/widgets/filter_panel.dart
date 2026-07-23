@@ -198,7 +198,6 @@ class _FilterScreenState extends State<FilterScreen> {
           'Сокет',
           'Чипсет',
           'Форм-фактор',
-          'Год релиза',
           // Память
           'Тип памяти',
           'Слоты памяти',
