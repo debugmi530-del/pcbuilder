@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   late ComponentCategory _category;
   final _searchCtrl = TextEditingController();
   String _localSearch = '';
+  Timer? _debounce;
 
   @override
   void initState() {
@@ -31,8 +33,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   void dispose() {
+    _debounce?.cancel();
     _searchCtrl.dispose();
     super.dispose();
+  }
+
+  void _onSearchChanged(String value) {
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 250), () {
+      if (mounted) setState(() => _localSearch = value);
+    });
   }
 
   @override
@@ -113,7 +123,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     : null,
                 contentPadding: const EdgeInsets.symmetric(vertical: 10),
               ),
-              onChanged: (v) => setState(() => _localSearch = v),
+              onChanged: _onSearchChanged,
             ),
           ),
 
