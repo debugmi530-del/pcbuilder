@@ -365,7 +365,8 @@ class AppProvider extends ChangeNotifier {
       if (nvmeCount > 0) {
         final m2SlotStr = mb.specs['Слоты M.2'];
         if (m2SlotStr != null) {
-          final m2Slots = int.tryParse(m2SlotStr.split(RegExp(r'[\s(]')).first);
+          final m2Slots = int.tryParse(
+              RegExp(r'\d+').firstMatch(m2SlotStr)?.group(0) ?? '');
           if (m2Slots != null && nvmeCount > m2Slots) {
             errors.add(
               'Материнская плата ${mb.brand} ${mb.model} имеет $m2Slots слота(-ов) M.2, '
