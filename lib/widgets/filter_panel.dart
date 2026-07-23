@@ -16,7 +16,6 @@ class FilterScreen extends StatefulWidget {
 class _FilterScreenState extends State<FilterScreen> {
   int _selectedSectionIndex = 0;
 
-  // Get unique values for a spec key across all components in this category
   List<String> _uniqueValues(List<Component> components, String key) {
     return components
         .map((c) => c.specs[key])
@@ -26,7 +25,6 @@ class _FilterScreenState extends State<FilterScreen> {
       ..sort();
   }
 
-  // Get relevant filter keys per category
   List<String> _filterKeys() {
     switch (widget.category) {
       case ComponentCategory.cpu:
@@ -57,9 +55,7 @@ class _FilterScreenState extends State<FilterScreen> {
     final provider = context.watch<AppProvider>();
     final components = getByCategory(widget.category);
     final filterKeys = _filterKeys();
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    // Clamp selected index in case keys changed
     if (_selectedSectionIndex >= filterKeys.length) {
       _selectedSectionIndex = 0;
     }
@@ -69,26 +65,23 @@ class _FilterScreenState extends State<FilterScreen> {
     final activeSet = provider.activeFilters[currentKey] ?? {};
     final totalActive = _totalActiveCount(provider.activeFilters);
 
-    final Color leftBg = isDark ? const Color(0xFF1A1A1A) : const Color(0xFFF0F1F3);
-    final Color rightBg = isDark ? const Color(0xFF121212) : Colors.white;
-    final Color sectionActiveBg = isDark ? const Color(0xFF2A2A2A) : Colors.white;
-    final Color sectionActiveBorder = AppTheme.primary;
-    final Color sectionTextActive = isDark ? Colors.white : AppTheme.textPrimary;
-    final Color sectionTextInactive = isDark ? const Color(0xFF9CA3AF) : AppTheme.textSecondary;
-
     return Scaffold(
-      backgroundColor: rightBg,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.surface,
+        backgroundColor: Colors.white,
         elevation: 0,
         scrolledUnderElevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: AppTheme.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           'Фильтры',
-          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+          style: TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+            color: AppTheme.textPrimary,
+          ),
         ),
         centerTitle: true,
         actions: [
@@ -96,7 +89,7 @@ class _FilterScreenState extends State<FilterScreen> {
             TextButton(
               onPressed: () =>
                   provider.clearFiltersForCategory(widget.category.key),
-              child: Text(
+              child: const Text(
                 'Сбросить всё',
                 style: TextStyle(
                   color: AppTheme.primary,
@@ -108,11 +101,7 @@ class _FilterScreenState extends State<FilterScreen> {
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(1),
-          child: Divider(
-            height: 1,
-            thickness: 1,
-            color: isDark ? const Color(0xFF2A2A2A) : AppTheme.divider,
-          ),
+          child: Container(height: 1, color: AppTheme.divider),
         ),
       ),
       body: Row(
@@ -121,32 +110,38 @@ class _FilterScreenState extends State<FilterScreen> {
           // ── Left: Section list ──
           Container(
             width: 150,
-            color: leftBg,
+            color: const Color(0xFFF0F1F3),
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(vertical: 8),
               itemCount: filterKeys.length,
               itemBuilder: (context, index) {
                 final key = filterKeys[index];
                 final isSelected = index == _selectedSectionIndex;
-                final sectionActive = provider.activeFilters[key]?.isNotEmpty ?? false;
+                final sectionHasActive =
+                    provider.activeFilters[key]?.isNotEmpty ?? false;
 
                 return GestureDetector(
                   onTap: () => setState(() => _selectedSectionIndex = index),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 150),
                     decoration: BoxDecoration(
-                      color: isSelected ? sectionActiveBg : Colors.transparent,
+                      color: isSelected ? Colors.white : Colors.transparent,
                       border: isSelected
                           ? Border(
                               left: BorderSide(
-                                color: sectionActiveBorder,
+                                color: AppTheme.primary,
                                 width: 3,
                               ),
                             )
-                          : null,
+                          : const Border(
+                              left: BorderSide(
+                                color: Colors.transparent,
+                                width: 3,
+                              ),
+                            ),
                     ),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 14),
+                        horizontal: 12, vertical: 14),
                     child: Row(
                       children: [
                         Expanded(
@@ -158,16 +153,16 @@ class _FilterScreenState extends State<FilterScreen> {
                                   ? FontWeight.w600
                                   : FontWeight.w400,
                               color: isSelected
-                                  ? sectionTextActive
-                                  : sectionTextInactive,
+                                  ? AppTheme.textPrimary
+                                  : AppTheme.textSecondary,
                             ),
                           ),
                         ),
-                        if (sectionActive)
+                        if (sectionHasActive)
                           Container(
                             width: 6,
                             height: 6,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: AppTheme.primary,
                               shape: BoxShape.circle,
                             ),
@@ -181,19 +176,16 @@ class _FilterScreenState extends State<FilterScreen> {
           ),
 
           // Vertical divider
-          Container(
-            width: 1,
-            color: isDark ? const Color(0xFF2A2A2A) : AppTheme.divider,
-          ),
+          Container(width: 1, color: AppTheme.divider),
 
           // ── Right: Values for selected section ──
           Expanded(
             child: currentValues.isEmpty
-                ? Center(
+                ? const Center(
                     child: Text(
                       'Нет вариантов',
                       style: TextStyle(
-                        color: sectionTextInactive,
+                        color: AppTheme.textSecondary,
                         fontSize: 13,
                       ),
                     ),
@@ -206,7 +198,8 @@ class _FilterScreenState extends State<FilterScreen> {
                       final isChecked = activeSet.contains(value);
 
                       return InkWell(
-                        onTap: () => provider.toggleFilter(currentKey, value),
+                        onTap: () =>
+                            provider.toggleFilter(currentKey, value),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 2),
@@ -217,10 +210,8 @@ class _FilterScreenState extends State<FilterScreen> {
                                 onChanged: (_) =>
                                     provider.toggleFilter(currentKey, value),
                                 activeColor: AppTheme.primary,
-                                side: BorderSide(
-                                  color: isDark
-                                      ? const Color(0xFF6B7280)
-                                      : const Color(0xFFD1D5DB),
+                                side: const BorderSide(
+                                  color: Color(0xFFD1D5DB),
                                   width: 1.5,
                                 ),
                                 shape: RoundedRectangleBorder(
@@ -235,11 +226,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                   value,
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: isChecked
-                                        ? (isDark ? Colors.white : AppTheme.textPrimary)
-                                        : (isDark
-                                            ? const Color(0xFFD1D5DB)
-                                            : AppTheme.textPrimary),
+                                    color: AppTheme.textPrimary,
                                     fontWeight: isChecked
                                         ? FontWeight.w500
                                         : FontWeight.w400,
@@ -260,13 +247,10 @@ class _FilterScreenState extends State<FilterScreen> {
       bottomNavigationBar: SafeArea(
         child: Container(
           padding: const EdgeInsets.fromLTRB(16, 10, 16, 12),
-          decoration: BoxDecoration(
-            color: rightBg,
+          decoration: const BoxDecoration(
+            color: Colors.white,
             border: Border(
-              top: BorderSide(
-                color: isDark ? const Color(0xFF2A2A2A) : AppTheme.divider,
-                width: 1,
-              ),
+              top: BorderSide(color: AppTheme.divider, width: 1),
             ),
           ),
           child: SizedBox(
