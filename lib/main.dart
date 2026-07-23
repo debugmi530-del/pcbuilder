@@ -161,8 +161,8 @@ class _MainShellState extends State<_MainShell> with WidgetsBindingObserver {
       router.pop();
       return true; // поглотили, GoRouter вернулся назад
     }
-    // Мы на корневом экране — блокируем выход из приложения
-    return true;
+    // Мы на корневом экране — позволяем системе закрыть приложение
+    return false;
   }
 
   int _getSelectedIndex(BuildContext context) {
