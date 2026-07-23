@@ -91,7 +91,10 @@ class ComponentCard extends StatelessWidget {
               action: SnackBarAction(
                 label: 'Сравнить →',
                 textColor: AppTheme.accent,
-                onPressed: () => context.push('/compare'),
+                onPressed: () {
+                  messenger.clearSnackBars();
+                  context.push('/compare');
+                },
               ),
             ),
           );
