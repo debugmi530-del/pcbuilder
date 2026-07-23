@@ -19,8 +19,8 @@ class PcBuild {
   });
 
   double get totalPrice =>
-      components.values.fold(0, (sum, c) => sum + c.price) +
-      storageList.fold(0, (sum, c) => sum + c.price);
+      components.values.fold(0.0, (sum, c) => sum + c.price) +
+      storageList.fold(0.0, (sum, c) => sum + c.price);
 
   int get totalTdp {
     int tdp = 0;
