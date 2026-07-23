@@ -16,7 +16,7 @@ class FilterScreen extends StatefulWidget {
 class _FilterScreenState extends State<FilterScreen> {
   int _selectedSectionIndex = 0;
 
-  static const String _brandKey = 'Производитель';
+  static const String _brandKey = 'Бренд';
 
   List<String> _uniqueValues(List<Component> components, String key) {
     if (key == _brandKey) {
