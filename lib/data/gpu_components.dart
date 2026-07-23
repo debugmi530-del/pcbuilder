@@ -31,6 +31,7 @@ final List<Component> gpuComponents = [
     price: 239990,
     description: 'Самая мощная потребительская видеокарта в мире. 24 ГБ GDDR6X, 16384 CUDA-ядра, поддержка 4K/8K и трассировки лучей.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4090',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD102)',
       'Техпроцесс': 'TSMC 4N',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -78,6 +79,7 @@ final List<Component> gpuComponents = [
     price: 134990,
     description: 'Флагман AMD с 24 ГБ GDDR6 и архитектурой RDNA 3. Отличный выбор для 4K-гейминга без переплаты за бренд.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XTX',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 31)',
       'Техпроцесс': 'TSMC 5 нм (GCD) + 6 нм (MCD)',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -125,6 +127,7 @@ final List<Component> gpuComponents = [
     price: 99990,
     description: 'Мощная видеокарта для 1440p и 4K-гейминга с поддержкой DLSS 3 и Frame Generation. Оптимальный выбор для требовательных игр.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD104)',
       'Техпроцесс': 'TSMC 4N',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -172,6 +175,7 @@ final List<Component> gpuComponents = [
     price: 64990,
     description: 'Отличная видеокарта для 1440p-гейминга с 16 ГБ GDDR6. Лучший выбор в среднем ценовом сегменте для требовательных игр.',
     specs: {
+      'Графический процессор': 'Radeon RX 7800 XT',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 32)',
       'Техпроцесс': 'TSMC 5 нм (GCD) + 6 нм (MCD)',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -220,6 +224,7 @@ final List<Component> gpuComponents = [
     price: 149990,
     description: 'Обновлённый флагман второго эшелона NVIDIA. 16 ГБ GDDR6X, 320 Вт TDP — почти как RTX 4090, но на 30% дешевле.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD103)',
       'Техпроцесс': 'TSMC 4N',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -267,6 +272,7 @@ final List<Component> gpuComponents = [
     price: 84990,
     description: 'Отличная карта для 1440p-гейминга. 12 ГБ GDDR6X и 220 Вт TDP — эффективнее оригинального RTX 4070 за ту же цену.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD104)',
       'Техпроцесс': 'TSMC 4N',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -314,6 +320,7 @@ final List<Component> gpuComponents = [
     price: 76990,
     description: 'RTX 4070 — золотой стандарт для 1440p. 12 ГБ GDDR6X и всего 200 Вт потребления делают её невероятно эффективной.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD104)',
       'Техпроцесс': 'TSMC 4N',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -361,6 +368,7 @@ final List<Component> gpuComponents = [
     price: 56990,
     description: '12 ГБ GDDR6 и 245 Вт TDP — добротная альтернатива RTX 4060 Ti для 1440p-гейминга. Больше VRAM за те же деньги.',
     specs: {
+      'Графический процессор': 'Radeon RX 7700 XT',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 32)',
       'Техпроцесс': 'TSMC 5 нм (GCD) + 6 нм (MCD)',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -408,6 +416,7 @@ final List<Component> gpuComponents = [
     price: 54990,
     description: 'Быстрая карта для 1080p/1440p с DLSS 3 и Frame Generation. 8 ГБ GDDR6 и 165 Вт TDP при высокой производительности.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD106)',
       'Техпроцесс': 'TSMC 4N',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -455,6 +464,7 @@ final List<Component> gpuComponents = [
     price: 43990,
     description: 'Доступная карта для 1080p с DLSS 3 и Frame Generation. 8 ГБ GDDR6 и рекордно низкие 115 Вт потребления.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD107)',
       'Техпроцесс': 'TSMC 4N',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -502,6 +512,7 @@ final List<Component> gpuComponents = [
     price: 34990,
     description: 'Бюджетная RDNA 3 с 8 ГБ GDDR6 для 1080p-гейминга. Поддерживает FSR 3 и показывает отличные результаты в eSports-играх.',
     specs: {
+      'Графический процессор': 'Radeon RX 7600',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 33)',
       'Техпроцесс': 'TSMC 6 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -549,6 +560,7 @@ final List<Component> gpuComponents = [
     price: 56990,
     description: 'Проверенный флагман прошлого поколения Ampere. 10 ГБ GDDR6X и 320 Вт — мощный вариант для 4K-гейминга с хорошим б/у рынком.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3080 10GB',
       'Архитектура (микроархитектура)': 'Ampere (GA102)',
       'Техпроцесс': 'Samsung 8 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -596,6 +608,7 @@ final List<Component> gpuComponents = [
     price: 49990,
     description: '16 ГБ GDDR6 — огромный буфер для 4K и будущих игр. RDNA 2 остаётся конкурентоспособной картой для 1440p/4K.',
     specs: {
+      'Графический процессор': 'Radeon RX 6800 XT',
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 21)',
       'Техпроцесс': 'TSMC 7 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -643,6 +656,7 @@ final List<Component> gpuComponents = [
     price: 43990,
     description: 'Лучшая карта Ampere в своём классе: 8 ГБ GDDR6 и 200 Вт TDP. Стабильный 1440p в большинстве игр по минимальной цене.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060 Ti',
       'Архитектура (микроархитектура)': 'Ampere (GA104)',
       'Техпроцесс': 'Samsung 8 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -690,6 +704,7 @@ final List<Component> gpuComponents = [
     price: 42990,
     description: '12 ГБ GDDR6 при 230 Вт TDP — отличный вариант для 1440p по выгодной цене. Большой кэш Infinity Cache повышает эффективность.',
     specs: {
+      'Графический процессор': 'Radeon RX 6700 XT',
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 22)',
       'Техпроцесс': 'TSMC 7 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -742,6 +757,7 @@ final List<Component> gpuComponents = [
     price: 109990,
     description: '9728 CUDA-ядер, 16 ГБ GDDR6X и TDP 320 Вт — отличный выбор для 4K-гейминга без переплаты за RTX 4090.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD103)',
       'Техпроцесс': 'TSMC 4N',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -790,6 +806,7 @@ final List<Component> gpuComponents = [
     price: 94990,
     description: '8448 CUDA-ядер и 16 ГБ GDDR6X — самый быстрый RTX 4070 с улучшенной шиной памяти 256 бит.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD103)',
       'Техпроцесс': 'TSMC 4N',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -838,6 +855,7 @@ final List<Component> gpuComponents = [
     price: 57990,
     description: '16 ГБ видеопамяти в компактном TDP 165 Вт — идеально для 1440p и ресурсоёмких задач с большими текстурами.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti 16GB',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD106)',
       'Техпроцесс': 'TSMC 4N',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -888,6 +906,7 @@ final List<Component> gpuComponents = [
     price: 104990,
     description: '10752 CUDA-ядер и 24 ГБ GDDR6X на шине 384 бит — флагман Ampere с самой высокой производительностью поколения.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3090 Ti',
       'Архитектура (микроархитектура)': 'Ampere (GA102)',
       'Техпроцесс': 'Samsung 8 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -936,6 +955,7 @@ final List<Component> gpuComponents = [
     price: 89990,
     description: '10496 CUDA-ядер, 24 ГБ GDDR6X — старший потребительский Ampere, отлично подходит для 8K-гейминга и 3D-рендеринга.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3090',
       'Архитектура (микроархитектура)': 'Ampere (GA102)',
       'Техпроцесс': 'Samsung 8 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -984,6 +1004,7 @@ final List<Component> gpuComponents = [
     price: 79990,
     description: '10240 CUDA-ядер и 12 ГБ GDDR6X — производительность уровня RTX 3090 при меньшем объёме памяти и цене.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3080 Ti',
       'Архитектура (микроархитектура)': 'Ampere (GA102)',
       'Техпроцесс': 'Samsung 8 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1032,6 +1053,7 @@ final List<Component> gpuComponents = [
     price: 67990,
     description: '8960 CUDA-ядер и 12 ГБ GDDR6X — расширенная версия RTX 3080 с увеличенной памятью для работы с 4K-текстурами.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3080 12GB',
       'Архитектура (микроархитектура)': 'Ampere (GA102)',
       'Техпроцесс': 'Samsung 8 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1080,6 +1102,7 @@ final List<Component> gpuComponents = [
     price: 59990,
     description: '6144 CUDA-ядер и 8 ГБ GDDR6X — усиленный RTX 3070 с более быстрой памятью для высоких FPS в 1440p.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3070 Ti',
       'Архитектура (микроархитектура)': 'Ampere (GA104)',
       'Техпроцесс': 'Samsung 8 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1128,6 +1151,7 @@ final List<Component> gpuComponents = [
     price: 49990,
     description: '5888 CUDA-ядер и 8 ГБ GDDR6 при TDP 220 Вт — отличный выбор для 1440p-гейминга по доступной цене.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3070',
       'Архитектура (микроархитектура)': 'Ampere (GA104)',
       'Техпроцесс': 'Samsung 8 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1176,6 +1200,7 @@ final List<Component> gpuComponents = [
     price: 37990,
     description: '3584 CUDA-ядра и 12 ГБ GDDR6 — необычно большой объём памяти для своего класса, отлично для 1080p и несложного 1440p.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060 12GB',
       'Архитектура (микроархитектура)': 'Ampere (GA106)',
       'Техпроцесс': 'Samsung 8 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1224,6 +1249,7 @@ final List<Component> gpuComponents = [
     price: 28990,
     description: '2560 CUDA-ядер и 8 ГБ GDDR6 — самый доступный Ampere с трассировкой лучей и DLSS для комфортной игры в 1080p.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3050 8GB',
       'Архитектура (микроархитектура)': 'Ampere (GA106)',
       'Техпроцесс': 'Samsung 8 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1274,6 +1300,7 @@ final List<Component> gpuComponents = [
     price: 107990,
     description: '5376 потоковых процессоров, 20 ГБ GDDR6 на 320-битной шине — мощный вариант между RX 7900 GRE и RX 7900 XTX.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XT',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 31)',
       'Техпроцесс': 'TSMC 5 нм (GCD) + 6 нм (MCD)',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1322,6 +1349,7 @@ final List<Component> gpuComponents = [
     price: 69990,
     description: '4096 потоковых процессоров, 16 ГБ GDDR6 — урезанный Navi 31 по привлекательной цене для 4K-гейминга.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 GRE',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 31)',
       'Техпроцесс': 'TSMC 5 нм (GCD) + 6 нм (MCD)',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1370,6 +1398,7 @@ final List<Component> gpuComponents = [
     price: 43990,
     description: '2048 потоковых процессоров, 16 ГБ GDDR6 — обновлённый бюджетник RDNA 3 с удвоенным объёмом памяти против RX 7600.',
     specs: {
+      'Графический процессор': 'Radeon RX 7600 XT',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 33)',
       'Техпроцесс': 'TSMC 6 нм',
       'Интерфейс': 'PCIe 4.0 x8',
@@ -1420,6 +1449,7 @@ final List<Component> gpuComponents = [
     price: 84990,
     description: '4096 SP при Boost до 2310 МГц и 16 ГБ GDDR6 — разогнанный флагман RDNA 2 с самой высокой частотой в поколении.',
     specs: {
+      'Графический процессор': 'Radeon RX 6950 XT',
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 21 XTXH)',
       'Техпроцесс': 'TSMC 7 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1468,6 +1498,7 @@ final List<Component> gpuComponents = [
     price: 74990,
     description: '5120 потоковых процессоров и 16 ГБ GDDR6 с Infinity Cache 128 МБ — флагман RDNA 2 первого выхода.',
     specs: {
+      'Графический процессор': 'Radeon RX 6900 XT',
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 21 XT)',
       'Техпроцесс': 'TSMC 7 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1516,6 +1547,7 @@ final List<Component> gpuComponents = [
     price: 59990,
     description: '3840 потоковых процессоров, 16 ГБ GDDR6 и Infinity Cache 128 МБ — средне-топовый RDNA 2 для 4K без переплаты.',
     specs: {
+      'Графический процессор': 'Radeon RX 6800',
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 21 XL)',
       'Техпроцесс': 'TSMC 7 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1564,6 +1596,7 @@ final List<Component> gpuComponents = [
     price: 49990,
     description: '2560 потоковых процессоров, 12 ГБ GDDR6 с Boost до 2600 МГц — обновлённый RX 6700 XT для 1440p с повышенными частотами.',
     specs: {
+      'Графический процессор': 'Radeon RX 6750 XT',
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 22 XT)',
       'Техпроцесс': 'TSMC 7 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1612,6 +1645,7 @@ final List<Component> gpuComponents = [
     price: 33990,
     description: '2048 потоковых процессоров, 8 ГБ GDDR6 и Boost до 2635 МГц — обновлённый RX 6600 XT с более быстрой памятью.',
     specs: {
+      'Графический процессор': 'Radeon RX 6650 XT',
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 23 XT)',
       'Техпроцесс': 'TSMC 7 нм',
       'Интерфейс': 'PCIe 4.0 x8',
@@ -1660,6 +1694,7 @@ final List<Component> gpuComponents = [
     price: 29990,
     description: '2048 потоковых процессоров, 8 ГБ GDDR6 и низкий TDP 160 Вт — один из лучших вариантов для 1080p в RDNA 2.',
     specs: {
+      'Графический процессор': 'Radeon RX 6600 XT',
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 23 XT)',
       'Техпроцесс': 'TSMC 7 нм',
       'Интерфейс': 'PCIe 4.0 x8',
@@ -1708,6 +1743,7 @@ final List<Component> gpuComponents = [
     price: 25990,
     description: '1792 потоковых процессора, 8 ГБ GDDR6, TDP 132 Вт — экономичный RDNA 2 для плавного 1080p-гейминга.',
     specs: {
+      'Графический процессор': 'Radeon RX 6600',
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 23 XL)',
       'Техпроцесс': 'TSMC 7 нм',
       'Интерфейс': 'PCIe 4.0 x8',
@@ -1756,6 +1792,7 @@ final List<Component> gpuComponents = [
     price: 15990,
     description: '1024 потоковых процессора, 4 ГБ GDDR6, TDP 107 Вт — самый доступный RDNA 2 для базового 1080p-гейминга.',
     specs: {
+      'Графический процессор': 'Radeon RX 6500 XT',
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 24 XTX)',
       'Техпроцесс': 'TSMC 6 нм',
       'Интерфейс': 'PCIe 4.0 x4',
@@ -1806,6 +1843,7 @@ final List<Component> gpuComponents = [
     price: 77990,
     description: '4096 потоковых процессоров RDNA 4 Navi 48, 16 ГБ GDDR6 — флагман нового поколения, выпущен в марте 2025.',
     specs: {
+      'Графический процессор': 'Radeon RX 9070 XT',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 48)',
       'Техпроцесс': 'TSMC 4 нм',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -1856,6 +1894,7 @@ final List<Component> gpuComponents = [
     price: 36990,
     description: '4096 шейдерных процессоров Xe-HPG, 16 ГБ GDDR6 — флагман Intel Arc с лучшей рейтрейсинговой производительностью в классе.',
     specs: {
+      'Графический процессор': 'Arc A770 16GB',
       'Архитектура (микроархитектура)': 'Xe-HPG (ACM-G10)',
       'Техпроцесс': 'TSMC 6 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1905,6 +1944,7 @@ final List<Component> gpuComponents = [
     price: 27990,
     description: '3584 шейдерных процессора Xe-HPG, 8 ГБ GDDR6 — хороший выбор для 1080p/1440p с аппаратным AV1-кодированием.',
     specs: {
+      'Графический процессор': 'Arc A750',
       'Архитектура (микроархитектура)': 'Xe-HPG (ACM-G10)',
       'Техпроцесс': 'TSMC 6 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -1954,6 +1994,7 @@ final List<Component> gpuComponents = [
     price: 22990,
     description: '3072 шейдерных процессора Xe-HPG, 8 ГБ GDDR6 и TDP 175 Вт — средний Arc для комфортного 1080p.',
     specs: {
+      'Графический процессор': 'Arc A580',
       'Архитектура (микроархитектура)': 'Xe-HPG (ACM-G10)',
       'Техпроцесс': 'TSMC 6 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -2005,6 +2046,7 @@ final List<Component> gpuComponents = [
     price: 41990,
     description: '2560 Xe2-процессоров, 12 ГБ GDDR6 и PCIe 5.0 — флагман Battlemage с существенным приростом RT-производительности.',
     specs: {
+      'Графический процессор': 'Arc B580',
       'Архитектура (микроархитектура)': 'Xe2-HPG (BMG-G21)',
       'Техпроцесс': 'TSMC 5 нм',
       'Интерфейс': 'PCIe 5.0 x8',
@@ -2054,6 +2096,7 @@ final List<Component> gpuComponents = [
     price: 13990,
     description: '1024 шейдерных процессора Xe-HPG, 6 ГБ GDDR6, TDP 75 Вт — самый доступный Arc для базового гейминга и медиапроизводства.',
     specs: {
+      'Графический процессор': 'Arc A380',
       'Архитектура (микроархитектура)': 'Xe-HPG (ACM-G11)',
       'Техпроцесс': 'TSMC 6 нм',
       'Интерфейс': 'PCIe 4.0 x8',
@@ -2105,6 +2148,7 @@ final List<Component> gpuComponents = [
     price: 21990,
     description: '1408 CUDA-ядер и 6 ГБ GDDR6 на 192-битной шине — один из лучших Turing без RT-ядер для 1080p по доступной цене.',
     specs: {
+      'Графический процессор': 'NVIDIA GeForce GTX 1660 Super',
       'Архитектура (микроархитектура)': 'Turing (TU116)',
       'Техпроцесс': 'TSMC 12 нм',
       'Интерфейс': 'PCIe 3.0 x16',
@@ -2151,6 +2195,7 @@ final List<Component> gpuComponents = [
     price: 23490,
     description: '1536 CUDA-ядер Turing и 6 ГБ GDDR6 — лучший GTX 16xx без трассировки лучей, уверенный 1080p при умеренном TDP.',
     specs: {
+      'Графический процессор': 'NVIDIA GeForce GTX 1660 Ti',
       'Архитектура (микроархитектура)': 'Turing (TU116)',
       'Техпроцесс': 'TSMC 12 нм',
       'Интерфейс': 'PCIe 3.0 x16',
@@ -2199,6 +2244,7 @@ final List<Component> gpuComponents = [
     price: 259990,
     description: 'Флагманское исполнение RTX 4090 от ASUS: тройной Axial-tech, разгон до 2640 МГц Boost, испарительная камера и полная Aura Sync RGB-подсветка.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4090',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Базовая модель GPU': 'Strix GeForce RTX 4090 OC Edition',
       'Техпроцесс': 'по базовому GPU',
@@ -2243,6 +2289,7 @@ final List<Component> gpuComponents = [
     price: 254990,
     description: 'MSI SUPRIM X — высшая линейка MSI для RTX 4090. Три вентилятора TORX 5.0 Fan, испарительная камера и Mystic Light.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4090',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Базовая модель GPU': 'X GeForce RTX 4090',
       'Техпроцесс': 'по базовому GPU',
@@ -2287,6 +2334,7 @@ final List<Component> gpuComponents = [
     price: 249990,
     description: 'AORUS Master — флагман Gigabyte для RTX 4090 с тройным Windforce Stack и испарительной камерой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4090',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Базовая модель GPU': 'Master GeForce RTX 4090',
       'Техпроцесс': 'по базовому GPU',
@@ -2331,6 +2379,7 @@ final List<Component> gpuComponents = [
     price: 244990,
     description: 'Palit GameRock OC — доступное флагманское исполнение RTX 4090 с тройным кулером и ARGB-подсветкой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4090',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4090',
       'Техпроцесс': 'по базовому GPU',
@@ -2375,6 +2424,7 @@ final List<Component> gpuComponents = [
     price: 247990,
     description: 'Zotac Gaming AMP Extreme Airo — массивный кулер IceStorm 3.0 с тремя вентиляторами и полноцветной SPECTRA-подсветкой для RTX 4090.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4090',
       'Архитектура / исполнение': 'Zotac custom PCB',
       'Базовая модель GPU': 'AMP Extreme Airo GeForce RTX 4090',
       'Техпроцесс': 'по базовому GPU',
@@ -2420,6 +2470,7 @@ final List<Component> gpuComponents = [
     price: 139990,
     description: 'ROG Strix RTX 4080 Super OC: разгон до 2655 МГц Boost, тройной Axial-tech и испарительная камера.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Базовая модель GPU': 'Strix GeForce RTX 4080 Super OC',
       'Техпроцесс': 'по базовому GPU',
@@ -2464,6 +2515,7 @@ final List<Component> gpuComponents = [
     price: 129990,
     description: 'MSI Gaming X Slim RTX 4080 Super — тонкий 2.5-слотовый дизайн с тремя TORX 4.0 и Mystic Light для тесных корпусов.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Базовая модель GPU': 'X Slim GeForce RTX 4080 Super',
       'Техпроцесс': 'по базовому GPU',
@@ -2508,6 +2560,7 @@ final List<Component> gpuComponents = [
     price: 134990,
     description: 'Gigabyte AORUS Master RTX 4080 Super с LCD Edge View экраном, тройным Windforce Stack и испарительной камерой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Базовая модель GPU': 'Master GeForce RTX 4080 Super',
       'Техпроцесс': 'по базовому GPU',
@@ -2552,6 +2605,7 @@ final List<Component> gpuComponents = [
     price: 124990,
     description: 'Palit GamingPro OC RTX 4080 Super — баланс цены и производительности с тройным кулером и ARGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4080 Super',
       'Техпроцесс': 'по базовому GPU',
@@ -2596,6 +2650,7 @@ final List<Component> gpuComponents = [
     price: 121990,
     description: 'Inno3D X3 RTX 4080 Super — стильный и тихий кулер X3 с тремя вентиляторами и ARGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура / исполнение': 'Inno3D custom PCB',
       'Базовая модель GPU': 'GeForce RTX 4080 Super',
       'Техпроцесс': 'по базовому GPU',
@@ -2641,6 +2696,7 @@ final List<Component> gpuComponents = [
     price: 119990,
     description: 'ROG Strix RTX 4070 Ti Super OC — разгон до 2730 МГц, тройной Axial-tech и Aura Sync для 1440p и 4K.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti Super',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Базовая модель GPU': 'Strix GeForce RTX 4070 Ti Super OC',
       'Техпроцесс': 'по базовому GPU',
@@ -2685,6 +2741,7 @@ final List<Component> gpuComponents = [
     price: 109990,
     description: 'MSI Gaming X Slim RTX 4070 Ti Super — тонкий профиль 2.5 слота с тремя TORX 4.0.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti Super',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Базовая модель GPU': 'X Slim GeForce RTX 4070 Ti Super',
       'Техпроцесс': 'по базовому GPU',
@@ -2729,6 +2786,7 @@ final List<Component> gpuComponents = [
     price: 104990,
     description: 'Gigabyte Windforce OC RTX 4070 Ti Super — тройной Windforce 3X с чередованием вращения.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti Super',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4070 Ti Super',
       'Техпроцесс': 'по базовому GPU',
@@ -2773,6 +2831,7 @@ final List<Component> gpuComponents = [
     price: 102990,
     description: 'Palit GamingPro OC RTX 4070 Ti Super — надёжный тройной кулер и ARGB по разумной цене.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti Super',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4070 Ti Super',
       'Техпроцесс': 'по базовому GPU',
@@ -2817,6 +2876,7 @@ final List<Component> gpuComponents = [
     price: 106990,
     description: 'Zotac Gaming Trinity OC RTX 4070 Ti Super — три HDB-вентилятора IceStorm 3.0 и SPECTRA ARGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti Super',
       'Архитектура / исполнение': 'Zotac custom PCB',
       'Базовая модель GPU': 'Trinity OC GeForce RTX 4070 Ti Super',
       'Техпроцесс': 'по базовому GPU',
@@ -2862,6 +2922,7 @@ final List<Component> gpuComponents = [
     price: 89990,
     description: 'ASUS Dual OC RTX 4070 Super — двойной Axial-tech, 2.5 слота и компактные 280 мм для mid-tower.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Super',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4070 Super',
       'Техпроцесс': 'по базовому GPU',
@@ -2906,6 +2967,7 @@ final List<Component> gpuComponents = [
     price: 84990,
     description: 'MSI Ventus 3X OC RTX 4070 Super — три TORX 4.0 без RGB, строгий дизайн и хорошие температуры.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Super',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Базовая модель GPU': '3X OC GeForce RTX 4070 Super',
       'Техпроцесс': 'по базовому GPU',
@@ -2950,6 +3012,7 @@ final List<Component> gpuComponents = [
     price: 86990,
     description: 'Gigabyte Gaming OC RTX 4070 Super — тройной Windforce 3X и RGB Fusion 2.0.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Super',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4070 Super',
       'Техпроцесс': 'по базовому GPU',
@@ -2994,6 +3057,7 @@ final List<Component> gpuComponents = [
     price: 82990,
     description: 'Palit GamingPro OC RTX 4070 Super — доступное OC-исполнение с тройным кулером.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Super',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4070 Super',
       'Техпроцесс': 'по базовому GPU',
@@ -3038,6 +3102,7 @@ final List<Component> gpuComponents = [
     price: 80990,
     description: 'Inno3D Twin X2 OC RTX 4070 Super — бюджетное двухвентиляторное исполнение в 2 слота.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Super',
       'Архитектура / исполнение': 'Inno3D custom PCB',
       'Базовая модель GPU': 'X2 OC GeForce RTX 4070 Super',
       'Техпроцесс': 'по базовому GPU',
@@ -3083,6 +3148,7 @@ final List<Component> gpuComponents = [
     price: 72990,
     description: 'ASUS Dual OC RTX 4070 — компактный двойной Axial-tech и 2.5 слота для 1440p-гейминга.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4070',
       'Техпроцесс': 'по базовому GPU',
@@ -3127,6 +3193,7 @@ final List<Component> gpuComponents = [
     price: 68990,
     description: 'MSI Ventus 2X OC RTX 4070 — самый компактный вариант с двумя TORX 4.0 и строгим дизайном.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Базовая модель GPU': '2X OC GeForce RTX 4070',
       'Техпроцесс': 'по базовому GPU',
@@ -3171,6 +3238,7 @@ final List<Component> gpuComponents = [
     price: 70990,
     description: 'Gigabyte Gaming OC RTX 4070 — тройной Windforce 3X и RGB Fusion 2.0.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4070',
       'Техпроцесс': 'по базовому GPU',
@@ -3215,6 +3283,7 @@ final List<Component> gpuComponents = [
     price: 66990,
     description: 'Palit Dual RTX 4070 — доступное двухвентиляторное исполнение в компактном 2-слотовом корпусе.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Базовая модель GPU': 'GeForce RTX 4070',
       'Техпроцесс': 'по базовому GPU',
@@ -3259,6 +3328,7 @@ final List<Component> gpuComponents = [
     price: 67990,
     description: 'Zotac Gaming Twin Edge OC RTX 4070 — ультракомпактный 2-слотовый кулер с SPECTRA ARGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070',
       'Архитектура / исполнение': 'Zotac custom PCB',
       'Базовая модель GPU': 'Twin Edge OC GeForce RTX 4070',
       'Техпроцесс': 'по базовому GPU',
@@ -3304,6 +3374,7 @@ final List<Component> gpuComponents = [
     price: 46990,
     description: 'ASUS TUF Gaming OC RTX 4060 Ti — тройной кулер Axial-tech, военные конденсаторы и Aura Sync.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Базовая модель GPU': 'Gaming OC GeForce RTX 4060 Ti',
       'Техпроцесс': 'по базовому GPU',
@@ -3348,6 +3419,7 @@ final List<Component> gpuComponents = [
     price: 44990,
     description: 'MSI Gaming X RTX 4060 Ti — Tri Frozr 2S с двумя TORX 4.0 и Mystic Light RGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Базовая модель GPU': 'X GeForce RTX 4060 Ti',
       'Техпроцесс': 'по базовому GPU',
@@ -3392,6 +3464,7 @@ final List<Component> gpuComponents = [
     price: 43990,
     description: 'Gigabyte Eagle OC RTX 4060 Ti — компактный двойной Windforce с чередованием вентиляторов.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4060 Ti',
       'Техпроцесс': 'по базовому GPU',
@@ -3436,6 +3509,7 @@ final List<Component> gpuComponents = [
     price: 42990,
     description: 'Palit GamingPro OC RTX 4060 Ti — практичный двухвентиляторный кулер с ARGB-подсветкой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4060 Ti',
       'Техпроцесс': 'по базовому GPU',
@@ -3480,6 +3554,7 @@ final List<Component> gpuComponents = [
     price: 41990,
     description: 'Inno3D Twin X2 OC RTX 4060 Ti — тихое двухвентиляторное исполнение в 2-слотовом форм-факторе.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti',
       'Архитектура / исполнение': 'Inno3D custom PCB',
       'Базовая модель GPU': 'X2 OC GeForce RTX 4060 Ti',
       'Техпроцесс': 'по базовому GPU',
@@ -3525,6 +3600,7 @@ final List<Component> gpuComponents = [
     price: 149990,
     description: 'ASUS ROG Strix RX 7900 XTX OC — тройной Axial-tech и Aura Sync для флагмана AMD.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XTX',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Базовая модель GPU': 'Strix Radeon RX 7900 XTX OC',
       'Техпроцесс': 'по базовому GPU',
@@ -3569,6 +3645,7 @@ final List<Component> gpuComponents = [
     price: 144990,
     description: 'MSI Gaming X Trio RX 7900 XTX — тройной Tri Frozr 3S с TORX 5.0 и Mystic Light.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XTX',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Базовая модель GPU': 'X Trio Radeon RX 7900 XTX',
       'Техпроцесс': 'по базовому GPU',
@@ -3613,6 +3690,7 @@ final List<Component> gpuComponents = [
     price: 139990,
     description: 'Gigabyte Gaming OC RX 7900 XTX — тройной Windforce 3X с испарительной камерой.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XTX',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Базовая модель GPU': 'OC Radeon RX 7900 XTX',
       'Техпроцесс': 'по базовому GPU',
@@ -3657,6 +3735,7 @@ final List<Component> gpuComponents = [
     price: 142990,
     description: 'PowerColor Red Devil RX 7900 XTX — культовое исполнение с испарительной камерой и разгоном до 2620 МГц.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XTX',
       'Архитектура / исполнение': 'PowerColor custom PCB',
       'Базовая модель GPU': 'Devil Radeon RX 7900 XTX',
       'Техпроцесс': 'по базовому GPU',
@@ -3701,6 +3780,7 @@ final List<Component> gpuComponents = [
     price: 147990,
     description: 'Sapphire NITRO+ RX 7900 XTX — легендарное исполнение NITRO+ с испарительной камерой и тройным Dual Ball Bearing.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XTX',
       'Архитектура / исполнение': 'Sapphire custom PCB',
       'Базовая модель GPU': 'Radeon RX 7900 XTX',
       'Техпроцесс': 'по базовому GPU',
@@ -3746,6 +3826,7 @@ final List<Component> gpuComponents = [
     price: 52990,
     description: 'ASUS TUF Gaming OC RX 7800 XT — тройной Axial-tech с Aura Sync и военными конденсаторами.',
     specs: {
+      'Графический процессор': 'Radeon RX 7800 XT',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Базовая модель GPU': 'Gaming OC Radeon RX 7800 XT',
       'Техпроцесс': 'по базовому GPU',
@@ -3790,6 +3871,7 @@ final List<Component> gpuComponents = [
     price: 49990,
     description: 'MSI Gaming X RX 7800 XT — Tri Frozr 2S с двумя TORX 4.0 и Mystic Light RGB.',
     specs: {
+      'Графический процессор': 'Radeon RX 7800 XT',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Базовая модель GPU': 'X Radeon RX 7800 XT',
       'Техпроцесс': 'по базовому GPU',
@@ -3834,6 +3916,7 @@ final List<Component> gpuComponents = [
     price: 50990,
     description: 'Gigabyte Gaming OC RX 7800 XT — тройной Windforce 3X с RGB Fusion 2.0.',
     specs: {
+      'Графический процессор': 'Radeon RX 7800 XT',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Базовая модель GPU': 'OC Radeon RX 7800 XT',
       'Техпроцесс': 'по базовому GPU',
@@ -3878,6 +3961,7 @@ final List<Component> gpuComponents = [
     price: 47990,
     description: 'PowerColor Fighter RX 7800 XT — бюджетное исполнение с двойным кулером без RGB.',
     specs: {
+      'Графический процессор': 'Radeon RX 7800 XT',
       'Архитектура / исполнение': 'PowerColor custom PCB',
       'Базовая модель GPU': 'Radeon RX 7800 XT',
       'Техпроцесс': 'по базовому GPU',
@@ -3922,6 +4006,7 @@ final List<Component> gpuComponents = [
     price: 51990,
     description: 'Sapphire Pulse RX 7800 XT — надёжный двойной кулер Dual Ball Bearing с ARGB и тихой работой.',
     specs: {
+      'Графический процессор': 'Radeon RX 7800 XT',
       'Архитектура / исполнение': 'Sapphire custom PCB',
       'Базовая модель GPU': 'Radeon RX 7800 XT',
       'Техпроцесс': 'по базовому GPU',
@@ -3967,6 +4052,7 @@ final List<Component> gpuComponents = [
     price: 32990,
     description: 'ASUS Dual OC RX 7600 — двойной Axial-tech и авторазгон до 2755 МГц Boost в компактном 2.5-слотовом исполнении.',
     specs: {
+      'Графический процессор': 'Radeon RX 7600',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Базовая модель GPU': 'OC Radeon RX 7600',
       'Техпроцесс': 'по базовому GPU',
@@ -4011,6 +4097,7 @@ final List<Component> gpuComponents = [
     price: 30990,
     description: 'MSI Mech 2X OC RX 7600 — ультракомпактный 2-слотовый двойной кулер без лишнего RGB.',
     specs: {
+      'Графический процессор': 'Radeon RX 7600',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Базовая модель GPU': '2X OC Radeon RX 7600',
       'Техпроцесс': 'по базовому GPU',
@@ -4055,6 +4142,7 @@ final List<Component> gpuComponents = [
     price: 31990,
     description: 'Gigabyte Eagle OC RX 7600 — компактный двойной Windforce с чередованием вентиляторов и RGB.',
     specs: {
+      'Графический процессор': 'Radeon RX 7600',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Базовая модель GPU': 'OC Radeon RX 7600',
       'Техпроцесс': 'по базовому GPU',
@@ -4099,6 +4187,7 @@ final List<Component> gpuComponents = [
     price: 29990,
     description: 'PowerColor Hellhound RX 7600 — доступное ARGB-исполнение с двойным кулером.',
     specs: {
+      'Графический процессор': 'Radeon RX 7600',
       'Архитектура / исполнение': 'PowerColor custom PCB',
       'Базовая модель GPU': 'Radeon RX 7600',
       'Техпроцесс': 'по базовому GPU',
@@ -4143,6 +4232,7 @@ final List<Component> gpuComponents = [
     price: 33490,
     description: 'Sapphire Pulse RX 7600 — тихий двойной Dual Ball Bearing с ARGB в компактном корпусе.',
     specs: {
+      'Графический процессор': 'Radeon RX 7600',
       'Архитектура / исполнение': 'Sapphire custom PCB',
       'Базовая модель GPU': 'Radeon RX 7600',
       'Техпроцесс': 'по базовому GPU',
@@ -4188,6 +4278,7 @@ final List<Component> gpuComponents = [
     price: 35990,
     description: 'ASUS Dual OC RTX 4060 — компактный двойной Axial-tech и 2.5 слота для 1080p/1440p-гейминга.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4060',
       'Техпроцесс': 'по базовому GPU',
@@ -4232,6 +4323,7 @@ final List<Component> gpuComponents = [
     price: 33990,
     description: 'MSI Ventus 2X OC RTX 4060 — ультракомпактный 2-слотовый кулер с двумя TORX 4.0 без RGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Базовая модель GPU': '2X OC GeForce RTX 4060',
       'Техпроцесс': 'по базовому GPU',
@@ -4276,6 +4368,7 @@ final List<Component> gpuComponents = [
     price: 34490,
     description: 'Gigabyte Eagle OC RTX 4060 — двойной Windforce 2X с RGB Fusion 2.0 в компактном корпусе.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4060',
       'Техпроцесс': 'по базовому GPU',
@@ -4320,6 +4413,7 @@ final List<Component> gpuComponents = [
     price: 32990,
     description: 'Palit Dual OC RTX 4060 — доступное двухвентиляторное исполнение с ARGB-подсветкой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Базовая модель GPU': 'OC GeForce RTX 4060',
       'Техпроцесс': 'по базовому GPU',
@@ -4364,6 +4458,7 @@ final List<Component> gpuComponents = [
     price: 33490,
     description: 'Zotac Gaming Twin Edge OC RTX 4060 — самый компактный 2-слотовый кулер с SPECTRA ARGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060',
       'Архитектура / исполнение': 'Zotac custom PCB',
       'Базовая модель GPU': 'Twin Edge OC GeForce RTX 4060',
       'Техпроцесс': 'по базовому GPU',
@@ -4409,6 +4504,7 @@ final List<Component> gpuComponents = [
     price: 129990,
     description: 'ROG Strix RTX 4080 OC — разгон до 2625 МГц, тройной Axial-tech и испарительная камера для 4K-гейминга.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Видеопамять': '16 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -4450,6 +4546,7 @@ final List<Component> gpuComponents = [
     price: 124990,
     description: 'MSI SUPRIM X RTX 4080 — три TORX 5.0 Fan и испарительная камера в высшей линейке MSI.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Видеопамять': '16 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -4491,6 +4588,7 @@ final List<Component> gpuComponents = [
     price: 122990,
     description: 'Gigabyte AORUS Xtreme RTX 4080 — LCD Edge View дисплей, тройной Windforce Stack и испарительная камера.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Видеопамять': '16 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -4532,6 +4630,7 @@ final List<Component> gpuComponents = [
     price: 117990,
     description: 'Palit GameRock OC RTX 4080 — тройной кулер с испарительной камерой и ARGB-подсветкой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Видеопамять': '16 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -4573,6 +4672,7 @@ final List<Component> gpuComponents = [
     price: 119990,
     description: 'Zotac AMP Extreme Airo RTX 4080 — IceStorm 3.0 с тремя HDB и полноцветной SPECTRA-подсветкой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080',
       'Архитектура / исполнение': 'Zotac custom PCB',
       'Видеопамять': '16 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -4615,6 +4715,7 @@ final List<Component> gpuComponents = [
     price: 109990,
     description: 'ROG Strix RTX 3090 Ti OC — тройной Axial-tech и испарительная камера для 4K/8K.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3090 Ti',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Видеопамять': '24 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -4656,6 +4757,7 @@ final List<Component> gpuComponents = [
     price: 107990,
     description: 'MSI SUPRIM X RTX 3090 Ti — Tri Frozr 3 с тремя TORX 5.0 и испарительной камерой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3090 Ti',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Видеопамять': '24 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -4697,6 +4799,7 @@ final List<Component> gpuComponents = [
     price: 106990,
     description: 'Gigabyte AORUS Xtreme RTX 3090 Ti — LCD-дисплей, Windforce Stack и испарительная камера.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3090 Ti',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Видеопамять': '24 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -4738,6 +4841,7 @@ final List<Component> gpuComponents = [
     price: 104990,
     description: 'Zotac AMP Extreme RTX 3090 Ti — IceStorm 3.0 и SPECTRA ARGB для Ampere-флагмана.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3090 Ti',
       'Архитектура / исполнение': 'Zotac custom PCB',
       'Видеопамять': '24 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -4779,6 +4883,7 @@ final List<Component> gpuComponents = [
     price: 102990,
     description: 'Palit GameRock Premium RTX 3090 Ti — тройной кулер с испарительной камерой и ARGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3090 Ti',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Видеопамять': '24 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -4821,6 +4926,7 @@ final List<Component> gpuComponents = [
     price: 79990,
     description: 'ROG Strix RTX 3080 Ti OC — тройной Axial-tech, разгон до 1845 МГц и Aura Sync.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3080 Ti',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Видеопамять': '12 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -4862,6 +4968,7 @@ final List<Component> gpuComponents = [
     price: 77990,
     description: 'MSI SUPRIM X RTX 3080 Ti — Tri Frozr 3 с TORX 5.0 и Mystic Light.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3080 Ti',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Видеопамять': '12 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -4903,6 +5010,7 @@ final List<Component> gpuComponents = [
     price: 76990,
     description: 'Gigabyte AORUS Master RTX 3080 Ti — тройной Windforce Stack и испарительная камера.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3080 Ti',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Видеопамять': '12 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -4944,6 +5052,7 @@ final List<Component> gpuComponents = [
     price: 74990,
     description: 'Palit GameRock OC RTX 3080 Ti — тройной кулер с испарительной камерой и ARGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3080 Ti',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Видеопамять': '12 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -4985,6 +5094,7 @@ final List<Component> gpuComponents = [
     price: 73990,
     description: 'Inno3D iChill X4 RTX 3080 Ti — уникальный четырёхвентиляторный кулер с испарительной камерой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3080 Ti',
       'Архитектура / исполнение': 'Inno3D custom PCB',
       'Видеопамять': '12 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -5027,6 +5137,7 @@ final List<Component> gpuComponents = [
     price: 54990,
     description: 'ROG Strix RTX 3070 Ti OC — тройной Axial-tech и Aura Sync для 1440p/4K.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3070 Ti',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Видеопамять': '8 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -5068,6 +5179,7 @@ final List<Component> gpuComponents = [
     price: 52990,
     description: 'MSI Gaming X Trio RTX 3070 Ti — Tri Frozr 2S с тремя TORX 4.0.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3070 Ti',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Видеопамять': '8 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -5109,6 +5221,7 @@ final List<Component> gpuComponents = [
     price: 51990,
     description: 'Gigabyte AORUS Master RTX 3070 Ti — тройной Windforce Stack с испарительной камерой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3070 Ti',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Видеопамять': '8 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -5150,6 +5263,7 @@ final List<Component> gpuComponents = [
     price: 49990,
     description: 'Palit GameRock OC RTX 3070 Ti — тройной кулер с ARGB-подсветкой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3070 Ti',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Видеопамять': '8 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -5191,6 +5305,7 @@ final List<Component> gpuComponents = [
     price: 50990,
     description: 'Zotac AMP Holo RTX 3070 Ti — голографическая SPECTRA ARGB и IceStorm 2.0.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3070 Ti',
       'Архитектура / исполнение': 'Zotac custom PCB',
       'Видеопамять': '8 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -5233,6 +5348,7 @@ final List<Component> gpuComponents = [
     price: 89990,
     description: 'ROG Strix RX 6950 XT OC — тройной Axial-tech и разгон до 2394 МГц для 4K AMD.',
     specs: {
+      'Графический процессор': 'Radeon RX 6950 XT',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5274,6 +5390,7 @@ final List<Component> gpuComponents = [
     price: 86990,
     description: 'MSI Gaming X Trio RX 6950 XT — Tri Frozr 2S с тремя TORX 4.0 и Mystic Light.',
     specs: {
+      'Графический процессор': 'Radeon RX 6950 XT',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5315,6 +5432,7 @@ final List<Component> gpuComponents = [
     price: 87990,
     description: 'Gigabyte AORUS Xtreme RX 6950 XT — Windforce Stack, LCD-дисплей и испарительная камера.',
     specs: {
+      'Графический процессор': 'Radeon RX 6950 XT',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5356,6 +5474,7 @@ final List<Component> gpuComponents = [
     price: 87490,
     description: 'PowerColor Red Devil RX 6950 XT — тройной кулер с испарительной камерой и ARGB.',
     specs: {
+      'Графический процессор': 'Radeon RX 6950 XT',
       'Архитектура / исполнение': 'PowerColor custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5397,6 +5516,7 @@ final List<Component> gpuComponents = [
     price: 88990,
     description: 'Sapphire NITRO+ RX 6950 XT — Dual Ball Bearing и испарительная камера в легендарном исполнении.',
     specs: {
+      'Графический процессор': 'Radeon RX 6950 XT',
       'Архитектура / исполнение': 'Sapphire custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5439,6 +5559,7 @@ final List<Component> gpuComponents = [
     price: 64990,
     description: 'ASUS TUF Gaming OC RX 6800 XT — тройной Axial-tech с военными конденсаторами.',
     specs: {
+      'Графический процессор': 'Radeon RX 6800 XT',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5480,6 +5601,7 @@ final List<Component> gpuComponents = [
     price: 62990,
     description: 'MSI Gaming X Trio RX 6800 XT — Tri Frozr 2 с тремя TORX 4.0.',
     specs: {
+      'Графический процессор': 'Radeon RX 6800 XT',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5521,6 +5643,7 @@ final List<Component> gpuComponents = [
     price: 63990,
     description: 'Gigabyte AORUS Master RX 6800 XT — тройной Windforce Stack и испарительная камера.',
     specs: {
+      'Графический процессор': 'Radeon RX 6800 XT',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5562,6 +5685,7 @@ final List<Component> gpuComponents = [
     price: 62490,
     description: 'PowerColor Red Devil RX 6800 XT — тройной кулер с ARGB и испарительной камерой.',
     specs: {
+      'Графический процессор': 'Radeon RX 6800 XT',
       'Архитектура / исполнение': 'PowerColor custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5603,6 +5727,7 @@ final List<Component> gpuComponents = [
     price: 63490,
     description: 'Sapphire NITRO+ RX 6800 XT — Dual Ball Bearing и испарительная камера.',
     specs: {
+      'Графический процессор': 'Radeon RX 6800 XT',
       'Архитектура / исполнение': 'Sapphire custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5645,6 +5770,7 @@ final List<Component> gpuComponents = [
     price: 42990,
     description: 'ROG Strix RTX 3060 Ti OC — тройной Axial-tech и разгон до 1845 МГц Boost.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060 Ti',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Видеопамять': '8 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5686,6 +5812,7 @@ final List<Component> gpuComponents = [
     price: 40990,
     description: 'MSI Gaming X Trio RTX 3060 Ti — Tri Frozr 2 с тремя TORX 4.0.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060 Ti',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Видеопамять': '8 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5727,6 +5854,7 @@ final List<Component> gpuComponents = [
     price: 41990,
     description: 'Gigabyte AORUS Master RTX 3060 Ti — тройной Windforce Stack.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060 Ti',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Видеопамять': '8 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5768,6 +5896,7 @@ final List<Component> gpuComponents = [
     price: 39990,
     description: 'Palit GameRock OC RTX 3060 Ti — тройной кулер с ARGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060 Ti',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Видеопамять': '8 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5809,6 +5938,7 @@ final List<Component> gpuComponents = [
     price: 38990,
     description: 'Inno3D iChill X3 RTX 3060 Ti — компактный тройной кулер с ARGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060 Ti',
       'Архитектура / исполнение': 'Inno3D custom PCB',
       'Видеопамять': '8 ГБ GDDR6',
       'Разрядность шины памяти': '256 бит',
@@ -5851,6 +5981,7 @@ final List<Component> gpuComponents = [
     price: 35990,
     description: 'ASUS Dual OC RTX 3060 — двойной Axial-tech и 2.5 слота.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -5892,6 +6023,7 @@ final List<Component> gpuComponents = [
     price: 34990,
     description: 'MSI Gaming X RTX 3060 — Tri Frozr 2 с двумя TORX 4.0.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -5933,6 +6065,7 @@ final List<Component> gpuComponents = [
     price: 34490,
     description: 'Gigabyte Gaming OC RTX 3060 — тройной Windforce 3X и RGB Fusion 2.0.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -5974,6 +6107,7 @@ final List<Component> gpuComponents = [
     price: 32990,
     description: 'Palit Dual RTX 3060 — компактный 2-слотовый двойной кулер без RGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060',
       'Архитектура / исполнение': 'Palit custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -6015,6 +6149,7 @@ final List<Component> gpuComponents = [
     price: 33490,
     description: 'Zotac Twin Edge OC RTX 3060 — компактный 2-слотовый кулер с SPECTRA ARGB.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3060',
       'Архитектура / исполнение': 'Zotac custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -6057,6 +6192,7 @@ final List<Component> gpuComponents = [
     price: 42990,
     description: 'ASUS TUF Gaming OC RX 6700 XT — тройной Axial-tech с военными конденсаторами.',
     specs: {
+      'Графический процессор': 'Radeon RX 6700 XT',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -6098,6 +6234,7 @@ final List<Component> gpuComponents = [
     price: 41990,
     description: 'MSI Gaming X RX 6700 XT — Tri Frozr 2 с двумя TORX 4.0.',
     specs: {
+      'Графический процессор': 'Radeon RX 6700 XT',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -6139,6 +6276,7 @@ final List<Component> gpuComponents = [
     price: 41490,
     description: 'Gigabyte Gaming OC RX 6700 XT — тройной Windforce 3X.',
     specs: {
+      'Графический процессор': 'Radeon RX 6700 XT',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -6180,6 +6318,7 @@ final List<Component> gpuComponents = [
     price: 39990,
     description: 'PowerColor Red Dragon RX 6700 XT — доступное двухвентиляторное исполнение с ARGB.',
     specs: {
+      'Графический процессор': 'Radeon RX 6700 XT',
       'Архитектура / исполнение': 'PowerColor custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -6221,6 +6360,7 @@ final List<Component> gpuComponents = [
     price: 41990,
     description: 'Sapphire Pulse RX 6700 XT — надёжный Dual Ball Bearing с ARGB.',
     specs: {
+      'Графический процессор': 'Radeon RX 6700 XT',
       'Архитектура / исполнение': 'Sapphire custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -6263,6 +6403,7 @@ final List<Component> gpuComponents = [
     price: 32990,
     description: 'ASUS Dual OC RX 6600 XT — двойной Axial-tech и 2.5 слота.',
     specs: {
+      'Графический процессор': 'Radeon RX 6600 XT',
       'Архитектура / исполнение': 'ASUS custom PCB',
       'Видеопамять': '8 ГБ GDDR6',
       'Разрядность шины памяти': '128 бит',
@@ -6304,6 +6445,7 @@ final List<Component> gpuComponents = [
     price: 31490,
     description: 'MSI Mech 2X RX 6600 XT — компактный 2-слотовый кулер без RGB.',
     specs: {
+      'Графический процессор': 'Radeon RX 6600 XT',
       'Архитектура / исполнение': 'MSI custom PCB',
       'Видеопамять': '8 ГБ GDDR6',
       'Разрядность шины памяти': '128 бит',
@@ -6345,6 +6487,7 @@ final List<Component> gpuComponents = [
     price: 32490,
     description: 'Gigabyte Eagle OC RX 6600 XT — двойной Windforce с чередованием.',
     specs: {
+      'Графический процессор': 'Radeon RX 6600 XT',
       'Архитектура / исполнение': 'Gigabyte custom PCB',
       'Видеопамять': '8 ГБ GDDR6',
       'Разрядность шины памяти': '128 бит',
@@ -6386,6 +6529,7 @@ final List<Component> gpuComponents = [
     price: 30990,
     description: 'PowerColor Hellhound RX 6600 XT — доступный двойной кулер с ARGB.',
     specs: {
+      'Графический процессор': 'Radeon RX 6600 XT',
       'Архитектура / исполнение': 'PowerColor custom PCB',
       'Видеопамять': '8 ГБ GDDR6',
       'Разрядность шины памяти': '128 бит',
@@ -6427,6 +6571,7 @@ final List<Component> gpuComponents = [
     price: 33490,
     description: 'Sapphire Pulse RX 6600 XT — Dual Ball Bearing с ARGB.',
     specs: {
+      'Графический процессор': 'Radeon RX 6600 XT',
       'Архитектура / исполнение': 'Sapphire custom PCB',
       'Видеопамять': '8 ГБ GDDR6',
       'Разрядность шины памяти': '128 бит',
@@ -6471,6 +6616,7 @@ final List<Component> gpuComponents = [
     price: 252990,
     description: 'Флагманское исполнение RTX 4090 от Colorful: тройной кулер iGame Vulcan с испарительной камерой, ARGB-подсветка и авторазгон до 2625 МГц Boost.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4090',
       'Архитектура / исполнение': 'Colorful iGame Vulcan custom PCB',
       'Видеопамять': '24 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -6512,6 +6658,7 @@ final List<Component> gpuComponents = [
     price: 244990,
     description: 'Исполнение RTX 4090 от KFA2 серии SG: три вентилятора, испарительная камера и ARGB-подсветка по доступной для флагмана цене.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4090',
       'Архитектура / исполнение': 'KFA2 SG custom PCB',
       'Видеопамять': '24 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -6553,6 +6700,7 @@ final List<Component> gpuComponents = [
     price: 248990,
     description: 'PNY XLR8 Gaming VERTO Epic-X — тройной кулер с испарительной камерой и фирменной Epic-X RGB подсветкой для RTX 4090.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4090',
       'Архитектура / исполнение': 'PNY XLR8 Gaming VERTO custom PCB',
       'Видеопамять': '24 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -6594,6 +6742,7 @@ final List<Component> gpuComponents = [
     price: 246990,
     description: 'Gainward Phantom GS для RTX 4090 — массивный тройной кулер Phantom с испарительной камерой и авторазгоном Boost до 2550 МГц.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4090',
       'Архитектура / исполнение': 'Gainward Phantom custom PCB',
       'Видеопамять': '24 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -6635,6 +6784,7 @@ final List<Component> gpuComponents = [
     price: 241990,
     description: 'Manli Gallardo RTX 4090 — тройной кулер с двумя испарительными трубками и RGB-подсветкой по конкурентной цене.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4090',
       'Архитектура / исполнение': 'Manli Gallardo custom PCB',
       'Видеопамять': '24 ГБ GDDR6X',
       'Разрядность шины памяти': '384 бит',
@@ -6679,6 +6829,7 @@ final List<Component> gpuComponents = [
     price: 132990,
     description: 'Colorful iGame Vulcan OC для RTX 4080 Super — тройной кулер с испарительной камерой, авторазгон до 2640 МГц и яркая ARGB-подсветка.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура / исполнение': 'Colorful iGame Vulcan custom PCB',
       'Видеопамять': '16 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -6720,6 +6871,7 @@ final List<Component> gpuComponents = [
     price: 123990,
     description: 'KFA2 RTX 4080 Super SG — трёхвентиляторный кулер с испарительной камерой и ARGB-подсветкой в доступном исполнении.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура / исполнение': 'KFA2 SG custom PCB',
       'Видеопамять': '16 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -6761,6 +6913,7 @@ final List<Component> gpuComponents = [
     price: 126990,
     description: 'PNY XLR8 VERTO Epic-X для RTX 4080 Super — тройной кулер VERTO с испарительной камерой и фирменной Epic-X RGB подсветкой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура / исполнение': 'PNY XLR8 VERTO custom PCB',
       'Видеопамять': '16 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -6802,6 +6955,7 @@ final List<Component> gpuComponents = [
     price: 124990,
     description: 'Gainward Phantom GS для RTX 4080 Super — массивный тройной кулер с испарительной камерой и авторазгоном до 2580 МГц Boost.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура / исполнение': 'Gainward Phantom custom PCB',
       'Видеопамять': '16 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -6843,6 +6997,7 @@ final List<Component> gpuComponents = [
     price: 119990,
     description: 'Manli Gallardo RTX 4080 Super — тройной кулер с тепловыми трубками, RGB-подсветкой и конкурентной ценой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура / исполнение': 'Manli Gallardo custom PCB',
       'Видеопамять': '16 ГБ GDDR6X',
       'Разрядность шины памяти': '256 бит',
@@ -6887,6 +7042,7 @@ final List<Component> gpuComponents = [
     price: 94990,
     description: 'Colorful iGame Vulcan OC для RTX 4070 Ti — тройной кулер с испарительной камерой и авторазгоном до 2670 МГц Boost, ARGB-подсветка.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti',
       'Архитектура / исполнение': 'Colorful iGame Vulcan custom PCB',
       'Видеопамять': '12 ГБ GDDR6X',
       'Разрядность шины памяти': '192 бит',
@@ -6928,6 +7084,7 @@ final List<Component> gpuComponents = [
     price: 88990,
     description: 'KFA2 RTX 4070 Ti SG — трёхвентиляторный кулер с испарительной камерой, ARGB-подсветка и тихая работа под нагрузкой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti',
       'Архитектура / исполнение': 'KFA2 SG custom PCB',
       'Видеопамять': '12 ГБ GDDR6X',
       'Разрядность шины памяти': '192 бит',
@@ -6969,6 +7126,7 @@ final List<Component> gpuComponents = [
     price: 91990,
     description: 'PNY XLR8 VERTO Epic-X для RTX 4070 Ti — тройной кулер с испарительной камерой и фирменной Epic-X RGB подсветкой для 1440p/4K гейминга.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti',
       'Архитектура / исполнение': 'PNY XLR8 VERTO custom PCB',
       'Видеопамять': '12 ГБ GDDR6X',
       'Разрядность шины памяти': '192 бит',
@@ -7010,6 +7168,7 @@ final List<Component> gpuComponents = [
     price: 89990,
     description: 'Gainward Phantom GS для RTX 4070 Ti — тройной кулер Phantom с испарительной камерой и авторазгоном Boost до 2625 МГц.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti',
       'Архитектура / исполнение': 'Gainward Phantom custom PCB',
       'Видеопамять': '12 ГБ GDDR6X',
       'Разрядность шины памяти': '192 бит',
@@ -7051,6 +7210,7 @@ final List<Component> gpuComponents = [
     price: 86990,
     description: 'Manli Gallardo RTX 4070 Ti — тройной кулер с тепловыми трубками и RGB-подсветкой по конкурентной цене для 1440p/4K гейминга.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti',
       'Архитектура / исполнение': 'Manli Gallardo custom PCB',
       'Видеопамять': '12 ГБ GDDR6X',
       'Разрядность шины памяти': '192 бит',
@@ -7095,6 +7255,7 @@ final List<Component> gpuComponents = [
     price: 51990,
     description: 'Colorful iGame Vulcan OC для RTX 4060 Ti 16GB — тройной кулер с испарительной камерой, разгон до 2655 МГц и ARGB-подсветка.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti 16GB',
       'Архитектура / исполнение': 'Colorful iGame Vulcan custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '128 бит',
@@ -7136,6 +7297,7 @@ final List<Component> gpuComponents = [
     price: 48990,
     description: 'KFA2 RTX 4060 Ti 16GB SG — трёхвентиляторный кулер с испарительной камерой и ARGB-подсветкой для 1080p/1440p.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti 16GB',
       'Архитектура / исполнение': 'KFA2 SG custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '128 бит',
@@ -7177,6 +7339,7 @@ final List<Component> gpuComponents = [
     price: 50490,
     description: 'PNY XLR8 VERTO Epic-X для RTX 4060 Ti 16GB — тройной кулер с испарительной камерой и фирменной Epic-X RGB подсветкой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti 16GB',
       'Архитектура / исполнение': 'PNY XLR8 VERTO custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '128 бит',
@@ -7218,6 +7381,7 @@ final List<Component> gpuComponents = [
     price: 49490,
     description: 'Gainward Phantom GS для RTX 4060 Ti 16GB — тройной кулер Phantom с испарительной камерой и 16 ГБ GDDR6 для текстур высокого разрешения.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti 16GB',
       'Архитектура / исполнение': 'Gainward Phantom custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '128 бит',
@@ -7259,6 +7423,7 @@ final List<Component> gpuComponents = [
     price: 47490,
     description: 'Manli Gallardo RTX 4060 Ti 16GB — тройной кулер с тепловыми трубками, 16 ГБ GDDR6 и RGB-подсветкой по доступной цене.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti 16GB',
       'Архитектура / исполнение': 'Manli Gallardo custom PCB',
       'Видеопамять': '16 ГБ GDDR6',
       'Разрядность шины памяти': '128 бит',
@@ -7303,6 +7468,7 @@ final List<Component> gpuComponents = [
     price: 109990,
     description: 'XFX MERC310 для RX 7900 XT — тройной кулер с испарительной камерой, 310 мм длина и авторазгон Boost до 2500 МГц.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XT',
       'Архитектура / исполнение': 'XFX MERC310 custom PCB',
       'Видеопамять': '20 ГБ GDDR6',
       'Разрядность шины памяти': '320 бит',
@@ -7344,6 +7510,7 @@ final List<Component> gpuComponents = [
     price: 107990,
     description: 'ASRock Phantom Gaming OC для RX 7900 XT — тройной кулер Phantom Gaming с испарительной камерой и авторазгоном до 2490 МГц Boost.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XT',
       'Архитектура / исполнение': 'ASRock Phantom Gaming custom PCB',
       'Видеопамять': '20 ГБ GDDR6',
       'Разрядность шины памяти': '320 бит',
@@ -7385,6 +7552,7 @@ final List<Component> gpuComponents = [
     price: 114990,
     description: 'Sapphire NITRO+ RX 7900 XT — легендарное исполнение с тройным Dual Ball Bearing, испарительной камерой и ARGB-подсветкой.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XT',
       'Архитектура / исполнение': 'Sapphire NITRO+ custom PCB',
       'Видеопамять': '20 ГБ GDDR6',
       'Разрядность шины памяти': '320 бит',
@@ -7426,6 +7594,7 @@ final List<Component> gpuComponents = [
     price: 112990,
     description: 'PowerColor Red Devil RX 7900 XT — тройной кулер с испарительной камерой, авторазгон до 2510 МГц и яркая ARGB-подсветка.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XT',
       'Архитектура / исполнение': 'PowerColor Red Devil custom PCB',
       'Видеопамять': '20 ГБ GDDR6',
       'Разрядность шины памяти': '320 бит',
@@ -7467,6 +7636,7 @@ final List<Component> gpuComponents = [
     price: 106990,
     description: 'Gigabyte Gaming OC RX 7900 XT — тройной Windforce 3X с чередованием вентиляторов, испарительная камера и RGB Fusion 2.0.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XT',
       'Архитектура / исполнение': 'Gigabyte Gaming OC custom PCB',
       'Видеопамять': '20 ГБ GDDR6',
       'Разрядность шины памяти': '320 бит',
@@ -7511,6 +7681,7 @@ final List<Component> gpuComponents = [
     price: 44990,
     description: 'XFX QICK319 для RX 7700 XT — тройной кулер с тепловыми трубками, авторазгон до 2599 МГц и ARGB-подсветка для 1440p гейминга.',
     specs: {
+      'Графический процессор': 'Radeon RX 7700 XT',
       'Архитектура / исполнение': 'XFX QICK319 custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -7552,6 +7723,7 @@ final List<Component> gpuComponents = [
     price: 42990,
     description: 'ASRock Challenger OC RX 7700 XT — двухвентиляторный кулер в компактном исполнении с авторазгоном до 2544 МГц и ARGB.',
     specs: {
+      'Графический процессор': 'Radeon RX 7700 XT',
       'Архитектура / исполнение': 'ASRock Challenger custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -7593,6 +7765,7 @@ final List<Component> gpuComponents = [
     price: 45990,
     description: 'Sapphire Pulse RX 7700 XT — надёжный двухвентиляторный Dual Ball Bearing с ARGB, тихой работой и авторазгоном до 2599 МГц.',
     specs: {
+      'Графический процессор': 'Radeon RX 7700 XT',
       'Архитектура / исполнение': 'Sapphire Pulse custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -7634,6 +7807,7 @@ final List<Component> gpuComponents = [
     price: 43490,
     description: 'PowerColor Hellhound RX 7700 XT — двойной кулер с ARGB-подсветкой и авторазгоном до 2544 МГц Boost по доступной цене.',
     specs: {
+      'Графический процессор': 'Radeon RX 7700 XT',
       'Архитектура / исполнение': 'PowerColor Hellhound custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -7675,6 +7849,7 @@ final List<Component> gpuComponents = [
     price: 43990,
     description: 'Gigabyte Eagle OC RX 7700 XT — двойной Windforce с чередованием вращения, RGB Fusion 2.0 и авторазгоном до 2560 МГц Boost.',
     specs: {
+      'Графический процессор': 'Radeon RX 7700 XT',
       'Архитектура / исполнение': 'Gigabyte Eagle custom PCB',
       'Видеопамять': '12 ГБ GDDR6',
       'Разрядность шины памяти': '192 бит',
@@ -7717,6 +7892,7 @@ final List<Component> gpuComponents = [
     price: 319990,
     description: 'Флагман поколения Blackwell. 32 ГБ GDDR7, 21760 CUDA-ядер, архитектура GB202. Производительность в 2× выше RTX 4090 в AI-задачах благодаря DLSS 4 и Multi Frame Generation.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5090',
       'Архитектура (микроархитектура)': 'Blackwell (GB202)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -7760,6 +7936,7 @@ final List<Component> gpuComponents = [
     price: 159990,
     description: 'Высокопроизводительная карта Blackwell. 16 ГБ GDDR7, 10752 CUDA-ядра, идеальна для 4K-гейминга с максимальными настройками и трассировкой лучей.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5080',
       'Архитектура (микроархитектура)': 'Blackwell (GB203)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -7803,6 +7980,7 @@ final List<Component> gpuComponents = [
     price: 99990,
     description: 'Производительность уровня RTX 4090 при вдвое меньшем TDP. 16 ГБ GDDR7, 8960 CUDA-ядер, отличный выбор для 4K с DLSS 4.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5070 Ti',
       'Архитектура (микроархитектура)': 'Blackwell (GB203)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -7846,6 +8024,7 @@ final List<Component> gpuComponents = [
     price: 79990,
     description: 'Мощная карта среднего сегмента Blackwell. 12 ГБ GDDR7, 6144 CUDA-ядра, производительность уровня RTX 4090 в растеризации благодаря DLSS 4.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5070',
       'Архитектура (микроархитектура)': 'Blackwell (GB205)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -7889,6 +8068,7 @@ final List<Component> gpuComponents = [
     price: 49990,
     description: 'Оптимальный выбор для 1440p-гейминга. 16 ГБ GDDR7, 4608 CUDA-ядер, значительно быстрее RTX 4060 Ti при умеренном потреблении.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5060 Ti 16GB',
       'Архитектура (микроархитектура)': 'Blackwell (GB206)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x8',
@@ -7932,6 +8112,7 @@ final List<Component> gpuComponents = [
     price: 34990,
     description: 'Бюджетный Blackwell для Full HD и начала 1440p. 8 ГБ GDDR7, 3840 CUDA-ядер, поддержка DLSS 4 и всех современных функций RTX.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5060 8GB',
       'Архитектура (микроархитектура)': 'Blackwell (GB206)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x8',
@@ -7977,6 +8158,7 @@ final List<Component> gpuComponents = [
     price: 389990,
     description: 'Топовая версия от ASUS с тройной системой охлаждения Axial-tech, подсветкой Aura Sync и повышенными частотами. 32 ГБ GDDR7.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5090',
       'Архитектура (микроархитектура)': 'Blackwell (GB202)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -8016,6 +8198,7 @@ final List<Component> gpuComponents = [
     price: 369990,
     description: 'Флагманская карта MSI с системой охлаждения TriFrozr 3S, усиленной VRM и фирменной подсветкой Mystic Light. Для энтузиастов без компромиссов.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5090',
       'Архитектура (микроархитектура)': 'Blackwell (GB202)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -8055,6 +8238,7 @@ final List<Component> gpuComponents = [
     price: 359990,
     description: 'Карта AORUS Master с системой охлаждения Windforce Max 3, ЖК-экраном и мощной подсветкой RGB Fusion 2.0. Версия для истинных геймеров.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5090',
       'Архитектура (микроархитектура)': 'Blackwell (GB202)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -8094,6 +8278,7 @@ final List<Component> gpuComponents = [
     price: 349990,
     description: 'Карта Zotac серии AMP Extreme с трёхслотовой системой охлаждения IceStorm 3.0 и подсветкой Spectra 2.0. Мощная альтернатива для ценителей бренда.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5090',
       'Архитектура (микроархитектура)': 'Blackwell (GB202)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -8133,6 +8318,7 @@ final List<Component> gpuComponents = [
     price: 339990,
     description: 'Карта Palit серии GameRock Premium с тройным охлаждением и фирменной подсветкой. Конкурентная цена при высоком качестве исполнения.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5090',
       'Архитектура (микроархитектура)': 'Blackwell (GB202)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -8174,6 +8360,7 @@ final List<Component> gpuComponents = [
     price: 189990,
     description: 'ROG Strix RTX 5080 с тройным охлаждением Axial-tech, 14 фазами питания и подсветкой Aura Sync. Повышенные частоты и тихая работа под нагрузкой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5080',
       'Архитектура (микроархитектура)': 'Blackwell (GB203)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -8208,6 +8395,7 @@ final List<Component> gpuComponents = [
     price: 179990,
     description: 'Флагман MSI для RTX 5080 с трёхвентиляторной системой TriFrozr 3S и дисплеем режима работы. Тихая работа в режиме Zero Frozr при малых нагрузках.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5080',
       'Архитектура (микроархитектура)': 'Blackwell (GB203)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -8242,6 +8430,7 @@ final List<Component> gpuComponents = [
     price: 174990,
     description: 'AORUS Master RTX 5080 с охлаждением Windforce Max и встроенным ЖК-экраном AORUS LCD. Три вентилятора с чередующимся направлением вращения.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5080',
       'Архитектура (микроархитектура)': 'Blackwell (GB203)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -8276,6 +8465,7 @@ final List<Component> gpuComponents = [
     price: 169990,
     description: 'Карта Zotac AMP Extreme с тройным охлаждением IceStorm 3.0, подсветкой Spectra 2.0 и металлическим бекплейтом. Отличный разгонный потенциал.',
     specs: {
+      'Графический процессор': 'Zotac Gaming AMP Extreme RTX 5080',
       'Архитектура (микроархитектура)': 'Blackwell (GB203)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -8310,6 +8500,7 @@ final List<Component> gpuComponents = [
     price: 164990,
     description: 'Паlit GameRock OC для RTX 5080 — отличный баланс цены и производительности. Тройное охлаждение, RGB-подсветка и заводской разгон.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5080',
       'Архитектура (микроархитектура)': 'Blackwell (GB203)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -8346,6 +8537,7 @@ final List<Component> gpuComponents = [
     price: 124990,
     description: 'ROG Strix для RTX 5070 Ti с тройным охлаждением и заводским разгоном. Идеальна для 4K-гейминга с DLSS 4.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5070 Ti',
       'Архитектура (микроархитектура)': 'Blackwell (GB203)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR7',
@@ -8378,6 +8570,7 @@ final List<Component> gpuComponents = [
     price: 114990,
     description: 'MSI Gaming Trio RTX 5070 Ti — массовая версия с тройным охлаждением TriFrozr 3S и подсветкой Mystic Light. Zero Frozr при лёгких нагрузках.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5070 Ti',
       'Архитектура (микроархитектура)': 'Blackwell (GB203)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR7',
@@ -8410,6 +8603,7 @@ final List<Component> gpuComponents = [
     price: 109990,
     description: 'AORUS Elite для RTX 5070 Ti — золотая середина линейки Gigabyte. Тройное охлаждение Windforce, RGB Fusion 2.0, надёжный металлический корпус.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5070 Ti',
       'Архитектура (микроархитектура)': 'Blackwell (GB203)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR7',
@@ -8442,6 +8636,7 @@ final List<Component> gpuComponents = [
     price: 104990,
     description: 'Zotac Trinity OC для RTX 5070 Ti с охлаждением IceStorm 3.0 и заводским разгоном. Подсветка Spectra 2.0, полный металлический бекплейт.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5070 Ti',
       'Архитектура (микроархитектура)': 'Blackwell (GB203)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR7',
@@ -8476,6 +8671,7 @@ final List<Component> gpuComponents = [
     price: 99990,
     description: 'TUF Gaming RTX 5070 OC — надёжность военного стандарта с заводским разгоном. Двойное охлаждение, подсветка Aura Sync, расширенные температурные датчики.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5070',
       'Архитектура (микроархитектура)': 'Blackwell (GB205)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '12 ГБ GDDR7',
@@ -8508,6 +8704,7 @@ final List<Component> gpuComponents = [
     price: 89990,
     description: 'MSI Ventus 3X OC — доступная карта с тройным охлаждением и заводским разгоном. Стильный лаконичный дизайн без RGB для сборок с минималистичной эстетикой.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5070',
       'Архитектура (микроархитектура)': 'Blackwell (GB205)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '12 ГБ GDDR7',
@@ -8540,6 +8737,7 @@ final List<Component> gpuComponents = [
     price: 87990,
     description: 'Gigabyte Windforce OC для RTX 5070 — доступная версия с тремя вентиляторами и фирменным чередованием вращения. Хорошее охлаждение без лишних наценок.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5070',
       'Архитектура (микроархитектура)': 'Blackwell (GB205)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '12 ГБ GDDR7',
@@ -8572,6 +8770,7 @@ final List<Component> gpuComponents = [
     price: 84990,
     description: 'Palit Dual OC RTX 5070 — компактная двухвентиляторная карта для корпусов со стандартным пространством. Отличное охлаждение и заводской разгон.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5070',
       'Архитектура (микроархитектура)': 'Blackwell (GB205)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '12 ГБ GDDR7',
@@ -8606,6 +8805,7 @@ final List<Component> gpuComponents = [
     price: 64990,
     description: 'ASUS Dual OC RTX 5060 Ti с 16 ГБ GDDR7 — отличный выбор для 1440p. Двойное охлаждение, подсветка Aura Sync и заводской разгон.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5060 Ti',
       'Архитектура (микроархитектура)': 'Blackwell (GB206)',
       'Интерфейс': 'PCIe 5.0 x8',
       'Видеопамять': '16 ГБ GDDR7',
@@ -8638,6 +8838,7 @@ final List<Component> gpuComponents = [
     price: 59990,
     description: 'MSI Gaming X RTX 5060 Ti с 16 ГБ GDDR7 — разогнанная карта с тройным охлаждением и подсветкой Mystic Light. Тихая и эффективная.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5060 Ti 16GB',
       'Архитектура (микроархитектура)': 'Blackwell (GB206)',
       'Интерфейс': 'PCIe 5.0 x8',
       'Видеопамять': '16 ГБ GDDR7',
@@ -8670,6 +8871,7 @@ final List<Component> gpuComponents = [
     price: 56990,
     description: 'Gigabyte Gaming OC RTX 5060 Ti с 16 ГБ — три вентилятора, RGB Fusion 2.0 и заводской разгон. Надёжная карта для 1440p-гейминга.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5060 Ti 16GB',
       'Архитектура (микроархитектура)': 'Blackwell (GB206)',
       'Интерфейс': 'PCIe 5.0 x8',
       'Видеопамять': '16 ГБ GDDR7',
@@ -8702,6 +8904,7 @@ final List<Component> gpuComponents = [
     price: 52990,
     description: 'Zotac Twin Edge OC RTX 5060 Ti — компактная двухвентиляторная карта с 16 ГБ GDDR7 и заводским разгоном. Отлично вписывается в компактные корпуса.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5060 Ti 16GB',
       'Архитектура (микроархитектура)': 'Blackwell (GB206)',
       'Интерфейс': 'PCIe 5.0 x8',
       'Видеопамять': '16 ГБ GDDR7',
@@ -8736,6 +8939,7 @@ final List<Component> gpuComponents = [
     price: 44990,
     description: 'ASUS Dual OC RTX 5060 — доступная карта для Full HD и начала 1440p. Двойное охлаждение Axial-tech, Aura Sync, заводской разгон.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5060',
       'Архитектура (микроархитектура)': 'Blackwell (GB206)',
       'Интерфейс': 'PCIe 5.0 x8',
       'Видеопамять': '8 ГБ GDDR7',
@@ -8768,6 +8972,7 @@ final List<Component> gpuComponents = [
     price: 39990,
     description: 'MSI Ventus 2X OC RTX 5060 — минималистичный дизайн, двойное охлаждение и заводской разгон. Идеальна для бюджетных сборок с поддержкой DLSS 4.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5060 8GB',
       'Архитектура (микроархитектура)': 'Blackwell (GB206)',
       'Интерфейс': 'PCIe 5.0 x8',
       'Видеопамять': '8 ГБ GDDR7',
@@ -8800,6 +9005,7 @@ final List<Component> gpuComponents = [
     price: 37990,
     description: 'Gigabyte Eagle OC RTX 5060 — бюджетная трёхвентиляторная карта Blackwell. Чередование вращения вентиляторов, RGB и AORUS Engine.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5060 8GB',
       'Архитектура (микроархитектура)': 'Blackwell (GB206)',
       'Интерфейс': 'PCIe 5.0 x8',
       'Видеопамять': '8 ГБ GDDR7',
@@ -8834,6 +9040,7 @@ final List<Component> gpuComponents = [
     price: 64990,
     description: 'Radeon RX 9070 на архитектуре RDNA 4. 16 ГБ GDDR6, 3584 потоковых процессора, PCIe 5.0. Отличный конкурент RTX 5070 в диапазоне 1440p.',
     specs: {
+      'Графический процессор': 'Radeon RX 9070',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 48)',
       'Техпроцесс': 'TSMC 4 нм',
       'Интерфейс': 'PCIe 5.0 x16',
@@ -8873,6 +9080,7 @@ final List<Component> gpuComponents = [
     price: 79990,
     description: 'TUF Gaming RX 9070 OC с тройным охлаждением и подсветкой Aura Sync. Заводской разгон и расширенный мониторинг температур.',
     specs: {
+      'Графический процессор': 'Radeon RX 9070',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 48)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR6',
@@ -8905,6 +9113,7 @@ final List<Component> gpuComponents = [
     price: 74990,
     description: 'MSI Gaming Trio RX 9070 с охлаждением TriFrozr и подсветкой Mystic Light. Тихая карта с отличной производительностью в 1440p.',
     specs: {
+      'Графический процессор': 'Radeon RX 9070',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 48)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR6',
@@ -8937,6 +9146,7 @@ final List<Component> gpuComponents = [
     price: 84990,
     description: 'Sapphire NITRO+ RX 9070 — эталонная карта AIB для Radeon. Тройное охлаждение, подсветка ARGB и лучший разгонный потенциал в линейке RX 9070.',
     specs: {
+      'Графический процессор': 'Radeon RX 9070',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 48)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR6',
@@ -8969,6 +9179,7 @@ final List<Component> gpuComponents = [
     price: 69990,
     description: 'PowerColor Hellhound RX 9070 — брутальный дизайн, тройное охлаждение и отличная цена. Один из наиболее доступных AIB-вариантов RX 9070.',
     specs: {
+      'Графический процессор': 'Radeon RX 9070',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 48)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR6',
@@ -9003,6 +9214,7 @@ final List<Component> gpuComponents = [
     price: 34990,
     description: 'Radeon RX 9060 XT — бюджетный RDNA 4 с 16 ГБ GDDR6. Отличная карта для Full HD и 1440p с поддержкой FSR 4 и новыми RT-блоками.',
     specs: {
+      'Графический процессор': 'Radeon RX 9060 XT 16GB',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 44)',
       'Техпроцесс': 'TSMC 4 нм',
       'Интерфейс': 'PCIe 5.0 x8',
@@ -9041,6 +9253,7 @@ final List<Component> gpuComponents = [
     price: 42990,
     description: 'ASUS Dual OC RX 9060 XT с 16 ГБ GDDR6 и заводским разгоном. Двухвентиляторное охлаждение Axial-tech, подсветка Aura Sync.',
     specs: {
+      'Графический процессор': 'Radeon RX 9060 XT',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 44)',
       'Интерфейс': 'PCIe 5.0 x8',
       'Видеопамять': '16 ГБ GDDR6',
@@ -9073,6 +9286,7 @@ final List<Component> gpuComponents = [
     price: 39990,
     description: 'Sapphire PULSE RX 9060 XT — надёжная карта серии PULSE с двойным охлаждением и 16 ГБ GDDR6. Отличный баланс цены и производительности.',
     specs: {
+      'Графический процессор': 'Radeon RX 9060 XT 16GB',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 44)',
       'Интерфейс': 'PCIe 5.0 x8',
       'Видеопамять': '16 ГБ GDDR6',
@@ -9105,6 +9319,7 @@ final List<Component> gpuComponents = [
     price: 37990,
     description: 'MSI Gaming RX 9060 XT с 16 ГБ GDDR6 — доступная карта с двойным охлаждением и подсветкой. Для бюджетных сборок с актуальными технологиями AMD.',
     specs: {
+      'Графический процессор': 'Radeon RX 9060 XT 16GB',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 44)',
       'Интерфейс': 'PCIe 5.0 x8',
       'Видеопамять': '16 ГБ GDDR6',
@@ -9139,6 +9354,7 @@ final List<Component> gpuComponents = [
     price: 99990,
     description: 'TUF Gaming RX 9070 XT OC — военные стандарты надёжности, тройное охлаждение Axial-tech, заводской разгон и мониторинг температур.',
     specs: {
+      'Графический процессор': 'Radeon RX 9070 XT',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 48)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR6',
@@ -9171,6 +9387,7 @@ final List<Component> gpuComponents = [
     price: 109990,
     description: 'Sapphire NITRO+ RX 9070 XT — лучший AIB для Radeon RX 9070 XT. Тройное охлаждение, режим Eco/OC через переключатель BIOS, TriXX Boost.',
     specs: {
+      'Графический процессор': 'Radeon RX 9070 XT',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 48)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR6',
@@ -9203,6 +9420,7 @@ final List<Component> gpuComponents = [
     price: 104990,
     description: 'XFX Speedster MERC 310 RX 9070 XT — массивная карта с тройным охлаждением и высоким разгонным потенциалом. Фирменный дизайн XFX с агрессивной эстетикой.',
     specs: {
+      'Графический процессор': 'Radeon RX 9070 XT',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 48)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR6',
@@ -9235,6 +9453,7 @@ final List<Component> gpuComponents = [
     price: 107990,
     description: 'PowerColor Red Devil RX 9070 XT — флагман PowerColor с тройным охлаждением, фирменной подсветкой и переключателем BIOS для разных профилей.',
     specs: {
+      'Графический процессор': 'Radeon RX 9070 XT',
       'Архитектура (микроархитектура)': 'RDNA 4 (Navi 48)',
       'Интерфейс': 'PCIe 5.0 x16',
       'Видеопамять': '16 ГБ GDDR6',
@@ -9269,6 +9488,7 @@ final List<Component> gpuComponents = [
     price: 37990,
     description: 'Intel Arc B770 — топ линейки Battlemage с 20 ГБ GDDR6. Отличная производительность в играх с поддержкой Xe SS 2.0, XeSS 3 и аппаратного трассировщика лучей.',
     specs: {
+      'Графический процессор': 'Arc B770 20GB',
       'Архитектура (микроархитектура)': 'Battlemage (BMG-G21)',
       'Техпроцесс': 'TSMC 5 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -9310,6 +9530,7 @@ final List<Component> gpuComponents = [
     price: 154990,
     description: 'ROG Strix RX 7900 XTX OC с тройным охлаждением, 14 фазами питания и подсветкой Aura Sync. Лучшая AIB-версия для разгона.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XTX',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 31)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '24 ГБ GDDR6',
@@ -9342,6 +9563,7 @@ final List<Component> gpuComponents = [
     price: 144990,
     description: 'MSI Gaming X Trio RX 7900 XTX с охлаждением TriFrozr 3 и подсветкой Mystic Light. Zero Frozr в простое, высокие частоты под нагрузкой.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XTX',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 31)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '24 ГБ GDDR6',
@@ -9374,6 +9596,7 @@ final List<Component> gpuComponents = [
     price: 148990,
     description: 'Sapphire NITRO+ RX 7900 XTX — легендарный AIB для Radeon. Тройное охлаждение, Eco Mode и лучший разгонный потенциал в линейке.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XTX',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 31)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '24 ГБ GDDR6',
@@ -9406,6 +9629,7 @@ final List<Component> gpuComponents = [
     price: 139990,
     description: 'XFX MERC 310 RX 7900 XTX — массивная карта с тремя вентиляторами и фирменной системой охлаждения. Отличный разгонный потенциал.',
     specs: {
+      'Графический процессор': 'Radeon RX 7900 XTX',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 31)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '24 ГБ GDDR6',
@@ -9440,6 +9664,7 @@ final List<Component> gpuComponents = [
     price: 119990,
     description: 'ROG Strix RTX 4080 Super OC с тройным охлаждением, 16 ГБ GDDR6X и заводским разгоном. Флагман ASUS для поколения Ada Lovelace.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD103)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '16 ГБ GDDR6X',
@@ -9472,6 +9697,7 @@ final List<Component> gpuComponents = [
     price: 114990,
     description: 'MSI SUPRIM X RTX 4080 Super — флагман MSI с охлаждением TriFrozr 3 и фирменной системой питания. 16 ГБ GDDR6X, DLSS 3.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD103)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '16 ГБ GDDR6X',
@@ -9504,6 +9730,7 @@ final List<Component> gpuComponents = [
     price: 112990,
     description: 'AORUS Master RTX 4080 Super с тройным охлаждением Windforce Max, RGB Fusion 2.0 и LCD-дисплеем на корпусе. 16 ГБ GDDR6X.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD103)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '16 ГБ GDDR6X',
@@ -9536,6 +9763,7 @@ final List<Component> gpuComponents = [
     price: 109990,
     description: 'Zotac AMP Extreme Airo RTX 4080 Super с охлаждением IceStorm 3.0 и подсветкой Spectra 2.0. Высокие частоты и металлический бекплейт.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4080 Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD103)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '16 ГБ GDDR6X',
@@ -9570,6 +9798,7 @@ final List<Component> gpuComponents = [
     price: 94990,
     description: 'ROG Strix RTX 4070 Ti Super OC — 16 ГБ GDDR6X, тройное охлаждение Axial-tech и заводской разгон. Отличный выбор для 4K с DLSS 3.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD103)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '16 ГБ GDDR6X',
@@ -9602,6 +9831,7 @@ final List<Component> gpuComponents = [
     price: 89990,
     description: 'MSI SUPRIM X RTX 4070 Ti Super — флагман MSI в сегменте. Тройное охлаждение, 16 ГБ GDDR6X и DLSS 3 Frame Generation.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD103)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '16 ГБ GDDR6X',
@@ -9634,6 +9864,7 @@ final List<Component> gpuComponents = [
     price: 87990,
     description: 'AORUS Master RTX 4070 Ti Super с трёхвентиляторным охлаждением Windforce Max, LCD-дисплеем и RGB Fusion 2.0. 16 ГБ GDDR6X.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Ti Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD103)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '16 ГБ GDDR6X',
@@ -9668,6 +9899,7 @@ final List<Component> gpuComponents = [
     price: 74990,
     description: 'ROG Strix RTX 4070 Super OC с тройным охлаждением Axial-tech и заводским разгоном. 12 ГБ GDDR6X, DLSS 3 Frame Generation.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD104)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '12 ГБ GDDR6X',
@@ -9700,6 +9932,7 @@ final List<Component> gpuComponents = [
     price: 69990,
     description: 'MSI Gaming X Slim RTX 4070 Super — стройный двухвентиляторный дизайн для компактных корпусов. 12 ГБ GDDR6X и DLSS 3.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD104)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '12 ГБ GDDR6X',
@@ -9732,6 +9965,7 @@ final List<Component> gpuComponents = [
     price: 67990,
     description: 'Gigabyte Gaming OC RTX 4070 Super с трёхвентиляторным Windforce и RGB Fusion 2.0. Заводской разгон и надёжная сборка по разумной цене.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4070 Super',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD104)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '12 ГБ GDDR6X',
@@ -9766,6 +10000,7 @@ final List<Component> gpuComponents = [
     price: 49990,
     description: 'TUF Gaming RTX 4060 Ti OC — военный стандарт надёжности, двойное охлаждение и заводской разгон. 8 ГБ GDDR6, DLSS 3.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD106)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '8 ГБ GDDR6',
@@ -9798,6 +10033,7 @@ final List<Component> gpuComponents = [
     price: 47990,
     description: 'MSI Gaming X RTX 4060 Ti — разогнанная карта с тройным охлаждением TriFrozr и подсветкой Mystic Light. 8 ГБ GDDR6, DLSS 3.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD106)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '8 ГБ GDDR6',
@@ -9830,6 +10066,7 @@ final List<Component> gpuComponents = [
     price: 45990,
     description: 'Gigabyte Gaming OC RTX 4060 Ti с трёхвентиляторным Windforce OC и RGB Fusion 2.0. Хороший баланс цены, охлаждения и частот.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD106)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '8 ГБ GDDR6',
@@ -9862,6 +10099,7 @@ final List<Component> gpuComponents = [
     price: 43990,
     description: 'Zotac Gaming AMP RTX 4060 Ti с охлаждением IceStorm 2.0 и подсветкой Spectra. Заводской разгон и металлический бекплейт.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060 Ti',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD106)',
       'Интерфейс': 'PCIe 4.0 x16',
       'Видеопамять': '8 ГБ GDDR6',
@@ -9896,6 +10134,7 @@ final List<Component> gpuComponents = [
     price: 32990,
     description: 'ASUS Dual OC RTX 4060 — компактная двухвентиляторная карта с заводским разгоном и подсветкой Aura Sync. 8 ГБ GDDR6, DLSS 3.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD107)',
       'Интерфейс': 'PCIe 4.0 x8',
       'Видеопамять': '8 ГБ GDDR6',
@@ -9928,6 +10167,7 @@ final List<Component> gpuComponents = [
     price: 30990,
     description: 'MSI Ventus 2X OC RTX 4060 — минималистичный дизайн без RGB, двойное охлаждение и заводской разгон. Для бюджетных сборок с DLSS 3.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD107)',
       'Интерфейс': 'PCIe 4.0 x8',
       'Видеопамять': '8 ГБ GDDR6',
@@ -9960,6 +10200,7 @@ final List<Component> gpuComponents = [
     price: 29990,
     description: 'Gigabyte Eagle OC RTX 4060 — доступная карта с двойным охлаждением Windforce и RGB Fusion 2.0. Хорошее решение для игровых сборок до 30 000 ₽.',
     specs: {
+      'Графический процессор': 'GeForce RTX 4060',
       'Архитектура (микроархитектура)': 'Ada Lovelace (AD107)',
       'Интерфейс': 'PCIe 4.0 x8',
       'Видеопамять': '8 ГБ GDDR6',
@@ -9994,6 +10235,7 @@ final List<Component> gpuComponents = [
     price: 13990,
     description: 'Обновлённый RTX 3050 с урезанным до 6 ГБ объёмом памяти. Самый доступный Ampere с трассировкой лучей и DLSS 2. Для бюджетного Full HD.',
     specs: {
+      'Графический процессор': 'GeForce RTX 3050',
       'Архитектура (микроархитектура)': 'Ampere (GA107)',
       'Техпроцесс': 'Samsung 8N',
       'Интерфейс': 'PCIe 4.0 x8',
@@ -10025,6 +10267,7 @@ final List<Component> gpuComponents = [
     price: 27990,
     description: 'AMD RX 6750 GRE — специальная версия для российского рынка с 12 ГБ памяти GDDR6 и архитектурой RDNA 2. Хороша для 1440p по привлекательной цене.',
     specs: {
+      'Графический процессор': 'Radeon RX 6750 GRE 12GB',
       'Архитектура (микроархитектура)': 'RDNA 2 (Navi 22)',
       'Техпроцесс': 'TSMC 7 нм',
       'Интерфейс': 'PCIe 4.0 x16',
@@ -10059,6 +10302,7 @@ final List<Component> gpuComponents = [
     price: 18990,
     description: 'Самый доступный Radeon на RDNA 3. 8 ГБ GDDR6, PCIe 4.0 x8, поддержка FSR 3 и AV1. Хорош для Full HD в неэнергоёмких сборках.',
     specs: {
+      'Графический процессор': 'Radeon RX 7500 XT',
       'Архитектура (микроархитектура)': 'RDNA 3 (Navi 35)',
       'Техпроцесс': 'TSMC 6 нм',
       'Интерфейс': 'PCIe 4.0 x8',
@@ -10091,6 +10335,7 @@ final List<Component> gpuComponents = [
     price: 374990,
     description: 'ProArt RTX 5090 — карта для профессионалов и творческих задач. Более тихое охлаждение, DisplayPort 2.1 UHBR20 для работы с дисплеями 8K/120Hz. 32 ГБ GDDR7.',
     specs: {
+      'Графический процессор': 'GeForce RTX 5090',
       'Архитектура (микроархитектура)': 'Blackwell (GB202)',
       'Техпроцесс': 'TSMC 4NP',
       'Интерфейс': 'PCIe 5.0 x16',
