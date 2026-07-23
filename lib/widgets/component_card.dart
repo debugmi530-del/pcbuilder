@@ -56,7 +56,7 @@ class ComponentCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(7),
                     decoration: BoxDecoration(
-                      color: AppTheme.accent.withOpacity(0.2),
+                      color: AppTheme.accent.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(component.category.icon,
@@ -142,7 +142,7 @@ class ComponentCard extends StatelessWidget {
                 width: 70,
                 height: 70,
                 decoration: BoxDecoration(
-                  color: component.category.color.withOpacity(0.1),
+                  color: component.category.color.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Stack(
@@ -244,7 +244,7 @@ class ComponentCard extends StatelessWidget {
                                 horizontal: 8, vertical: 5),
                             decoration: BoxDecoration(
                               color: inCompare
-                                  ? AppTheme.primary.withOpacity(0.1)
+                                  ? AppTheme.primary.withValues(alpha: 0.1)
                                   : const Color(0xFFF3F4F6),
                               borderRadius: BorderRadius.circular(6),
                               border: inCompare

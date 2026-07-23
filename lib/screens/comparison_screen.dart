@@ -221,7 +221,7 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                     width: 14,
                     height: 14,
                     decoration: BoxDecoration(
-                      color: AppTheme.accent.withOpacity(0.2),
+                      color: AppTheme.accent.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(3),
                       border: Border.all(color: AppTheme.accent),
                     ),
@@ -248,7 +248,7 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                   return Container(
                     decoration: BoxDecoration(
                       color: isDiff
-                          ? AppTheme.accent.withOpacity(0.06)
+                          ? AppTheme.accent.withValues(alpha: 0.06)
                           : Colors.white,
                       border: Border(
                         bottom: BorderSide(color: AppTheme.divider),
@@ -339,7 +339,7 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
               child: Container(
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: AppTheme.error.withOpacity(0.1),
+                  color: AppTheme.error.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: const Icon(Icons.close,
@@ -353,7 +353,7 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
             width: 48,
             height: 48,
             decoration: BoxDecoration(
-              color: item.category.color.withOpacity(0.1),
+              color: item.category.color.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(item.category.icon, color: item.category.color),
@@ -456,7 +456,7 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                color: AppTheme.primary.withOpacity(0.1),
+                color: AppTheme.primary.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Text(

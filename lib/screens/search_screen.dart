@@ -51,7 +51,7 @@ class _SearchScreenState extends State<SearchScreen> {
           cursorColor: Colors.white,
           decoration: InputDecoration(
             hintText: 'Поиск по каталогу...',
-            hintStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
+            hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.6)),
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
@@ -168,7 +168,7 @@ class _SearchScreenState extends State<SearchScreen> {
               backgroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
-                side: BorderSide(color: cat.color.withOpacity(0.4)),
+                side: BorderSide(color: cat.color.withValues(alpha: 0.4)),
               ),
             );
           }).toList(),

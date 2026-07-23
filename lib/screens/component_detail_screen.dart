@@ -43,7 +43,7 @@ class _ComponentDetailView extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(7),
               decoration: BoxDecoration(
-                color: AppTheme.accent.withOpacity(0.2),
+                color: AppTheme.accent.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(component.category.icon,
@@ -167,7 +167,7 @@ class _ComponentDetailView extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      component.category.color.withOpacity(0.8),
+                      component.category.color.withValues(alpha: 0.8),
                       AppTheme.primaryDark,
                     ],
                   ),
@@ -181,7 +181,7 @@ class _ComponentDetailView extends StatelessWidget {
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.15),
+                          color: Colors.white.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Icon(
@@ -195,10 +195,10 @@ class _ComponentDetailView extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 3),
                         decoration: BoxDecoration(
-                          color: component.category.color.withOpacity(0.3),
+                          color: component.category.color.withValues(alpha: 0.3),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                              color: Colors.white.withOpacity(0.3)),
+                              color: Colors.white.withValues(alpha: 0.3)),
                         ),
                         child: Text(
                           component.category.displayName,
@@ -315,7 +315,7 @@ class _ComponentDetailView extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
                                         color: AppTheme.primary
-                                            .withOpacity(0.2)),
+                                            .withValues(alpha: 0.2)),
                                   ),
                                   child: Text(
                                     s,
@@ -437,7 +437,7 @@ class _ComponentDetailView extends StatelessWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.08),
+              color: Colors.black.withValues(alpha: 0.08),
               blurRadius: 12,
               offset: const Offset(0, -4),
             ),

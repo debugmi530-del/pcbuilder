@@ -123,7 +123,7 @@ class BuildsScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppTheme.background,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: AppTheme.primary.withOpacity(0.3)),
+                border: Border.all(color: AppTheme.primary.withValues(alpha: 0.3)),
               ),
               child: SelectableText(
                 code,
@@ -481,9 +481,9 @@ class _BuildCard extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: cat.color.withOpacity(0.1),
+                    color: cat.color.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: cat.color.withOpacity(0.3)),
+                    border: Border.all(color: cat.color.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

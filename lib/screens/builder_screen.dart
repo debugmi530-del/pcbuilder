@@ -89,8 +89,8 @@ class _BuilderScreenState extends State<BuilderScreen> {
                         horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: compat.errors.isEmpty
-                          ? AppTheme.success.withOpacity(0.1)
-                          : AppTheme.error.withOpacity(0.1),
+                          ? AppTheme.success.withValues(alpha: 0.1)
+                          : AppTheme.error.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                         color: compat.errors.isEmpty
@@ -326,12 +326,12 @@ class _SlotCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: hasComponent
-              ? category.color.withOpacity(0.3)
+              ? category.color.withValues(alpha: 0.3)
               : AppTheme.divider,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -349,7 +349,7 @@ class _SlotCard extends StatelessWidget {
                       width: 44,
                       height: 44,
                       decoration: BoxDecoration(
-                        color: category.color.withOpacity(0.12),
+                        color: category.color.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Icon(category.icon,
@@ -407,7 +407,7 @@ class _SlotCard extends StatelessWidget {
                           child: Container(
                             padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(
-                              color: AppTheme.error.withOpacity(0.1),
+                              color: AppTheme.error.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: const Icon(Icons.close,

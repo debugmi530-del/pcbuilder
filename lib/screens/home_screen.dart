@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     'Собери свой идеальный ПК',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.white.withValues(alpha: 0.8),
                       fontSize: 11,
                       fontWeight: FontWeight.w400,
                     ),
@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                       width: 150,
                       height: 150,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
+                        color: Colors.white.withValues(alpha: 0.1),
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -104,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                         Text(
                           '${allComponents.length} комплектующих в каталоге',
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.9),
+                            color: Colors.white.withValues(alpha: 0.9),
                             fontSize: 13,
                           ),
                         ),
@@ -207,7 +207,7 @@ class _CategoryCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.06),
+              color: Colors.black.withValues(alpha: 0.06),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -233,7 +233,7 @@ class _CategoryCard extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: category.color.withOpacity(0.12),
+                        color: category.color.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Icon(

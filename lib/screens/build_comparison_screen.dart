@@ -450,7 +450,7 @@ class _BuildHeader extends StatelessWidget {
             if (isCheaper)
               DecoratedBox(
                 decoration: BoxDecoration(
-                  color: AppTheme.success.withOpacity(0.1),
+                  color: AppTheme.success.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: const Padding(
