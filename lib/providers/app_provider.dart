@@ -318,7 +318,7 @@ class AppProvider extends ChangeNotifier {
       }
     }
 
-    // ── Проверка количества накопителей ──
+    // ── Проверка количества накопителей (слоты корпуса) ──
     if (pcCase != null && storageList.isNotEmpty) {
       final maxSlots = _maxStorageSlotsForCase(pcCase);
       if (storageList.length > maxSlots) {
@@ -326,6 +326,90 @@ class AppProvider extends ChangeNotifier {
           'Корпус ${pcCase.brand} ${pcCase.model} поддерживает максимум $maxSlots '
           'накопителя(-ей), установлено ${storageList.length}',
         );
+      }
+    }
+
+    // ── Высота воздушного кулера vs корпус ──
+    if (cooling != null && pcCase != null) {
+      final heightStr = cooling.specs['Высота'];
+      final maxHeightStr = pcCase.specs['Макс. высота CPU-кулера'];
+      if (heightStr != null && maxHeightStr != null) {
+        final height = _parseMm(heightStr);
+        final maxHeight = _parseMm(maxHeightStr);
+        if (height != null && maxHeight != null && height > maxHeight) {
+          errors.add(
+            'Кулер ${cooling.brand} ${cooling.model} (${height} мм) не помещается в корпус '
+            '${pcCase.brand} ${pcCase.model} (макс. ${maxHeight} мм)',
+          );
+        }
+      }
+    }
+
+    // ── Размер радиатора СЖО vs корпус ──
+    if (cooling != null && pcCase != null) {
+      final radStr = cooling.specs['Монтажный размер радиатора'];
+      if (radStr != null) {
+        final radSize = _parseMm(radStr);
+        if (radSize != null && !_caseSupportsRadiator(pcCase, radSize)) {
+          errors.add(
+            'Корпус ${pcCase.brand} ${pcCase.model} не поддерживает '
+            'радиатор ${radSize} мм кулера ${cooling.brand} ${cooling.model}',
+          );
+        }
+      }
+    }
+
+    // ── NVMe-накопители vs слоты M.2 на материнской плате ──
+    if (mb != null && storageList.isNotEmpty) {
+      final nvmeCount = storageList.where((s) => s.specs['NVMe'] == 'Есть').length;
+      if (nvmeCount > 0) {
+        final m2SlotStr = mb.specs['Слоты M.2'];
+        if (m2SlotStr != null) {
+          final m2Slots = int.tryParse(m2SlotStr.split(RegExp(r'[\s(]')).first);
+          if (m2Slots != null && nvmeCount > m2Slots) {
+            errors.add(
+              'Материнская плата ${mb.brand} ${mb.model} имеет $m2Slots слота(-ов) M.2, '
+              'установлено $nvmeCount NVMe-накопителя(-ей)',
+            );
+          }
+        }
+      }
+    }
+
+    // ── SATA-накопители vs порты SATA материнской платы ──
+    if (mb != null && storageList.isNotEmpty) {
+      final sataCount = storageList
+          .where((s) =>
+              (s.specs['Интерфейс'] ?? '').contains('SATA') &&
+              s.specs['NVMe'] != 'Есть')
+          .length;
+      if (sataCount > 0) {
+        final sataPortStr = mb.specs['Количество портов SATA'];
+        if (sataPortStr != null) {
+          final sataPorts = int.tryParse(sataPortStr.trim());
+          if (sataPorts != null && sataCount > sataPorts) {
+            errors.add(
+              'Материнская плата ${mb.brand} ${mb.model} имеет $sataPorts порта(-ов) SATA, '
+              'установлено $sataCount SATA-накопителя(-ей)',
+            );
+          }
+        }
+      }
+    }
+
+    // ── Длина БП vs корпус ──
+    if (psu != null && pcCase != null) {
+      final sizeStr = psu.specs['Размеры'];
+      final maxLenStr = pcCase.specs['Макс. длина БП'];
+      if (sizeStr != null && maxLenStr != null) {
+        final psuLen = _parsePsuLength(sizeStr);
+        final maxLen = _parseMm(maxLenStr);
+        if (psuLen != null && maxLen != null && psuLen > maxLen) {
+          errors.add(
+            'Блок питания ${psu.brand} ${psu.model} (${psuLen} мм) не помещается в корпус '
+            '${pcCase.brand} ${pcCase.model} (макс. ${maxLen} мм)',
+          );
+        }
       }
     }
 
@@ -455,6 +539,22 @@ class AppProvider extends ChangeNotifier {
         return list.where((c) {
           if (cpu != null && cpu.socket != null && c.supportedSockets.isNotEmpty) {
             if (!c.supportedSockets.contains(cpu.socket)) return false;
+          }
+          if (pcCase != null) {
+            // Высота воздушного кулера
+            final heightStr = c.specs['Высота'];
+            final maxHeightStr = pcCase.specs['Макс. высота CPU-кулера'];
+            if (heightStr != null && maxHeightStr != null) {
+              final height = _parseMm(heightStr);
+              final maxHeight = _parseMm(maxHeightStr);
+              if (height != null && maxHeight != null && height > maxHeight) return false;
+            }
+            // Размер радиатора СЖО
+            final radStr = c.specs['Монтажный размер радиатора'];
+            if (radStr != null) {
+              final radSize = _parseMm(radStr);
+              if (radSize != null && !_caseSupportsRadiator(pcCase, radSize)) return false;
+            }
           }
           return true;
         }).toList();
@@ -738,5 +838,47 @@ class AppProvider extends ChangeNotifier {
       if (c.key == key) return c;
     }
     return null;
+  }
+
+  // ─── Dimension helpers ───
+
+  /// Извлекает первое целое число из строки вида "165 мм", "360 мм (3 × 120 мм)" и т.п.
+  static int? _parseMm(String s) {
+    final match = RegExp(r'\d+').firstMatch(s);
+    return match != null ? int.tryParse(match.group(0)!) : null;
+  }
+
+  /// Извлекает длину (последнее число) из строки размеров БП вида "150 × 86 × 160 мм".
+  static int? _parsePsuLength(String sizeStr) {
+    final numbers = RegExp(r'\d+')
+        .allMatches(sizeStr)
+        .map((m) => int.tryParse(m.group(0)!))
+        .whereType<int>()
+        .toList();
+    // Формат: W × H × D — третье число это глубина/длина
+    return numbers.length >= 3 ? numbers[2] : null;
+  }
+
+  /// Проверяет, поддерживает ли корпус радиатор заданного размера (мм).
+  /// Анализирует все поля СЖО: "СЖО сверху", "СЖО спереди", "СЖО сзади", "СЖО снизу", "СЖО сбоку".
+  static bool _caseSupportsRadiator(Component pcCase, int radSizeMm) {
+    const sjoKeys = [
+      'СЖО сверху', 'СЖО спереди', 'СЖО сзади',
+      'СЖО снизу', 'СЖО сбоку',
+    ];
+    for (final key in sjoKeys) {
+      final val = pcCase.specs[key];
+      if (val == null) continue;
+      // Делим по '/', из каждой части берём первое число до '('
+      // "360 мм / 280 мм" → {360, 280}
+      // "360 мм (3 × 120 мм)" → {360}
+      final sizes = val.split('/').map((part) {
+        final clean = part.split('(').first;
+        final m = RegExp(r'\d+').firstMatch(clean.trim());
+        return m != null ? int.tryParse(m.group(0)!) : null;
+      }).whereType<int>().toSet();
+      if (sizes.contains(radSizeMm)) return true;
+    }
+    return false;
   }
 }
