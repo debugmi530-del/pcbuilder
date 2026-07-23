@@ -356,6 +356,7 @@ class AppProvider extends ChangeNotifier {
       final key = entry.key;
       final values = entry.value;
       list = list.where((c) {
+        if (key == 'Производитель') return values.contains(c.brand);
         final specVal = c.specs[key];
         return specVal != null && values.contains(specVal);
       }).toList();

@@ -16,7 +16,12 @@ class FilterScreen extends StatefulWidget {
 class _FilterScreenState extends State<FilterScreen> {
   int _selectedSectionIndex = 0;
 
+  static const String _brandKey = 'Производитель';
+
   List<String> _uniqueValues(List<Component> components, String key) {
+    if (key == _brandKey) {
+      return components.map((c) => c.brand).toSet().toList()..sort();
+    }
     return components
         .map((c) => c.specs[key])
         .whereType<String>()
@@ -29,6 +34,7 @@ class _FilterScreenState extends State<FilterScreen> {
     switch (widget.category) {
       case ComponentCategory.cpu:
         return [
+          _brandKey,
           'Сокет',
           'Ядра (всего)',
           'Техпроцесс',
@@ -42,6 +48,7 @@ class _FilterScreenState extends State<FilterScreen> {
         ];
       case ComponentCategory.gpu:
         return [
+          _brandKey,
           'Видеопамять',
           'Интерфейс',
           'TDP',
@@ -55,6 +62,7 @@ class _FilterScreenState extends State<FilterScreen> {
         ];
       case ComponentCategory.ram:
         return [
+          _brandKey,
           'Тип',
           'Объём',
           'Частота',
@@ -68,6 +76,7 @@ class _FilterScreenState extends State<FilterScreen> {
         ];
       case ComponentCategory.storage:
         return [
+          _brandKey,
           'Форм-фактор',
           'Интерфейс',
           'Ёмкость',
@@ -80,6 +89,7 @@ class _FilterScreenState extends State<FilterScreen> {
         ];
       case ComponentCategory.psu:
         return [
+          _brandKey,
           'Мощность',
           'Сертификат',
           'Модульность',
@@ -92,6 +102,7 @@ class _FilterScreenState extends State<FilterScreen> {
         ];
       case ComponentCategory.motherboard:
         return [
+          _brandKey,
           'Сокет',
           'Чипсет',
           'Форм-фактор',
@@ -105,6 +116,7 @@ class _FilterScreenState extends State<FilterScreen> {
         ];
       case ComponentCategory.pcCase:
         return [
+          _brandKey,
           'Типоразмер',
           'Форм-факторы плат',
           'Материал окна',
@@ -116,6 +128,7 @@ class _FilterScreenState extends State<FilterScreen> {
         ];
       case ComponentCategory.cooling:
         return [
+          _brandKey,
           'Тип конструкции',
           'TDP',
           'Сокеты AMD',
