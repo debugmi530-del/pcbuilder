@@ -26,6 +26,7 @@ class AppProvider extends ChangeNotifier {
     name: 'Моя сборка',
     createdAt: DateTime.now(),
     components: {},
+    storageList: [],
   );
   List<PcBuild> _savedBuilds = [];
 
@@ -67,6 +68,10 @@ class AppProvider extends ChangeNotifier {
   // ─── Build Management ───
 
   void addToBuild(Component component) {
+    if (component.category == ComponentCategory.storage) {
+      addStorageDrive(component);
+      return;
+    }
     final updated = Map<ComponentCategory, Component>.from(_currentBuild.components);
     updated[component.category] = component;
     _currentBuild = _currentBuild.copyWith(components: updated);
@@ -75,12 +80,55 @@ class AppProvider extends ChangeNotifier {
   }
 
   void removeFromBuild(ComponentCategory category) {
+    if (category == ComponentCategory.storage) return; // use removeStorageDrive
     final updated = Map<ComponentCategory, Component>.from(_currentBuild.components);
     updated.remove(category);
     _currentBuild = _currentBuild.copyWith(components: updated);
     notifyListeners();
     _save();
   }
+
+  // ─── Storage management ───
+
+  /// Максимальное количество накопителей, которое поддерживает выбранный корпус.
+  /// Если корпус не выбран — разрешаем до 6 штук по умолчанию.
+  int get maxStorageSlots {
+    final pcCase = _currentBuild.components[ComponentCategory.pcCase];
+    return _maxStorageSlotsForCase(pcCase);
+  }
+
+  int _maxStorageSlotsForCase(Component? pcCase) {
+    if (pcCase == null) return 6;
+    final slots25 = int.tryParse(pcCase.specs['Отсеки 2.5"'] ?? '0') ?? 0;
+    final slots35 = int.tryParse(pcCase.specs['Отсеки 3.5"'] ?? '0') ?? 0;
+    return (slots25 + slots35).clamp(1, 99);
+  }
+
+  /// Возвращает null если можно добавить, иначе текст ошибки.
+  String? canAddStorageDrive(Component component) {
+    if (_currentBuild.storageList.length >= maxStorageSlots) {
+      return 'Корпус поддерживает максимум $maxStorageSlots накопителя(-ей)';
+    }
+    return null;
+  }
+
+  void addStorageDrive(Component component) {
+    if (_currentBuild.storageList.length >= maxStorageSlots) return;
+    final newList = List<Component>.from(_currentBuild.storageList)..add(component);
+    _currentBuild = _currentBuild.copyWith(storageList: newList);
+    notifyListeners();
+    _save();
+  }
+
+  void removeStorageDrive(String componentId) {
+    final newList = List<Component>.from(_currentBuild.storageList)
+      ..removeWhere((c) => c.id == componentId);
+    _currentBuild = _currentBuild.copyWith(storageList: newList);
+    notifyListeners();
+    _save();
+  }
+
+  // ─── Other build ops ───
 
   void setBuildName(String name) {
     _currentBuild = _currentBuild.copyWith(name: name);
@@ -94,6 +142,7 @@ class AppProvider extends ChangeNotifier {
       name: 'Моя сборка',
       createdAt: DateTime.now(),
       components: {},
+      storageList: [],
     );
     notifyListeners();
     _save();
@@ -105,6 +154,7 @@ class AppProvider extends ChangeNotifier {
       name: _currentBuild.name,
       createdAt: DateTime.now(),
       components: Map.from(_currentBuild.components),
+      storageList: List.from(_currentBuild.storageList),
     );
     _savedBuilds = [build, ..._savedBuilds];
     notifyListeners();
@@ -123,6 +173,7 @@ class AppProvider extends ChangeNotifier {
       name: build.name,
       createdAt: DateTime.now(),
       components: Map.from(build.components),
+      storageList: List.from(build.storageList),
     );
     notifyListeners();
     _save();
@@ -131,10 +182,6 @@ class AppProvider extends ChangeNotifier {
   // ─── Sharing ───
 
   /// Декодирует шер-код и возвращает [ImportResult].
-  ///
-  /// Если компонент с таким ID не найден в текущем каталоге —
-  /// он пропускается, а его категория попадает в [ImportResult.missingCategories].
-  /// Пользователь увидит предупреждение с именами пропавших категорий.
   ImportResult importBuildFromCode(String rawCode) {
     try {
       final trimmed = rawCode.trim();
@@ -161,14 +208,27 @@ class AppProvider extends ChangeNotifier {
 
       for (final entry in rawComponents.entries) {
         final cat = _categoryFromKey(entry.key);
-        if (cat == null) continue; // неизвестная категория — молча пропускаем
+        if (cat == null) continue;
 
         final comp = findComponentById(entry.value as String);
         if (comp != null) {
           components[cat] = comp;
         } else {
-          // Компонент не найден — фиксируем для предупреждения
           missingCategories.add(cat.shortName);
+        }
+      }
+
+      // Восстанавливаем список накопителей (поле 's', необязательное для обратной совместимости)
+      final storageList = <Component>[];
+      final rawStorage = data['s'] as List<dynamic>?;
+      if (rawStorage != null) {
+        for (final id in rawStorage) {
+          final comp = findComponentById(id as String);
+          if (comp != null) {
+            storageList.add(comp);
+          } else {
+            missingCategories.add('Накопитель');
+          }
         }
       }
 
@@ -177,6 +237,7 @@ class AppProvider extends ChangeNotifier {
         name: name,
         createdAt: DateTime.now(),
         components: components,
+        storageList: storageList,
       );
 
       return ImportResult(build: build, missingCategories: missingCategories);
@@ -196,6 +257,7 @@ class AppProvider extends ChangeNotifier {
 
   CompatibilityResult checkCompatibility() {
     final components = _currentBuild.components;
+    final storageList = _currentBuild.storageList;
     final errors = <String>[];
     final warnings = <String>[];
 
@@ -240,6 +302,33 @@ class AppProvider extends ChangeNotifier {
       }
     }
 
+    // ── Проверка длины видеокарты ──
+    if (gpu != null && pcCase != null) {
+      final gpuLenStr = gpu.specs['Длина карты'];
+      final maxLenStr = pcCase.specs['Макс. длина GPU'];
+      if (gpuLenStr != null && maxLenStr != null) {
+        final gpuLen = int.tryParse(gpuLenStr.replaceAll(RegExp(r'[^\d]'), ''));
+        final maxLen = int.tryParse(maxLenStr.replaceAll(RegExp(r'[^\d]'), ''));
+        if (gpuLen != null && maxLen != null && gpuLen > maxLen) {
+          errors.add(
+            'Видеокарта ${gpu.brand} ${gpu.model} (${gpuLen} мм) не помещается в корпус '
+            '${pcCase.brand} ${pcCase.model} (макс. ${maxLen} мм)',
+          );
+        }
+      }
+    }
+
+    // ── Проверка количества накопителей ──
+    if (pcCase != null && storageList.isNotEmpty) {
+      final maxSlots = _maxStorageSlotsForCase(pcCase);
+      if (storageList.length > maxSlots) {
+        errors.add(
+          'Корпус ${pcCase.brand} ${pcCase.model} поддерживает максимум $maxSlots '
+          'накопителя(-ей), установлено ${storageList.length}',
+        );
+      }
+    }
+
     int totalTdp = 0;
     if (cpu != null) totalTdp += cpu.tdp ?? 0;
     if (gpu != null) totalTdp += gpu.powerDraw ?? 0;
@@ -281,13 +370,11 @@ class AppProvider extends ChangeNotifier {
   }
 
   /// Количество компонентов в категории, совместимых с текущей сборкой.
-  /// Используется для отображения счётчика в панели фильтров.
   int compatibleCount(ComponentCategory category) {
     return _applyCompatibilityFilter(getByCategory(category), category).length;
   }
 
   /// Применяет только фильтр совместимости — без поиска и спек-фильтров.
-  /// Используется панелью фильтров для подсчёта вариантов.
   List<Component> rawFilteredForCategory(
     ComponentCategory category, {
     String? excludeFilterKey,
@@ -380,6 +467,21 @@ class AppProvider extends ChangeNotifier {
           return true;
         }).toList();
 
+      case ComponentCategory.gpu:
+        // Фильтрация по длине видеокарты
+        return list.where((c) {
+          if (pcCase != null) {
+            final gpuLenStr = c.specs['Длина карты'];
+            final maxLenStr = pcCase.specs['Макс. длина GPU'];
+            if (gpuLenStr != null && maxLenStr != null) {
+              final gpuLen = int.tryParse(gpuLenStr.replaceAll(RegExp(r'[^\d]'), ''));
+              final maxLen = int.tryParse(maxLenStr.replaceAll(RegExp(r'[^\d]'), ''));
+              if (gpuLen != null && maxLen != null && gpuLen > maxLen) return false;
+            }
+          }
+          return true;
+        }).toList();
+
       case ComponentCategory.psu:
         // Показываем БП с достаточной мощностью для текущей сборки
         final cpuTdp = cpu?.tdp ?? 0;
@@ -388,8 +490,15 @@ class AppProvider extends ChangeNotifier {
         final minWattage = ((cpuTdp + gpuDraw + 100) * 1.3).round();
         return list.where((c) => (c.powerDraw ?? 0) >= minWattage).toList();
 
+      case ComponentCategory.storage:
+        // Фильтрация по доступным слотам
+        if (pcCase != null) {
+          final maxSlots = _maxStorageSlotsForCase(pcCase);
+          if (_currentBuild.storageList.length >= maxSlots) return [];
+        }
+        return list;
+
       default:
-        // GPU, накопители — нет жёстких ограничений совместимости
         return list;
     }
   }
@@ -533,6 +642,10 @@ class AppProvider extends ChangeNotifier {
       );
       await prefs.setString('current_build_name', _currentBuild.name);
       await prefs.setString('current_build', jsonEncode(buildMap));
+      await prefs.setStringList(
+        'current_build_storage',
+        _currentBuild.storageList.map((c) => c.id).toList(),
+      );
 
       final buildsJson = _savedBuilds.map((b) => jsonEncode(b.toJson())).toList();
       await prefs.setStringList('saved_builds', buildsJson);
@@ -546,20 +659,30 @@ class AppProvider extends ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       final buildName = prefs.getString('current_build_name') ?? 'Моя сборка';
       final buildJson = prefs.getString('current_build');
+      final storageIds = prefs.getStringList('current_build_storage') ?? [];
+
       if (buildJson != null) {
         final map = jsonDecode(buildJson) as Map<String, dynamic>;
         final components = <ComponentCategory, Component>{};
         for (final entry in map.entries) {
           final cat = _categoryFromKey(entry.key);
-          if (cat == null) continue;
+          if (cat == null || cat == ComponentCategory.storage) continue;
           final comp = findComponentById(entry.value as String);
           if (comp != null) components[cat] = comp;
         }
+
+        final storageList = <Component>[];
+        for (final id in storageIds) {
+          final comp = findComponentById(id);
+          if (comp != null) storageList.add(comp);
+        }
+
         _currentBuild = PcBuild(
           id: 'current',
           name: buildName,
           createdAt: DateTime.now(),
           components: components,
+          storageList: storageList,
         );
       }
 
@@ -570,15 +693,25 @@ class AppProvider extends ChangeNotifier {
         final components = <ComponentCategory, Component>{};
         for (final entry in compIds.entries) {
           final cat = _categoryFromKey(entry.key);
-          if (cat == null) continue;
+          if (cat == null || cat == ComponentCategory.storage) continue;
           final comp = findComponentById(entry.value as String);
           if (comp != null) components[cat] = comp;
         }
+
+        // Восстанавливаем список накопителей (для новых сборок)
+        final storageList = <Component>[];
+        final rawStorageIds = (data['storageIds'] as List<dynamic>?) ?? [];
+        for (final id in rawStorageIds) {
+          final comp = findComponentById(id as String);
+          if (comp != null) storageList.add(comp);
+        }
+
         return PcBuild(
           id: data['id'] ?? '',
           name: data['name'] ?? 'Сборка',
           createdAt: DateTime.tryParse(data['createdAt'] ?? '') ?? DateTime.now(),
           components: components,
+          storageList: storageList,
         );
       }).toList();
 
@@ -589,14 +722,15 @@ class AppProvider extends ChangeNotifier {
   }
 
   bool isInCurrentBuild(String componentId) {
-    return _currentBuild.components.values.any((c) => c.id == componentId);
+    return _currentBuild.components.values.any((c) => c.id == componentId) ||
+        _currentBuild.storageList.any((c) => c.id == componentId);
   }
 
   // ─── Helpers ───
 
   /// Есть ли в сборке хотя бы один компонент, с которым можно проверять совместимость.
   bool get hasBuildForCompatibility =>
-      _currentBuild.components.isNotEmpty;
+      _currentBuild.components.isNotEmpty || _currentBuild.storageList.isNotEmpty;
 
   /// Безопасный поиск категории по ключу. Возвращает null если ключ неизвестен.
   static ComponentCategory? _categoryFromKey(String key) {

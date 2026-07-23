@@ -20,6 +20,11 @@ class _BuilderScreenState extends State<BuilderScreen> {
     final build = provider.currentBuild;
     final compat = provider.checkCompatibility();
 
+    // Все категории кроме storage
+    final nonStorageCategories = ComponentCategory.values
+        .where((c) => c != ComponentCategory.storage)
+        .toList();
+
     return Scaffold(
       backgroundColor: AppTheme.background,
       appBar: AppBar(
@@ -35,7 +40,7 @@ class _BuilderScreenState extends State<BuilderScreen> {
           ),
         ),
         actions: [
-          if (build.components.isNotEmpty)
+          if (build.components.isNotEmpty || build.storageList.isNotEmpty)
             IconButton(
               icon: const Icon(Icons.save_outlined),
               tooltip: 'Сохранить сборку',
@@ -46,7 +51,7 @@ class _BuilderScreenState extends State<BuilderScreen> {
                 );
               },
             ),
-          if (build.components.isNotEmpty)
+          if (build.components.isNotEmpty || build.storageList.isNotEmpty)
             IconButton(
               icon: const Icon(Icons.delete_outline),
               tooltip: 'Очистить',
@@ -140,7 +145,8 @@ class _BuilderScreenState extends State<BuilderScreen> {
           ),
 
           // Compatibility panel
-          if (_showCompatibility && build.components.isNotEmpty)
+          if (_showCompatibility &&
+              (build.components.isNotEmpty || build.storageList.isNotEmpty))
             Container(
               color: const Color(0xFFF8F9FA),
               padding: const EdgeInsets.all(12),
@@ -218,20 +224,46 @@ class _BuilderScreenState extends State<BuilderScreen> {
           Expanded(
             child: ListView(
               padding: const EdgeInsets.only(bottom: 24),
-              children: ComponentCategory.values.map((cat) {
-                final component = build.components[cat];
-                return _SlotCard(
-                  category: cat,
-                  component: component,
-                  onAdd: () => context.push('/category/${cat.key}'),
-                  onRemove: component != null
-                      ? () => provider.removeFromBuild(cat)
-                      : null,
-                  onTap: component != null
-                      ? () => context.push('/component/${component.id}')
-                      : null,
-                );
-              }).toList(),
+              children: [
+                // Обычные категории (не storage)
+                ...nonStorageCategories.map((cat) {
+                  final component = build.components[cat];
+                  return _SlotCard(
+                    category: cat,
+                    component: component,
+                    onAdd: () => context.push('/category/${cat.key}'),
+                    onRemove: component != null
+                        ? () => provider.removeFromBuild(cat)
+                        : null,
+                    onTap: component != null
+                        ? () => context.push('/component/${component.id}')
+                        : null,
+                  );
+                }),
+
+                // ── Слоты накопителей ──
+                ...build.storageList.asMap().entries.map((entry) {
+                  final idx = entry.key;
+                  final drive = entry.value;
+                  return _SlotCard(
+                    category: ComponentCategory.storage,
+                    component: drive,
+                    label: 'Накопитель ${idx + 1}',
+                    onAdd: () =>
+                        context.push('/category/${ComponentCategory.storage.key}'),
+                    onRemove: () => provider.removeStorageDrive(drive.id),
+                    onTap: () => context.push('/component/${drive.id}'),
+                  );
+                }),
+
+                // Кнопка «Добавить накопитель» если есть свободные слоты
+                _AddStorageSlot(
+                  currentCount: build.storageList.length,
+                  maxSlots: provider.maxStorageSlots,
+                  onAdd: () =>
+                      context.push('/category/${ComponentCategory.storage.key}'),
+                ),
+              ],
             ),
           ),
         ],
@@ -300,12 +332,112 @@ class _BuilderScreenState extends State<BuilderScreen> {
   }
 }
 
+// ─── Add Storage Slot ───
+
+class _AddStorageSlot extends StatelessWidget {
+  final int currentCount;
+  final int maxSlots;
+  final VoidCallback onAdd;
+
+  const _AddStorageSlot({
+    required this.currentCount,
+    required this.maxSlots,
+    required this.onAdd,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final canAdd = currentCount < maxSlots;
+
+    return Container(
+      margin: const EdgeInsets.fromLTRB(12, 6, 12, 0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppTheme.divider),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: InkWell(
+        onTap: canAdd ? onAdd : null,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: canAdd
+                      ? ComponentCategory.storage.color.withValues(alpha: 0.1)
+                      : const Color(0xFFF3F4F6),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(
+                  ComponentCategory.storage.icon,
+                  color: canAdd
+                      ? ComponentCategory.storage.color
+                      : AppTheme.textSecondary,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Накопитель ${currentCount + 1}',
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: canAdd
+                            ? ComponentCategory.storage.color
+                            : AppTheme.textSecondary,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      canAdd
+                          ? 'Добавить накопитель ($currentCount / $maxSlots)'
+                          : 'Достигнут лимит слотов корпуса ($maxSlots)',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: canAdd
+                            ? AppTheme.textSecondary
+                            : AppTheme.error,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (canAdd)
+                const Icon(Icons.add_circle_outline,
+                    color: AppTheme.primary, size: 24)
+              else
+                const Icon(Icons.block, color: AppTheme.error, size: 20),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Slot Card ───
+
 class _SlotCard extends StatelessWidget {
   final ComponentCategory category;
   final dynamic component;
   final VoidCallback onAdd;
   final VoidCallback? onRemove;
   final VoidCallback? onTap;
+  final String? label;
 
   const _SlotCard({
     required this.category,
@@ -313,11 +445,13 @@ class _SlotCard extends StatelessWidget {
     required this.onAdd,
     this.onRemove,
     this.onTap,
+    this.label,
   });
 
   @override
   Widget build(BuildContext context) {
     final hasComponent = component != null;
+    final displayLabel = label ?? category.shortName;
 
     return Container(
       margin: const EdgeInsets.fromLTRB(12, 6, 12, 0),
@@ -361,7 +495,7 @@ class _SlotCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            category.shortName,
+                            displayLabel,
                             style: TextStyle(
                               fontSize: 11,
                               color: category.color,
@@ -443,7 +577,7 @@ class _SlotCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            category.shortName,
+                            displayLabel,
                             style: const TextStyle(
                               fontSize: 11,
                               color: AppTheme.textSecondary,

@@ -5,17 +5,22 @@ class PcBuild {
   final String id;
   final String name;
   final DateTime createdAt;
+  /// All components except storage (one per category).
   final Map<ComponentCategory, Component> components;
+  /// Supports multiple storage drives.
+  final List<Component> storageList;
 
   PcBuild({
     required this.id,
     required this.name,
     required this.createdAt,
     required this.components,
+    this.storageList = const [],
   });
 
   double get totalPrice =>
-      components.values.fold(0, (sum, c) => sum + c.price);
+      components.values.fold(0, (sum, c) => sum + c.price) +
+      storageList.fold(0, (sum, c) => sum + c.price);
 
   int get totalTdp {
     int tdp = 0;
@@ -35,11 +40,11 @@ class PcBuild {
       ComponentCategory.cpu,
       ComponentCategory.gpu,
       ComponentCategory.ram,
-      ComponentCategory.storage,
       ComponentCategory.psu,
       ComponentCategory.motherboard,
     ];
-    return required.every((c) => components.containsKey(c));
+    return required.every((c) => components.containsKey(c)) &&
+        storageList.isNotEmpty;
   }
 
   PcBuild copyWith({
@@ -47,12 +52,14 @@ class PcBuild {
     String? name,
     DateTime? createdAt,
     Map<ComponentCategory, Component>? components,
+    List<Component>? storageList,
   }) {
     return PcBuild(
       id: id ?? this.id,
       name: name ?? this.name,
       createdAt: createdAt ?? this.createdAt,
       components: components ?? Map.from(this.components),
+      storageList: storageList ?? List.from(this.storageList),
     );
   }
 
@@ -64,16 +71,18 @@ class PcBuild {
       'componentIds': components.map(
         (k, v) => MapEntry(k.key, v.id),
       ),
+      'storageIds': storageList.map((c) => c.id).toList(),
     };
   }
 
   /// Кодирует сборку в текстовый код для шаринга.
-  /// Формат: base64url({ v:1, n:"name", c:{ "cpu":"cpu_001", ... } })
+  /// Формат: base64url({ v:1, n:"name", c:{ "cpu":"cpu_001", ... }, s:["storage-001"] })
   String toShareCode() {
     final data = <String, dynamic>{
       'v': 1,
       'n': name,
       'c': components.map((k, v) => MapEntry(k.key, v.id)),
+      's': storageList.map((c) => c.id).toList(),
     };
     return base64Url.encode(utf8.encode(jsonEncode(data)));
   }

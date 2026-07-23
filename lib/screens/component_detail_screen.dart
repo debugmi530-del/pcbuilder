@@ -495,25 +495,38 @@ class _ComponentDetailView extends StatelessWidget {
                 onPressed: () {
                   final messenger = ScaffoldMessenger.of(context);
                   if (inBuild) {
-                    provider.removeFromBuild(component.category);
+                    if (component.category == ComponentCategory.storage) {
+                      provider.removeStorageDrive(component.id);
+                    } else {
+                      provider.removeFromBuild(component.category);
+                    }
                     messenger
                       ..clearSnackBars()
                       ..showSnackBar(
                         const SnackBar(content: Text('Удалено из сборки')),
                       );
                   } else {
-                    provider.addToBuild(component);
-                    messenger
-                      ..clearSnackBars()
-                      ..showSnackBar(
-                        SnackBar(
-                          content: Text('${component.model} добавлен в сборку'),
-                          action: SnackBarAction(
-                            label: 'Сборка',
-                            onPressed: () => context.push('/builder'),
+                    final limitErr = component.category == ComponentCategory.storage
+                        ? provider.canAddStorageDrive(component)
+                        : null;
+                    if (limitErr != null) {
+                      messenger
+                        ..clearSnackBars()
+                        ..showSnackBar(SnackBar(content: Text(limitErr)));
+                    } else {
+                      provider.addToBuild(component);
+                      messenger
+                        ..clearSnackBars()
+                        ..showSnackBar(
+                          SnackBar(
+                            content: Text('${component.model} добавлен в сборку'),
+                            action: SnackBarAction(
+                              label: 'Сборка',
+                              onPressed: () => context.push('/builder'),
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                    }
                   }
                 },
                 style: ElevatedButton.styleFrom(

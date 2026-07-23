@@ -266,20 +266,33 @@ class ComponentCard extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             if (inBuild) {
-                              provider.removeFromBuild(component.category);
+                              if (component.category == ComponentCategory.storage) {
+                                provider.removeStorageDrive(component.id);
+                              } else {
+                                provider.removeFromBuild(component.category);
+                              }
                             } else {
                               final messenger = ScaffoldMessenger.of(context);
-                              provider.addToBuild(component);
-                              messenger
-                                ..clearSnackBars()
-                                ..showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      '${component.model} добавлен в сборку',
+                              final limitErr = component.category == ComponentCategory.storage
+                                  ? provider.canAddStorageDrive(component)
+                                  : null;
+                              if (limitErr != null) {
+                                messenger
+                                  ..clearSnackBars()
+                                  ..showSnackBar(SnackBar(content: Text(limitErr)));
+                              } else {
+                                provider.addToBuild(component);
+                                messenger
+                                  ..clearSnackBars()
+                                  ..showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        '${component.model} добавлен в сборку',
+                                      ),
+                                      duration: const Duration(seconds: 2),
                                     ),
-                                    duration: const Duration(seconds: 2),
-                                  ),
-                                );
+                                  );
+                              }
                             }
                           },
                           child: Container(
