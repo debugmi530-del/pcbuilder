@@ -49,12 +49,16 @@ class AppProvider extends ChangeNotifier {
   Map<String, Set<String>> _activeFilters = {};
   String _sortBy = 'price_asc';
 
+  // ── Compatibility filter ──
+  bool _compatibilityFilterEnabled = false;
+
   PcBuild get currentBuild => _currentBuild;
   List<PcBuild> get savedBuilds => _savedBuilds;
   List<Component> get compareComponents => _compareComponents;
   String get searchQuery => _searchQuery;
   Map<String, Set<String>> get activeFilters => _activeFilters;
   String get sortBy => _sortBy;
+  bool get compatibilityFilterEnabled => _compatibilityFilterEnabled;
 
   AppProvider() {
     _load();
@@ -268,6 +272,128 @@ class AppProvider extends ChangeNotifier {
     );
   }
 
+  // ─── Compatibility Filter ───
+
+  /// Включает/выключает фильтр совместимости.
+  void toggleCompatibilityFilter() {
+    _compatibilityFilterEnabled = !_compatibilityFilterEnabled;
+    notifyListeners();
+  }
+
+  /// Количество компонентов в категории, совместимых с текущей сборкой.
+  /// Используется для отображения счётчика в панели фильтров.
+  int compatibleCount(ComponentCategory category) {
+    return _applyCompatibilityFilter(getByCategory(category), category).length;
+  }
+
+  /// Применяет только фильтр совместимости — без поиска и спек-фильтров.
+  /// Используется панелью фильтров для подсчёта вариантов.
+  List<Component> rawFilteredForCategory(
+    ComponentCategory category, {
+    String? excludeFilterKey,
+  }) {
+    var list = getByCategory(category);
+
+    if (_compatibilityFilterEnabled) {
+      list = _applyCompatibilityFilter(list, category);
+    }
+
+    for (final entry in _activeFilters.entries) {
+      if (entry.key == excludeFilterKey) continue;
+      final key = entry.key;
+      final values = entry.value;
+      list = list.where((c) {
+        if (key == 'Бренд') return values.contains(c.brand);
+        final specVal = c.specs[key];
+        return specVal != null && values.contains(specVal);
+      }).toList();
+    }
+
+    return list;
+  }
+
+  /// Фильтрует список компонентов по совместимости с текущей сборкой.
+  List<Component> _applyCompatibilityFilter(
+    List<Component> list,
+    ComponentCategory category,
+  ) {
+    final sel = _currentBuild.components;
+
+    final cpu = sel[ComponentCategory.cpu];
+    final mb = sel[ComponentCategory.motherboard];
+    final ram = sel[ComponentCategory.ram];
+    final gpu = sel[ComponentCategory.gpu];
+    final pcCase = sel[ComponentCategory.pcCase];
+
+    switch (category) {
+      case ComponentCategory.cpu:
+        return list.where((c) {
+          if (mb != null && mb.socket != null && c.socket != null) {
+            if (c.socket != mb.socket) return false;
+          }
+          if (ram != null && ram.memoryType != null && c.memoryTypes.isNotEmpty) {
+            if (!c.memoryTypes.contains(ram.memoryType)) return false;
+          }
+          return true;
+        }).toList();
+
+      case ComponentCategory.motherboard:
+        return list.where((c) {
+          if (cpu != null && cpu.socket != null && c.socket != null) {
+            if (c.socket != cpu.socket) return false;
+          }
+          if (ram != null && ram.memoryType != null && c.memoryTypes.isNotEmpty) {
+            if (!c.memoryTypes.contains(ram.memoryType)) return false;
+          }
+          if (pcCase != null &&
+              pcCase.supportedFormFactors.isNotEmpty &&
+              c.formFactor != null) {
+            if (!pcCase.supportedFormFactors.contains(c.formFactor)) return false;
+          }
+          return true;
+        }).toList();
+
+      case ComponentCategory.ram:
+        return list.where((c) {
+          if (mb != null && mb.memoryTypes.isNotEmpty && c.memoryType != null) {
+            if (!mb.memoryTypes.contains(c.memoryType)) return false;
+          }
+          if (cpu != null && cpu.memoryTypes.isNotEmpty && c.memoryType != null) {
+            if (!cpu.memoryTypes.contains(c.memoryType)) return false;
+          }
+          return true;
+        }).toList();
+
+      case ComponentCategory.cooling:
+        return list.where((c) {
+          if (cpu != null && cpu.socket != null && c.supportedSockets.isNotEmpty) {
+            if (!c.supportedSockets.contains(cpu.socket)) return false;
+          }
+          return true;
+        }).toList();
+
+      case ComponentCategory.pcCase:
+        return list.where((c) {
+          if (mb != null && mb.formFactor != null && c.supportedFormFactors.isNotEmpty) {
+            if (!c.supportedFormFactors.contains(mb.formFactor)) return false;
+          }
+          return true;
+        }).toList();
+
+      case ComponentCategory.psu:
+        // Показываем БП с достаточной мощностью для текущей сборки
+        final cpuTdp = cpu?.tdp ?? 0;
+        final gpuDraw = gpu?.powerDraw ?? 0;
+        if (cpuTdp == 0 && gpuDraw == 0) return list;
+        final minWattage = ((cpuTdp + gpuDraw + 100) * 1.3).round();
+        return list.where((c) => (c.powerDraw ?? 0) >= minWattage).toList();
+
+      default:
+        // GPU, накопители — нет жёстких ограничений совместимости
+        return list;
+    }
+  }
+
   // ─── Compare Components ───
 
   bool addToCompare(Component component) {
@@ -336,11 +462,17 @@ class AppProvider extends ChangeNotifier {
 
   void clearFiltersForCategory(String category) {
     _activeFilters = {};
+    _compatibilityFilterEnabled = false;
     notifyListeners();
   }
 
   List<Component> filteredComponents(ComponentCategory category) {
     var list = getByCategory(category);
+
+    // Compatibility filter
+    if (_compatibilityFilterEnabled) {
+      list = _applyCompatibilityFilter(list, category);
+    }
 
     if (_searchQuery.isNotEmpty) {
       final q = _searchQuery.toLowerCase();
@@ -461,6 +593,10 @@ class AppProvider extends ChangeNotifier {
   }
 
   // ─── Helpers ───
+
+  /// Есть ли в сборке хотя бы один компонент, с которым можно проверять совместимость.
+  bool get hasBuildForCompatibility =>
+      _currentBuild.components.isNotEmpty;
 
   /// Безопасный поиск категории по ключу. Возвращает null если ключ неизвестен.
   static ComponentCategory? _categoryFromKey(String key) {
