@@ -671,8 +671,6 @@ class _FilterScreenState extends State<FilterScreen> {
       case ComponentCategory.storage:
         hint = 'Скрывает накопители, если все слоты корпуса уже заняты';
         break;
-      default:
-        hint = 'Фильтр по совместимости не применяется для этой категории';
     }
 
     return Row(

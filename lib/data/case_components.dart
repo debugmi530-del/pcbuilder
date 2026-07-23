@@ -32,7 +32,7 @@ final List<Component> caseComponents = [
     description: 'Культовый корпус с двумя камерами, отлично подходит для кастомных систем охлаждения. Максимальная вентиляция и видимость компонентов.',
     specs: {
       'Типоразмер': 'Mid-Tower',
-      'Форм-факторы плат': 'Mini-ITX, M-ATX, ATX',
+      'Форм-факторы плат': 'Mini-ITX, mATX, ATX',
       'Материал корпуса': 'Сталь (SPCC) + алюминий',
       'Материал окна': 'Закалённое стекло 4 мм (боковая + верхняя)',
       'Материал фронт. панели': 'Алюминий',
@@ -65,9 +65,9 @@ final List<Component> caseComponents = [
       'Прокладка кабелей': 'Да (до 30 мм за поддоном)',
       'Особенности': 'Двухкамерная конструкция; поддержка вертикального GPU',
     },
-    keySpecs: ['ATX/M-ATX', '3×120мм', '360мм рад.', '420мм GPU'],
+    keySpecs: ['ATX/mATX', '3×120мм', '360мм рад.', '420мм GPU'],
     formFactor: 'ATX',
-    supportedFormFactors: ['ATX', 'M-ATX', 'Mini-ITX'],
+    supportedFormFactors: ['ATX', 'mATX', 'Mini-ITX'],
   ),
   Component(
     id: 'case-002',
@@ -79,7 +79,7 @@ final List<Component> caseComponents = [
     description: 'Высокопроизводительный корпус с сетчатой панелью для отличного воздушного потока. Поддержка E-ATX, 3 предустановленных вентилятора 140 мм.',
     specs: {
       'Типоразмер': 'Mid-Tower',
-      'Форм-факторы плат': 'Mini-ITX, M-ATX, ATX, E-ATX (до 285 мм)',
+      'Форм-факторы плат': 'Mini-ITX, mATX, ATX, E-ATX (до 285 мм)',
       'Материал корпуса': 'Сталь (SGCC)',
       'Материал окна': 'Закалённое стекло 3 мм (боковая)',
       'Материал фронт. панели': 'Сетка стальная (открытый Mesh)',
@@ -113,7 +113,7 @@ final List<Component> caseComponents = [
     },
     keySpecs: ['ATX/E-ATX', '3×140мм', '360мм рад.', '467мм GPU'],
     formFactor: 'ATX',
-    supportedFormFactors: ['ATX', 'M-ATX', 'Mini-ITX', 'E-ATX'],
+    supportedFormFactors: ['ATX', 'mATX', 'Mini-ITX', 'E-ATX'],
   ),
   Component(
     id: 'case-003',
@@ -125,7 +125,7 @@ final List<Component> caseComponents = [
     description: 'Стильный корпус с перфорированной фронтальной панелью для хорошего воздушного потока. Чистый дизайн, кабель-менеджмент, 2 вентилятора в комплекте.',
     specs: {
       'Типоразмер': 'Mid-Tower',
-      'Форм-факторы плат': 'Mini-ITX, M-ATX, ATX',
+      'Форм-факторы плат': 'Mini-ITX, mATX, ATX',
       'Материал корпуса': 'Сталь (SGCC)',
       'Материал окна': 'Закалённое стекло 4 мм (боковая)',
       'Материал фронт. панели': 'Перфорированная сталь',
@@ -156,9 +156,9 @@ final List<Component> caseComponents = [
       'Прокладка кабелей': 'Да (до 20 мм за поддоном)',
       'Особенности': 'Вертикальный кабель-канал; встроенный кабель-менеджер',
     },
-    keySpecs: ['ATX/M-ATX', '2×120мм', '240мм рад.', '381мм GPU'],
+    keySpecs: ['ATX/mATX', '2×120мм', '240мм рад.', '381мм GPU'],
     formFactor: 'ATX',
-    supportedFormFactors: ['ATX', 'M-ATX', 'Mini-ITX'],
+    supportedFormFactors: ['ATX', 'mATX', 'Mini-ITX'],
   ),
   Component(
     id: 'case-004',
@@ -170,7 +170,7 @@ final List<Component> caseComponents = [
     description: 'Тихий и функциональный корпус с 3 вентиляторами Pure Wings 2 и светодиодной подсветкой. Хорошая звукоизоляция и воздушный поток.',
     specs: {
       'Типоразмер': 'Mid-Tower',
-      'Форм-факторы плат': 'Mini-ITX, M-ATX, ATX',
+      'Форм-факторы плат': 'Mini-ITX, mATX, ATX',
       'Материал корпуса': 'Сталь (SGCC)',
       'Материал окна': 'Закалённое стекло 4 мм (боковая)',
       'Материал фронт. панели': 'ABS-пластик с перфорацией',
@@ -204,9 +204,9 @@ final List<Component> caseComponents = [
       'Прокладка кабелей': 'Да (до 25 мм за поддоном)',
       'Звукоизоляция': 'Да (боковые и передняя панели)',
     },
-    keySpecs: ['ATX/M-ATX', '3×140мм', '360мм рад.', 'Тихий'],
+    keySpecs: ['ATX/mATX', '3×140мм', '360мм рад.', 'Тихий'],
     formFactor: 'ATX',
-    supportedFormFactors: ['ATX', 'M-ATX', 'Mini-ITX'],
+    supportedFormFactors: ['ATX', 'mATX', 'Mini-ITX'],
   ),
 
   // ─────────────── CASE (05–15) ───────────────
