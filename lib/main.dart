@@ -122,7 +122,7 @@ class _MainShellState extends State<_MainShell> with WidgetsBindingObserver {
     // Ссылка, по которой приложение было открыто «холодным» стартом
     // app_links v6+: getInitialLink()
     _appLinks.getInitialLink().then((uri) {
-      if (uri != null) _handleLink(uri);
+      if (uri != null && mounted) _handleLink(uri);
     });
     // Ссылки, пока приложение уже работает
     _appLinks.uriLinkStream.listen(_handleLink);
