@@ -700,7 +700,6 @@ final List<Component> caseComponents = [
     keySpecs: ['Mid-Tower ATX', 'Алюминий', '2 стекла', 'Стильный дизайн'],
     supportedFormFactors: ['ATX', 'mATX'],
   ),
-];
 
   // ─────────────── CASE (016–065) ───────────────
   Component(
