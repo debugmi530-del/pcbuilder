@@ -96,32 +96,79 @@ class BuildsScreen extends StatelessWidget {
     );
   }
 
-  // ── Поделиться: копирует код в буфер и показывает SnackBar ──
+  // ── Поделиться: показывает диалог с кодом и кнопкой копирования ──
   void _shareBuild(BuildContext context, PcBuild build) {
     final code = build.toShareCode();
-    final link = 'pcbuilder://import?code=$code';
-    final text =
-        'Смотри мою сборку «${build.name}» в PC Builder!\n\n'
-        '$link\n\n'
-        'Для открытия ссылки необходимо приложение PC Builder.';
-    Clipboard.setData(ClipboardData(text: text));
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Поделиться сборкой'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.check_circle_outline,
-                color: Colors.white, size: 18),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Text(
-                'Ссылка на «${build.name}» скопирована',
-                style: const TextStyle(fontSize: 13),
+            Text(
+              '«${build.name}»',
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Отправьте этот код другу. Он откроет PC Builder → «Сборки» → кнопка ↓ → вставит код.',
+              style: TextStyle(fontSize: 13, color: AppTheme.textSecondary),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: AppTheme.background,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: AppTheme.primary.withOpacity(0.3)),
+              ),
+              child: SelectableText(
+                code,
+                style: const TextStyle(
+                  fontSize: 11,
+                  fontFamily: 'monospace',
+                  color: AppTheme.textPrimary,
+                ),
               ),
             ),
           ],
         ),
-        duration: const Duration(seconds: 3),
-        behavior: SnackBarBehavior.floating,
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Закрыть'),
+          ),
+          ElevatedButton.icon(
+            icon: const Icon(Icons.copy, size: 16),
+            label: const Text('Скопировать код'),
+            onPressed: () {
+              Clipboard.setData(ClipboardData(text: code));
+              Navigator.pop(ctx);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Row(
+                    children: [
+                      const Icon(Icons.check_circle_outline,
+                          color: Colors.white, size: 18),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Код сборки «${build.name}» скопирован',
+                          style: const TextStyle(fontSize: 13),
+                        ),
+                      ),
+                    ],
+                  ),
+                  duration: const Duration(seconds: 3),
+                  behavior: SnackBarBehavior.floating,
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
